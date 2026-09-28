@@ -1,0 +1,30 @@
+{
+  "forms": {
+    "hostLead": {
+      "name": "Location Host Lead",
+      "fields": {
+        "business": { "type": "text", "required": true },
+        "location_type": { "type": "text", "required": true },
+        "name": { "type": "text", "required": true },
+        "email": { "type": "email", "required": true },
+        "phone": { "type": "text", "required": false },
+        "had_skill_games": { "type": "text", "required": false },
+        "notes": { "type": "text", "required": false },
+        "source": { "type": "text", "required": false },
+        "fbclid": { "type": "text", "required": false },
+        "gclid": { "type": "text", "required": false },
+        "utm_source": { "type": "text", "required": false },
+        "utm_medium": { "type": "text", "required": false },
+        "utm_campaign": { "type": "text", "required": false },
+        "utm_term": { "type": "text", "required": false },
+        "utm_content": { "type": "text", "required": false }
+      },
+      "actions": [
+        {
+          "type": "email",
+          "to": "matt@lvpvending.com"
+        }
+      ]
+    }
+  }
+}

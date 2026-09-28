@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+@theme {
+  /* Core palette: deep night sky, electric bolt yellow, arcade blue. */
+  --color-ink: #070B1F;
+  --color-ink-800: #0D1330;
+  --color-ink-700: #161E45;
+  --color-ink-600: #222C5E;
+  --color-bolt: #FFC800;
+  --color-bolt-600: #E0A800;
+  --color-wave: #2F6FED;
+  --color-wave-600: #1D51C0;
+  --color-flare: #FF3B5C;
+  --color-mint: #2ED47A;
+  --color-cloud: #F3F6FD;
+
+  --font-display: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+
+  --animate-fade-up: fadeUp 0.6s ease-out both;
+  --animate-pulse-glow: pulseGlow 2.6s ease-in-out infinite;
+
+  @keyframes fadeUp {
+    0% {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes pulseGlow {
+    0%,
+    100% {
+      opacity: 0.55;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+}
+
+* {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-ink);
+  color: #ffffff;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+@utility display {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+/* Subtle starfield/grid texture used behind dark sections. */
+@utility grid-texture {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+@utility card-surface {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.03) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  backdrop-filter: blur(6px);
+}
+
+@utility text-gradient-bolt {
+  background: linear-gradient(100deg, #ffc800 0%, #fff1a8 50%, #ffc800 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
