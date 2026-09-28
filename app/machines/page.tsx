@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { ArrowRight, CreditCard, Monitor, Ruler, ShieldCheck, Wifi, Wrench } from 'lucide-react';
 import CTA from '@/components/CTA';
 import FeatureCard from '@/components/FeatureCard';
-import MachineArt from '@/components/MachineArt';
 import Section from '@/components/Section';
 import SiteFooter from '@/components/SiteFooter';
 import SiteHeader from '@/components/SiteHeader';
@@ -22,24 +22,31 @@ export const metadata: Metadata = {
 const models = [
   {
     name: 'Wall Mount',
-    badge: 'Most popular',
-    dimensions: '24"W × 42.5"H × 11"D',
+    badge: 'Smallest footprint',
+    placement: 'Wall mounted',
+    image: '/pokemon-tcg-wrap-mini-tcg-vending-machine-front-view.jpeg',
+    alt: 'Wall mounted Pokémon card vending machine, front view',
     description:
-      'Mounts flat on a wall and takes zero floor space. Ideal for counters, checkout lines, entryways, and anywhere square footage is tight.',
+      'Hangs flat on the wall and takes zero floor space, which makes it the easy yes for counters, checkout lines, and tight entryways. Available in two sizes depending on how much selection you want.',
   },
   {
     name: 'Pedestal',
     badge: 'No wall needed',
-    dimensions: 'Same cabinet, freestanding base',
+    placement: 'Freestanding',
+    image:
+      '/pokemon-tcg-wrap-mini-wall-tcg-vending-machine-with-tcg-wrap-pedestal-stand.jpeg',
+    alt: 'Pokémon card vending machine on a freestanding pedestal stand',
     description:
-      'The same machine on a weighted stand. For glass storefronts, brick walls, leased spaces where you cannot mount, or open floor areas.',
+      'The same cabinet on a weighted stand. For glass storefronts, brick, or leased space where drilling into the wall is not an option.',
   },
   {
-    name: 'Double Bank',
-    badge: 'High traffic',
-    dimensions: 'Two units, side by side',
+    name: 'Tower',
+    badge: 'Highest visibility',
+    placement: 'Freestanding',
+    image: '/pokemon-card-pack-vending-machine-24-selection-touchscreen.jpeg',
+    alt: 'Freestanding Pokémon card vending tower with a full-height touchscreen',
     description:
-      'Twice the capacity and twice the selection for busy locations. Fewer restock visits and more sets available at once.',
+      'A full-height tower with a large touchscreen and up to 24 selections. Built to be seen from across the room in arcades, lobbies, and open retail floors.',
   },
 ];
 
@@ -75,27 +82,39 @@ export default function MachinesPage() {
         </section>
 
         <Section width="wide">
-          <div className="grid gap-6 md:grid-cols-3">
-            {models.map((model) => (
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {models.map((model, index) => (
               <div key={model.name} className="card-surface overflow-hidden">
-                <div className="flex justify-center bg-ink-800 px-6 py-8">
-                  <MachineArt className="h-56 w-auto" />
+                <div className="relative aspect-square w-full">
+                  <Image
+                    src={model.image}
+                    alt={model.alt}
+                    fill
+                    priority={index === 0}
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover"
+                  />
                 </div>
                 <div className="p-6">
-                  <p className="mb-2 text-xs font-bold uppercase tracking-[0.16em] text-bolt">
-                    {model.badge}
-                  </p>
+                  <div className="mb-2 flex flex-wrap items-center gap-x-3 gap-y-1">
+                    <p className="text-xs font-bold uppercase tracking-[0.16em] text-bolt">
+                      {model.badge}
+                    </p>
+                    <span className="text-xs font-semibold uppercase tracking-[0.12em] text-white/40">
+                      {model.placement}
+                    </span>
+                  </div>
                   <h2 className="display text-2xl text-white">{model.name}</h2>
-                  <p className="mt-1 font-mono text-xs text-white/50">{model.dimensions}</p>
-                  <p className="mt-4 text-[15px] leading-relaxed text-white/70">
+                  <p className="mt-3 text-[15px] leading-relaxed text-white/70">
                     {model.description}
                   </p>
                 </div>
               </div>
             ))}
           </div>
-          <p className="mt-8 text-center text-sm text-white/45">
-            Product photography coming soon. Ask us for current photos of an installed unit.
+          <p className="mx-auto mt-10 max-w-2xl text-center leading-relaxed text-white/60">
+            Every model is touchscreen, cashless, remotely monitored, and wrapped to get noticed.
+            Tell us about your space and we will spec the one that fits.
           </p>
         </Section>
 

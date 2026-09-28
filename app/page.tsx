@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import {
   ArrowRight,
@@ -20,7 +21,6 @@ import EarningsEstimator from '@/components/EarningsEstimator';
 import FAQ from '@/components/FAQ';
 import FeatureCard from '@/components/FeatureCard';
 import HostLeadForm from '@/components/HostLeadForm';
-import MachineArt from '@/components/MachineArt';
 import Section from '@/components/Section';
 import SiteFooter from '@/components/SiteFooter';
 import SiteHeader from '@/components/SiteHeader';
@@ -138,8 +138,8 @@ export default function HomePage() {
           <div className="pointer-events-none absolute -top-40 left-1/2 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-wave/25 blur-[140px]" />
           <div className="pointer-events-none absolute -bottom-32 right-0 h-[380px] w-[380px] rounded-full bg-bolt/15 blur-[130px]" />
 
-          <div className="relative mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.15fr_0.85fr]">
-            <div className="animate-fade-up">
+          <div className="relative mx-auto grid max-w-6xl gap-x-12 gap-y-8 lg:grid-cols-[1.05fr_0.95fr]">
+            <div className="animate-fade-up lg:col-start-1 lg:row-start-1 lg:self-end">
               <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-bolt/40 bg-bolt/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.16em] text-bolt">
                 <Sparkles size={14} />
                 Serving the Lehigh Valley
@@ -156,8 +156,25 @@ export default function HomePage() {
                 </strong>{' '}
                 for doing absolutely nothing.
               </p>
+            </div>
 
-              <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+            {/* Sits between the pitch and the CTA on mobile so ad traffic sees the product immediately. */}
+            <div className="relative mx-auto w-full max-w-[440px] animate-fade-up lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:self-center">
+              <div className="pointer-events-none absolute -inset-8 animate-pulse-glow rounded-[48px] bg-bolt/20 blur-3xl" />
+              <div className="relative aspect-5/4 overflow-hidden rounded-2xl border border-white/10 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)] lg:aspect-4/5">
+                <Image
+                  src="/LVPVendingPokemonMachine2.png"
+                  alt="Pokémon card vending machine mounted on a convenience store wall beside the lottery machines"
+                  fill
+                  priority
+                  sizes="(min-width: 1024px) 440px, 92vw"
+                  className="object-cover object-[62%_26%] lg:object-center"
+                />
+              </div>
+            </div>
+
+            <div className="animate-fade-up lg:col-start-1 lg:row-start-2 lg:self-start">
+              <div className="flex flex-col gap-3 sm:flex-row">
                 <CTA href="/host-a-machine#apply">
                   See If My Location Qualifies <ArrowRight size={16} />
                 </CTA>
@@ -172,11 +189,6 @@ export default function HomePage() {
                 <span>No contract</span>
                 <span>Locally owned</span>
               </div>
-            </div>
-
-            <div className="relative mx-auto w-full max-w-[320px] animate-fade-up">
-              <div className="pointer-events-none absolute inset-0 animate-pulse-glow rounded-[40px] bg-bolt/20 blur-3xl" />
-              <MachineArt className="relative w-full drop-shadow-2xl" />
             </div>
           </div>
         </section>

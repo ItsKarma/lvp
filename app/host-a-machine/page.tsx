@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import {
   ArrowRight,
   BadgeCheck,
@@ -15,7 +16,6 @@ import CTA from '@/components/CTA';
 import EarningsEstimator from '@/components/EarningsEstimator';
 import FeatureCard from '@/components/FeatureCard';
 import HostLeadForm from '@/components/HostLeadForm';
-import MachineArt from '@/components/MachineArt';
 import Section from '@/components/Section';
 import SiteFooter from '@/components/SiteFooter';
 import SiteHeader from '@/components/SiteHeader';
@@ -74,8 +74,17 @@ export default function HostPage() {
                 </CTA>
               </div>
             </div>
-            <div className="mx-auto w-full max-w-[300px]">
-              <MachineArt className="w-full drop-shadow-2xl" />
+            <div className="relative mx-auto w-full max-w-[360px]">
+              <div className="pointer-events-none absolute inset-0 animate-pulse-glow rounded-full bg-bolt/20 blur-3xl" />
+              <Image
+                src="/LVPVendingPokemonClearBackground.png"
+                alt="Pokémon card vending machine with a touchscreen and tap-to-pay reader"
+                width={1024}
+                height={1536}
+                priority
+                sizes="(min-width: 1024px) 360px, 80vw"
+                className="relative w-full drop-shadow-2xl"
+              />
             </div>
           </div>
         </section>
