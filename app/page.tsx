@@ -52,7 +52,7 @@ const handled = [
   { icon: <Wrench size={20} />, title: 'Repairs', description: 'Anything breaks, we fix it. Your staff never touches the machine.' },
   { icon: <CreditCard size={20} />, title: 'Payments', description: 'Cashless card and mobile wallet. No cash box, no skimming risk.' },
   { icon: <ShieldCheck size={20} />, title: 'Insurance & liability', description: 'The machine is ours, insured by us, and our responsibility.' },
-  { icon: <Handshake size={20} />, title: 'Removal', description: 'Not working after 60 days? We pull it out free, no hard feelings.' },
+  { icon: <Handshake size={20} />, title: 'Removal', description: `Not working after ${siteConfig.trialDays} days? We pull it out free, no hard feelings.` },
 ];
 
 const locationTypes = [
@@ -103,7 +103,7 @@ const faqItems = [
   {
     question: 'What if it does not work out?',
     answer:
-      'Try it for 60 days. If it is not earning or you just do not want it anymore, we remove it within 48 hours at no cost to you. There is no binding contract.',
+      `Try it for ${siteConfig.trialDays} days. If it is not earning or you just do not want it anymore, we remove it within 48 hours at no cost to you. There is no binding contract.`,
   },
   {
     question: 'Can I get more than one?',
@@ -378,7 +378,7 @@ export default function HomePage() {
                   'No cost and no obligation to ask',
                   'Answer back within one business day',
                   'We tell you no if it is not a fit',
-                  '60 day risk-free trial if it is',
+                  `${siteConfig.trialDays}-day risk-free trial if it is`,
                 ].map((line) => (
                   <li key={line} className="flex items-start gap-3">
                     <BadgeCheck size={18} className="mt-0.5 shrink-0 text-bolt" />

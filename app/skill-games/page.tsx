@@ -91,7 +91,7 @@ const faqItems = [
   {
     question: 'What if it does not work in my spot?',
     answer:
-      'Sixty days, risk free. If it is not earning, we pull it out within 48 hours at no cost to you. There is no contract locking you in.',
+      `${siteConfig.trialDays} days, risk free. If it is not earning, we pull it out within 48 hours at no cost to you. There is no contract locking you in.`,
   },
 ];
 
@@ -321,7 +321,7 @@ export default function SkillGamesPage() {
                 {[
                   'No cost, no lease, no contract',
                   'We can time the install to your removal',
-                  '60 day risk-free trial',
+                  `${siteConfig.trialDays}-day risk-free trial`,
                   'Answer back within one business day',
                 ].map((line) => (
                   <li key={line} className="flex items-start gap-3">

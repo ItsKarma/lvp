@@ -122,12 +122,12 @@ export default function HostPage() {
           </div>
         </Section>
 
-        <Section panel eyebrow="Your safety net" title="60 days, and we mean it." width="wide">
+        <Section panel eyebrow="Your safety net" title={`${siteConfig.trialDays} days, and we mean it.`} width="wide">
           <div className="grid gap-5 md:grid-cols-3">
             <FeatureCard
               icon={<Undo2 size={22} />}
-              title="Free removal, 48 hours"
-              description="If it is not earning or you change your mind, say the word. We pull it out within two business days and patch anything we mounted."
+              title={`${siteConfig.trialDays}-day trial, free removal`}
+              description={`Try it for ${siteConfig.trialDays} days. If it is not earning or you change your mind, say the word. We pull it out within 48 hours at no cost.`}
               accent="mint"
             />
             <FeatureCard

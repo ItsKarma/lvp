@@ -89,8 +89,8 @@ export default async function CityPage({ params }: CityPageProps) {
             />
             <FeatureCard
               icon={<ShieldCheck size={22} />}
-              title="60 days, risk free"
-              description="If it is not earning, we remove it within 48 hours at no cost. There is no binding contract to sign."
+              title={`${siteConfig.trialDays} days, risk free`}
+              description={`Try it for ${siteConfig.trialDays} days. If it is not earning, we remove it within 48 hours at no cost. There is no binding contract to sign.`}
               accent="mint"
             />
           </div>

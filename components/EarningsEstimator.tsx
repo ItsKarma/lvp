@@ -3,7 +3,6 @@
 import { useId, useState } from 'react';
 import { siteConfig } from '@/lib/site';
 
-const AVG_PACK_PRICE = 7;
 const DAYS_PER_MONTH = 30;
 
 const currency = new Intl.NumberFormat('en-US', {
@@ -14,9 +13,9 @@ const currency = new Intl.NumberFormat('en-US', {
 
 export default function EarningsEstimator() {
   const sliderId = useId();
-  const [packsPerDay, setPacksPerDay] = useState(12);
+  const [packsPerDay, setPacksPerDay] = useState(5);
 
-  const monthlySales = packsPerDay * AVG_PACK_PRICE * DAYS_PER_MONTH;
+  const monthlySales = packsPerDay * siteConfig.averagePackPrice * DAYS_PER_MONTH;
   const monthlyPayout = (monthlySales * siteConfig.revenueSharePercent) / 100;
 
   return (
@@ -42,6 +41,9 @@ export default function EarningsEstimator() {
         onChange={(event) => setPacksPerDay(Number(event.target.value))}
         className="h-2 w-full cursor-pointer appearance-none rounded-full bg-white/15 accent-bolt"
       />
+      <p className="mt-3 text-sm text-white/70">
+        Estimated vend price per pack: <span className="font-bold text-white">${siteConfig.averagePackPrice}</span>
+      </p>
 
       <div className="mt-8 grid gap-4 sm:grid-cols-2">
         <div className="rounded-xl border border-white/10 bg-ink px-5 py-4">
@@ -59,8 +61,8 @@ export default function EarningsEstimator() {
       </div>
 
       <p className="mt-5 text-xs leading-relaxed text-white/45">
-        Illustration only, not a guarantee of earnings. Assumes an average pack price of $
-        {AVG_PACK_PRICE} across {DAYS_PER_MONTH} days. Real volume depends on your foot traffic,
+        Illustration only, not a guarantee of earnings. Assumes ${siteConfig.averagePackPrice} per pack
+        across {DAYS_PER_MONTH} operating days. Real volume depends on your foot traffic,
         placement, and hours. We will give you a realistic read on your specific location before we
         install anything.
       </p>
