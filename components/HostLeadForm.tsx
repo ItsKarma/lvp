@@ -3,9 +3,8 @@
 import { Suspense, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { FormspreeProvider, ValidationError, useForm } from '@formspree/react';
-import { sendGAEvent } from '@next/third-parties/google';
 import { CheckCircle2 } from 'lucide-react';
-import { trackMetaLead } from '@/lib/meta';
+import { trackLead } from '@/lib/analytics';
 
 const FORMSPREE_PROJECT = process.env.NEXT_PUBLIC_FORMSPREE_PROJECT;
 
@@ -60,8 +59,7 @@ function LeadForm({ source, skillGameContext, submitLabel }: Required<HostLeadFo
 
   useEffect(() => {
     if (!state.succeeded) return;
-    trackMetaLead({ content_name: source });
-    sendGAEvent('event', 'generate_lead', { form_name: FORM_KEY, source });
+    trackLead({ source, formName: FORM_KEY });
   }, [state.succeeded, source]);
 
   if (state.succeeded) {

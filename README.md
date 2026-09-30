@@ -26,10 +26,16 @@ Open http://localhost:3000
 | --- | --- | --- |
 | `FORMSPREE_DEPLOY_KEY` | yes | `npm run build` runs `formspree deploy` first |
 | `NEXT_PUBLIC_FORMSPREE_PROJECT` | yes | Renders the lead forms |
-| `NEXT_PUBLIC_META_PIXEL_ID` | for ads | Meta Pixel and `Lead` conversion events |
-| `NEXT_PUBLIC_GA_MEASUREMENT_ID` | optional | GA4 |
+| `NEXT_PUBLIC_META_PIXEL_ID` | for Meta ads | Meta Pixel and `Lead` conversion events |
+| `NEXT_PUBLIC_GA_MEASUREMENT_ID` | recommended | GA4 |
+| `NEXT_PUBLIC_GOOGLE_ADS_ID` | for Google Ads | Site-wide Google Ads tag (`AW-...`) |
+| `NEXT_PUBLIC_GOOGLE_ADS_LEAD_LABEL` | for Google Ads | Conversion label; required alongside the Ads ID |
 
 Set the same variables in the Vercel project settings.
+
+All three destinations are wired through `trackLead()` in `lib/analytics.ts` and
+fire together on form submit. Each one is skipped independently when its ID is
+not set, so you can turn channels on as you go.
 
 ## Structure
 

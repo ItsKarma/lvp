@@ -1,7 +1,7 @@
 'use client';
 
 import Script from 'next/script';
-import { META_PIXEL_ID } from '@/lib/meta';
+import { META_PIXEL_ID } from '@/lib/analytics';
 
 /** Loads the Meta Pixel when an ID is configured. Used for Instagram/Facebook ads. */
 export default function MetaPixel() {

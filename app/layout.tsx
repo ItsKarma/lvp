@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Geist, Outfit } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/next';
 import { GoogleAnalytics } from '@next/third-parties/google';
+import GoogleAdsTag from '@/components/GoogleAdsTag';
 import MetaPixel from '@/components/MetaPixel';
 import { siteConfig } from '@/lib/site';
 import './globals.css';
@@ -75,6 +76,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     >
       <body className="bg-ink font-sans text-white">
         <MetaPixel />
+        <GoogleAdsTag />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
