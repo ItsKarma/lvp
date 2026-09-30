@@ -343,7 +343,7 @@ export default function HomePage() {
             <FeatureCard
               icon={<ShieldCheck size={22} />}
               title="No weighing. No scanning. No picking."
-              description="We never try to identify what is inside a pack before it sells. Customers get a real, untouched chance at a good pull, which is the entire point."
+              description="We never try to identify what is inside a pack before it sells. We want customers to get the hits, enjoy the experience, and come back for their next pack. Every pack gets a real, untouched chance."
               accent="mint"
             />
             <FeatureCard
