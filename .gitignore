@@ -5,6 +5,8 @@ node_modules/
 .next/
 out/
 build/
+exports/
+public/assets/downloads/*.mp4
 
 # test coverage
 coverage/

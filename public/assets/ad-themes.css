@@ -1,0 +1,108 @@
+.theme-kicker { display: none; }
+
+:where(html[data-theme]:not([data-theme=""])) .theme-kicker {
+  display: block;
+  margin: 0 0 4cqw;
+  font: 800 2.4cqw/1.3 Arial, sans-serif;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+:where(html[data-theme]:not([data-theme=""])) .headline { top: 10%; transform: none; }
+:where(html[data-theme]:not([data-theme=""])) h1 { line-height: 1.02; }
+:where(html[data-theme]:not([data-theme=""])) .buy { font-size: 15cqw; }
+:where(html[data-theme]:not([data-theme=""])) .pokemon { font-size: 12cqw; margin: 1.2cqw 0; }
+:where(html[data-theme]:not([data-theme=""])) .cards { font-size: 13cqw; }
+:where(html[data-theme]:not([data-theme=""])) .here { font-size: 12cqw; margin-top: 2cqw; }
+:where(html[data-theme]:not([data-theme=""])) h1 span { -webkit-text-stroke-width: 1.2cqw; }
+:where(html[data-theme]:not([data-theme=""])) .product { top: 54%; height: 22%; }
+:where(html[data-theme]:not([data-theme=""])) .card-burst img { width: 16cqw; }
+:where(html[data-theme]:not([data-theme=""])) .product-tag { font-size: 2.7cqw; }
+:where(html[data-theme]:not([data-theme=""])) .features span + span { border-color: currentColor; }
+
+html[data-theme="neon"] { --yellow: #eaff48; --cyan: #39fff0; }
+[data-theme="neon"] .screen { background: radial-gradient(ellipse at 50% 45%, #3b116c, #100623 70%); }
+[data-theme="neon"] .rays {
+  inset: -60%;
+  background: repeating-linear-gradient(90deg, #fa35d650 0 .25cqw, transparent .25cqw 8cqw),
+    repeating-linear-gradient(0deg, #26ffe950 0 .25cqw, transparent .25cqw 8cqw);
+  animation: arcade-grid 10s linear infinite;
+}
+[data-theme="neon"] .halftone { opacity: .2; }
+[data-theme="neon"] .orbit { border-color: #fc40cf; box-shadow: 0 0 3cqw #fc40cf, inset 0 0 3cqw #fc40cf; }
+[data-theme="neon"] .orbit-two { border-color: #39fff0; box-shadow: 0 0 3cqw #39fff0; }
+[data-theme="neon"] .headline { rotate: -3deg; }
+[data-theme="neon"] h1 span { filter: drop-shadow(1cqw 1cqw 0 #ed29aa); }
+[data-theme="neon"] .buy, [data-theme="neon"] .cards { color: #39fff0; -webkit-text-stroke-color: #071629; }
+[data-theme="neon"] .pokemon, [data-theme="neon"] .here { color: #ff55de; -webkit-text-stroke-color: #fff; }
+[data-theme="neon"] .theme-kicker { color: #eaff48; }
+[data-theme="neon"] .tap { color: #134f65; }
+[data-theme="neon"] .purchase { color: #df26b6; }
+[data-theme="neon"] .features { background: #180a2f; border-color: #ff55de; }
+[data-theme="neon"] .product-tag { background: #eaff48; box-shadow: .6cqw .8cqw 0 #ff55de; }
+
+html[data-theme="sunset"] { --yellow: #fff09b; --cyan: #e73748; }
+[data-theme="sunset"] .screen { background: linear-gradient(#ffecb4, #ffa576 57%, #f05b6f); }
+[data-theme="sunset"] .rays {
+  inset: 4% -12% auto;
+  height: 100cqw;
+  border-radius: 50%;
+  background: repeating-linear-gradient(0deg, transparent 0 2cqw, #f76c4e 2cqw 9cqw);
+  animation: sunset-sun 10s ease-in-out infinite;
+}
+[data-theme="sunset"] .halftone { background: radial-gradient(circle, #ac324550 18%, transparent 21%) 0 0 / 2.4cqw 2.4cqw; opacity: .5; }
+[data-theme="sunset"] .orbit { border-color: #fff5ca; box-shadow: none; opacity: .4; }
+[data-theme="sunset"] .theme-kicker { color: #7d243a; }
+[data-theme="sunset"] h1 span { filter: drop-shadow(.8cqw 1cqw 0 #8e2943); -webkit-text-stroke-color: #fff5da; }
+[data-theme="sunset"] .buy, [data-theme="sunset"] .cards { color: #db354b; }
+[data-theme="sunset"] .pokemon, [data-theme="sunset"] .here { color: #8b2745; -webkit-text-stroke-color: #fff5da; }
+[data-theme="sunset"] .product-halo { background: #fff3b9; }
+[data-theme="sunset"] .product-tag { background: #fff3b9; color: #7d243a; border-color: #7d243a; box-shadow: .6cqw .8cqw 0 #7d243a; }
+[data-theme="sunset"] .tap, [data-theme="sunset"] .purchase { color: #a92348; filter: drop-shadow(.5cqw .5cqw 0 #76293b); }
+[data-theme="sunset"] .tap-icon { color: #842540; }
+[data-theme="sunset"] .spark { color: #fff5ca; text-shadow: none; }
+[data-theme="sunset"] .features { background: #81263c; border-color: #fff3b9; }
+
+html[data-theme="holo"] { --yellow: #faffff; --cyan: #b4fff3; }
+[data-theme="holo"] .screen { background: linear-gradient(145deg, #e2fffa, #c7dbff 32%, #f4d9ff 64%, #b6f6ee); }
+[data-theme="holo"] .rays {
+  background: repeating-conic-gradient(from 20deg, #ffffff90 0deg 30deg, #9ac4ed55 30deg 60deg, #dfb6fb77 60deg 90deg);
+  animation: crystal-turn 10s linear infinite;
+}
+[data-theme="holo"] .halftone { opacity: .15; }
+[data-theme="holo"] .orbit { border-color: #fff; box-shadow: 0 0 3cqw #fff; }
+[data-theme="holo"] .theme-kicker { color: #3c406e; }
+[data-theme="holo"] h1 span { -webkit-text-stroke-color: #fff; filter: drop-shadow(.5cqw .7cqw 0 #8499bc); }
+[data-theme="holo"] .buy, [data-theme="holo"] .cards { color: #3f5189; }
+[data-theme="holo"] .pokemon, [data-theme="holo"] .here { color: #80559d; -webkit-text-stroke-color: #fff; }
+[data-theme="holo"] .product-tag { background: #f5ffff; color: #3f5189; border-color: #8ca1c9; box-shadow: .6cqw .8cqw 0 #9e89be; transform: translateX(-50%); }
+[data-theme="holo"] .tap, [data-theme="holo"] .purchase { color: #65518f; filter: drop-shadow(0 0 1cqw #fff); }
+[data-theme="holo"] .tap-icon { color: #504477; }
+[data-theme="holo"] .features { background: #3f466e; border-color: #fff; }
+[data-theme="holo"] .spark { color: #fff; }
+
+html[data-theme="gold"] { --yellow: #f6dd9e; --cyan: #c99f52; }
+[data-theme="gold"] .screen { background: radial-gradient(ellipse at 50% 40%, #41301b, #12100f 65%); }
+[data-theme="gold"] .screen::after { content: ""; position: absolute; inset: 3%; border: .2cqw solid #c99f5270; pointer-events: none; z-index: 1; }
+[data-theme="gold"] .rays { background: repeating-conic-gradient(#f1cb7340 0deg 1deg, transparent 1deg 40deg); opacity: .4; }
+[data-theme="gold"] .halftone { opacity: .1; }
+[data-theme="gold"] .orbit { border-color: #b18b4a; box-shadow: none; }
+[data-theme="gold"] .headline { top: 12%; }
+[data-theme="gold"] .theme-kicker { color: #e9cb8b; }
+[data-theme="gold"] h1 { line-height: 1.15; }
+[data-theme="gold"] h1 span { -webkit-text-stroke: .3cqw #f6dd9e; filter: drop-shadow(0 1cqw 1cqw #000); }
+[data-theme="gold"] .buy, [data-theme="gold"] .pokemon, [data-theme="gold"] .cards, [data-theme="gold"] .here { color: #f6dd9e; }
+html[data-theme="gold"] .here { font: 700 3.3cqw/1.4 Arial, sans-serif; letter-spacing: .16em; margin-top: 4cqw; -webkit-text-stroke: 0; }
+[data-theme="gold"] .product-halo { background: #e1b85c50; }
+[data-theme="gold"] .product-tag { background: #201b14; color: #f6dd9e; border-color: #c99f52; box-shadow: none; transform: translateX(-50%); font-weight: 600; }
+[data-theme="gold"] .tap, [data-theme="gold"] .purchase { color: #f6dd9e; -webkit-text-stroke-color: #322615; filter: drop-shadow(0 0 1cqw #e1b85c50); }
+[data-theme="gold"] .features { background: #100e0c; color: #f6dd9e; border-color: #c99f52; }
+[data-theme="gold"] .card-burst img { opacity: .8; animation-name: gold-cards; }
+
+@keyframes arcade-grid { from { transform: rotate(-15deg) translateY(0); } to { transform: rotate(-15deg) translateY(8cqw); } }
+@keyframes sunset-sun { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(3cqw) scale(1.05); } }
+@keyframes crystal-turn { from { transform: rotate(0deg); } to { transform: rotate(90deg); } }
+@keyframes gold-cards {
+  0% { opacity: 0; transform: translate(-50%, -50%) translate(0, 0) rotate(0deg) scale(.2); }
+  15%, 70% { opacity: .65; }
+  100% { opacity: 0; transform: translate(-50%, -50%) translate(var(--x), var(--y)) rotate(var(--spin)) scale(1.1); }
+}

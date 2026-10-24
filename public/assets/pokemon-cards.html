@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Buy Pokémon Cards Here — Screen Ad</title>
+    <link rel="stylesheet" href="/assets/pokemon-cards.css">
+    <link rel="stylesheet" href="/assets/ad-themes.css">
+    <link rel="stylesheet" href="/assets/ad-more-themes.css">
+    <script src="/assets/pokemon-cards.js" type="module"></script>
+  </head>
+  <body>
+    <div class="workspace">
+      <main class="screen" aria-label="Buy Pokémon cards here. Tap the machine screen to shop.">
+        <div class="rays" aria-hidden="true"></div>
+        <div class="halftone" aria-hidden="true"></div>
+        <div class="orbit orbit-one" aria-hidden="true"></div>
+        <div class="orbit orbit-two" aria-hidden="true"></div>
+        <div class="spark spark-one" aria-hidden="true">✦</div>
+        <div class="spark spark-two" aria-hidden="true">✦</div>
+        <div class="spark spark-three" aria-hidden="true">✦</div>
+        <div class="spark spark-four" aria-hidden="true">✦</div>
+        <div class="card-burst" aria-hidden="true">
+          <img src="/card_pikachu.jpg" alt="">
+          <img src="/card_bubble_mew.jpg" alt="">
+          <img src="/card_squirtle.jpg" alt="">
+          <img src="/card_rayquaza.jpg" alt="">
+          <img src="/card_charizard.jpg" alt="">
+          <img src="/card_darkrai.jpg" alt="">
+          <img src="/card_gengar.jpg" alt="">
+          <img src="/card_mew_rgb.jpg" alt="">
+          <img src="/card_lugia.jpg" alt="">
+        </div>
+
+        <header class="headline">
+          <p class="theme-kicker"></p>
+          <h1>
+            <span class="buy">BUY</span>
+            <span class="pokemon">POKÉMON</span>
+            <span class="cards">CARDS</span>
+            <span class="here">HERE</span>
+          </h1>
+        </header>
+
+        <div class="product">
+          <div class="product-halo" aria-hidden="true"></div>
+          <div class="packs" role="group" aria-label="Pokémon booster packs">
+            <img src="/booster_prismatic_evolutions.jpg" alt="Prismatic Evolutions booster pack" width="546" height="1000" fetchpriority="high">
+            <img src="/booster_destined_rivals.jpg" alt="Destined Rivals booster pack" width="546" height="1000">
+            <img src="/booster_ascended_heroes.jpg" alt="Ascended Heroes booster pack" width="547" height="1000">
+            <img src="/booster_pitch_black.jpg" alt="Pitch Black booster pack" width="547" height="1000">
+            <img src="/booster_30th%20celebration.jpg" alt="30th Celebration booster pack" width="497" height="1000">
+          </div>
+          <span class="product-tag">Pick your next pack</span>
+        </div>
+
+        <section class="call-to-action" aria-label="Tap to buy">
+          <div class="tap-icon" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M26 36V19a5 5 0 0 1 10 0v12l4-2 15 8-4 20H28L15 42a5 5 0 0 1 7-7l4 4"/>
+              <path class="tap-ripples" d="M14 25a18 18 0 0 1 36-4M6 23a26 26 0 0 1 52-3"/>
+            </svg>
+          </div>
+          <div class="cta-text">
+            <p class="tap">TAP TO</p>
+            <p class="purchase">BUY!</p>
+          </div>
+        </section>
+
+        <footer class="features">
+          <span>100% Authentic</span><span>Choose a pack</span><span>Keep collecting</span>
+        </footer>
+      </main>
+      <aside class="controls" aria-label="Preview controls">
+        <a href="/assets">← Asset library</a>
+        <h2>Pokémon card ad</h2>
+        <p>1080 × 1920 · 10 seconds · No audio</p>
+        <div class="buttons">
+          <button type="button" id="pause">Pause</button>
+          <button type="button" id="restart">Restart</button>
+          <button type="button" id="fullscreen">Fullscreen</button>
+          <a id="clean-playback" href="?clean=1">Clean playback ↗</a>
+        </div>
+        <label for="timeline">Timeline <output id="time">0.0s</output></label>
+        <input id="timeline" type="range" min="0" max="10" step="0.1" value="0">
+        <p>Render locally with <code id="export-command">npm run export:ad</code>. MP4s are saved to the Git-ignored exports folder. Website downloads are not currently hosted.</p>
+        <p class="error" id="error" role="alert"></p>
+      </aside>
+    </div>
+  </body>
+</html>
