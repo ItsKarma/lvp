@@ -1,0 +1,231 @@
+/* Season (season-*) and holiday (holiday-*) themes. The shared palette rules live
+   in ad-type-themes.css. Small shapes are inline SVG data URIs; each moving layer
+   shifts by whole tiles so the ten-second loop stays seamless. */
+
+[data-theme="season-winter"] {
+  --paper: #fff; --base: #0e1a33; --accent: #e8f6ff; --second: #8fd3ff; --type: #2c6fb7;
+  --stroke: #0e1a33; --tag-bg: #8fd3ff; --tag-ink: #0e1a33; --dots: #ffffff30; --spark: "⛄";
+}
+[data-theme="season-winter"] .screen { background: linear-gradient(#14213f, #2c4a7a 60%, #6f9ccc); }
+[data-theme="season-winter"] .rays {
+  inset: 0;
+  background: radial-gradient(circle, #fff 0 .7cqw, transparent .8cqw) 0 0 / 13cqw 13cqw,
+    radial-gradient(circle, #ffffffd0 0 .45cqw, transparent .55cqw) 4cqw 5cqw / 9cqw 9cqw,
+    radial-gradient(circle, #ffffffa0 0 .3cqw, transparent .4cqw) 2cqw 1cqw / 6cqw 7cqw;
+  animation: winter-snow var(--loop) linear infinite;
+}
+[data-theme="season-winter"] .screen::before {
+  content: ""; position: absolute; left: -10%; right: -10%; bottom: 0; height: 10%; pointer-events: none;
+  background: radial-gradient(60% 100% at 25% 100%, #f4fbff 98%, transparent), radial-gradient(60% 90% at 80% 100%, #e3f1ff 98%, transparent);
+}
+
+[data-theme="season-spring"] {
+  --paper: #fff; --base: #1e4a2a; --accent: #2f8f46; --second: #e8508f; --type: #3a9a52;
+  --note: #1e4a2a; --tag-ink: #fff; --dots: #ffffff70; --spark: "🌸";
+}
+[data-theme="season-spring"] .screen { background: linear-gradient(#eafbe3, #c8f0c0 50%, #ffd6e8); }
+[data-theme="season-spring"] .rays {
+  inset: 0;
+  background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><g transform='translate(20 20) scale(2.4) rotate(35 12 12)'><ellipse cx='12' cy='12' rx='3.2' ry='5.5' fill='%23ffb7d5'/></g></svg>") 0 0 / 16cqw 16cqw, url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><g transform='translate(30 30) scale(2) rotate(-20 12 12)'><ellipse cx='12' cy='12' rx='3.2' ry='5.5' fill='%23ffffff'/></g></svg>") 5cqw 7cqw / 11cqw 11cqw;
+  animation: petal-drift var(--loop) linear infinite;
+}
+
+[data-theme="season-summer"] {
+  --paper: #fff; --base: #5a1f00; --accent: #fff; --second: #0fb5ae; --type: #e8451e;
+  --stroke: #8a3200; --note: #5a1f00; --tag-bg: #0fb5ae; --tag-ink: #fff; --dots: #ffffff40; --spark: "☀️";
+}
+[data-theme="season-summer"] .screen { background: linear-gradient(#ffe259, #ffa751 55%, #ff6f61); }
+[data-theme="season-summer"] .rays { background: repeating-conic-gradient(#ffffff55 0deg 8deg, transparent 8deg 20deg); }
+[data-theme="season-summer"] .screen::before {
+  content: ""; position: absolute; width: 64cqw; height: 64cqw; right: -24cqw; top: -18cqw; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(circle, #fffbd0 0 45%, #ffd23f 60%, #ffd23f00 71%);
+  animation: summer-sun var(--loop) ease-in-out infinite;
+}
+
+[data-theme="season-fall"] {
+  --paper: #fff8ec; --base: #3b1606; --accent: #b5361f; --second: #7a3e10; --type: #a0401a;
+  --note: #3b1606; --tag-ink: #fff; --dots: #ffffff30; --spark: "🍂";
+}
+[data-theme="season-fall"] .screen { background: linear-gradient(#ffd59a, #f0913f 50%, #a8441c); }
+[data-theme="season-fall"] .rays {
+  inset: 0;
+  background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><g transform='translate(20 20) scale(2.4) rotate(25 12 12)'><path d='M12 2C7 6 4 11 6 16c1.5 3.5 4.5 5 6 6 1.5-1 4.5-2.5 6-6 2-5-1-10-6-14z' fill='%23c0392b'/><path d='M12 6v16' stroke='%23000' stroke-opacity='.25' stroke-width='1'/></g></svg>") 0 0 / 18cqw 18cqw, url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><g transform='translate(20 20) scale(2.4) rotate(-35 12 12)'><path d='M12 2C7 6 4 11 6 16c1.5 3.5 4.5 5 6 6 1.5-1 4.5-2.5 6-6 2-5-1-10-6-14z' fill='%23e67e22'/><path d='M12 6v16' stroke='%23000' stroke-opacity='.25' stroke-width='1'/></g></svg>") 6cqw 4cqw / 14cqw 14cqw, url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><g transform='translate(20 20) scale(2.4) rotate(70 12 12)'><path d='M12 2C7 6 4 11 6 16c1.5 3.5 4.5 5 6 6 1.5-1 4.5-2.5 6-6 2-5-1-10-6-14z' fill='%238e5a2b'/><path d='M12 6v16' stroke='%23000' stroke-opacity='.25' stroke-width='1'/></g></svg>") 11cqw 9cqw / 22cqw 22cqw;
+  opacity: .55;
+  animation: leaf-fall var(--loop) linear infinite;
+}
+
+[data-theme="holiday-newyear"] {
+  --paper: #fff; --base: #0a0820; --accent: #ffd76a; --second: #c8b6ff; --type: #6a3dff;
+  --dots: #ffd76a20; --spark: "🎉";
+}
+[data-theme="holiday-newyear"] .screen { background: radial-gradient(ellipse at 50% 30%, #2a1a60, #120c33 55%, #0a0820); }
+[data-theme="holiday-newyear"] .rays {
+  inset: 0;
+  background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><g transform='translate(10 10) scale(3.2) rotate(0 12 12)'><rect x='2' y='3' width='3' height='6' fill='%23ffd76a' transform='rotate(25 3.5 6)'/><rect x='14' y='1' width='3' height='6' fill='%23c8b6ff' transform='rotate(-30 15.5 4)'/><rect x='8' y='14' width='3' height='6' fill='%23ffffff' transform='rotate(60 9.5 17)'/><rect x='19' y='15' width='3' height='6' fill='%23ff8fb1' transform='rotate(-15 20.5 18)'/></g></svg>") 0 0 / 30cqw 30cqw, url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><g transform='translate(10 10) scale(3.2) rotate(0 12 12)'><rect x='2' y='3' width='3' height='6' fill='%23ffd76a' transform='rotate(25 3.5 6)'/><rect x='14' y='1' width='3' height='6' fill='%23c8b6ff' transform='rotate(-30 15.5 4)'/><rect x='8' y='14' width='3' height='6' fill='%23ffffff' transform='rotate(60 9.5 17)'/><rect x='19' y='15' width='3' height='6' fill='%23ff8fb1' transform='rotate(-15 20.5 18)'/></g></svg>") 12cqw 9cqw / 22cqw 22cqw;
+  animation: confetti-fall var(--loop) linear infinite;
+}
+
+[data-theme="holiday-valentines"] {
+  --paper: #fff; --base: #5a0a24; --accent: #d6204e; --second: #ff6f9c; --type: #c2185b;
+  --note: #5a0a24; --tag-ink: #fff; --dots: #ffffff60; --spark: "💘";
+}
+[data-theme="holiday-valentines"] .screen { background: linear-gradient(#fff0f4, #ffc2d4 50%, #ff8fb1); }
+[data-theme="holiday-valentines"] .rays {
+  inset: 0;
+  background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><g transform='translate(20 20) scale(2.4) rotate(-10 12 12)'><path d='M12 21s-7-4.4-9.5-8.6C.6 9 2.3 4.5 6.4 4.5c2.3 0 3.9 1.3 5.6 3.4 1.7-2.1 3.3-3.4 5.6-3.4 4.1 0 5.8 4.5 3.9 7.9C19 16.6 12 21 12 21z' fill='%23e8204e' fill-opacity='0.55'/></g></svg>") 0 0 / 20cqw 20cqw, url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><g transform='translate(20 20) scale(2.4) rotate(12 12 12)'><path d='M12 21s-7-4.4-9.5-8.6C.6 9 2.3 4.5 6.4 4.5c2.3 0 3.9 1.3 5.6 3.4 1.7-2.1 3.3-3.4 5.6-3.4 4.1 0 5.8 4.5 3.9 7.9C19 16.6 12 21 12 21z' fill='%23ff8fb1' fill-opacity='0.7'/></g></svg>") 7cqw 6cqw / 13cqw 13cqw, url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><g transform='translate(25 25) scale(2) rotate(0 12 12)'><path d='M12 21s-7-4.4-9.5-8.6C.6 9 2.3 4.5 6.4 4.5c2.3 0 3.9 1.3 5.6 3.4 1.7-2.1 3.3-3.4 5.6-3.4 4.1 0 5.8 4.5 3.9 7.9C19 16.6 12 21 12 21z' fill='%23ffffff' fill-opacity='0.8'/></g></svg>") 3cqw 2cqw / 9cqw 9cqw;
+  opacity: .75;
+  animation: hearts-rise var(--loop) linear infinite;
+}
+
+[data-theme="holiday-stpatricks"] {
+  --paper: #fff; --base: #083d1c; --accent: #ffd23f; --second: #b8f58a; --type: #1d7a3a;
+  --dots: #ffd23f30; --spark: "🍀";
+}
+[data-theme="holiday-stpatricks"] .screen { background: radial-gradient(ellipse at 50% 50%, #2fa44f, #13652f 55%, #083d1c); }
+[data-theme="holiday-stpatricks"] .screen::before {
+  content: ""; position: absolute; left: 50%; top: 36%; width: 150cqw; height: 150cqw; margin-left: -75cqw; pointer-events: none;
+  background: radial-gradient(circle closest-side, transparent 50%, #e53935 50% 53%, #fb8c00 53% 56%, #fdd835 56% 59%,
+    #43a047 59% 62%, #1e88e5 62% 65%, #8e24aa 65% 68%, transparent 68%);
+  opacity: .35;
+}
+[data-theme="holiday-stpatricks"] .rays {
+  inset: 0;
+  background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><g transform='translate(20 20) scale(2.4) rotate(15 12 12)'><g fill='%2357c26b' fill-opacity='0.55'><circle cx='12' cy='7' r='4.6'/><circle cx='7' cy='12.5' r='4.6'/><circle cx='17' cy='12.5' r='4.6'/></g><path d='M12 12q1 6 4 10' stroke='%2357c26b' stroke-opacity='0.55' stroke-width='1.6' fill='none'/></g></svg>") 0 0 / 18cqw 18cqw, url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><g transform='translate(20 20) scale(2.4) rotate(-25 12 12)'><g fill='%23b8f58a' fill-opacity='0.4'><circle cx='12' cy='7' r='4.6'/><circle cx='7' cy='12.5' r='4.6'/><circle cx='17' cy='12.5' r='4.6'/></g><path d='M12 12q1 6 4 10' stroke='%23b8f58a' stroke-opacity='0.4' stroke-width='1.6' fill='none'/></g></svg>") 6cqw 8cqw / 12cqw 12cqw;
+  animation: clover-drift var(--loop) linear infinite;
+}
+
+[data-theme="holiday-easter"] {
+  --paper: #fff; --base: #3f2a6b; --accent: #7a4fd0; --second: #ff6fa8; --type: #8a5fe0;
+  --note: #3f2a6b; --tag-ink: #fff; --dots: #ffffff70; --spark: "🐰";
+}
+[data-theme="holiday-easter"] .screen { background: linear-gradient(#fff9d6, #e8dcff 50%, #c9ecff); }
+[data-theme="holiday-easter"] .rays {
+  inset: 0;
+  background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><g transform='translate(22 18) scale(2.3) rotate(-15 12 12)'><ellipse cx='12' cy='12.5' rx='7' ry='9.5' fill='%23ffb3d1'/><path d='M5.3 11l2.3-2 2.3 2 2.1-2 2.1 2 2.3-2 2.3 2' stroke='%23fff' stroke-width='1.6' fill='none'/><path d='M5.6 15.5h12.8' stroke='%23fff' stroke-width='1.2' stroke-dasharray='1.4 1.4'/></g></svg>") 0 0 / 20cqw 20cqw, url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><g transform='translate(22 18) scale(2.3) rotate(20 12 12)'><ellipse cx='12' cy='12.5' rx='7' ry='9.5' fill='%239fd8ff'/><path d='M5.3 11l2.3-2 2.3 2 2.1-2 2.1 2 2.3-2 2.3 2' stroke='%23fff' stroke-width='1.6' fill='none'/><path d='M5.6 15.5h12.8' stroke='%23fff' stroke-width='1.2' stroke-dasharray='1.4 1.4'/></g></svg>") 8cqw 9cqw / 16cqw 16cqw, url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><g transform='translate(22 18) scale(2.3) rotate(5 12 12)'><ellipse cx='12' cy='12.5' rx='7' ry='9.5' fill='%23ffe27a'/><path d='M5.3 11l2.3-2 2.3 2 2.1-2 2.1 2 2.3-2 2.3 2' stroke='%23fff' stroke-width='1.6' fill='none'/><path d='M5.6 15.5h12.8' stroke='%23fff' stroke-width='1.2' stroke-dasharray='1.4 1.4'/></g></svg>") 14cqw 3cqw / 24cqw 24cqw;
+  opacity: .6;
+  animation: egg-drift var(--loop) linear infinite;
+}
+[data-theme="holiday-easter"] .screen::before {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 9%; pointer-events: none;
+  background: radial-gradient(1.2cqw 5cqw at 50% 100%, #6cbf5a 95%, transparent) 0 100% / 3cqw 100% repeat-x,
+    linear-gradient(#6cbf5a, #6cbf5a) 0 100% / 100% 3cqw no-repeat;
+}
+
+[data-theme="holiday-july4"] {
+  --paper: #fff; --base: #071433; --accent: #ff4d5a; --second: #fff; --type: #c8102e;
+  --stroke: #0b1f4d; --tag-ink: #fff; --dots: #ffffff25; --spark: "🎆";
+}
+[data-theme="holiday-july4"] .screen { background: radial-gradient(ellipse at 50% 40%, #1d3a7a, #0b1f4d 60%, #071433); }
+[data-theme="holiday-july4"] .rays {
+  inset: 0;
+  background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><g transform='translate(20 20) scale(2.4) rotate(10 12 12)'><path d='M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z' fill='%23ffffff' fill-opacity='0.55'/></g></svg>") 0 0 / 16cqw 16cqw, url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><g transform='translate(25 25) scale(2) rotate(-15 12 12)'><path d='M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z' fill='%23ff4d5a' fill-opacity='0.5'/></g></svg>") 5cqw 6cqw / 11cqw 11cqw;
+  animation: star-drift var(--loop) linear infinite;
+}
+
+[data-theme="holiday-backtoschool"] {
+  --paper: #fff; --base: #14254f; --accent: #1e4fd8; --second: #e63b2e; --type: #1e4fd8;
+  --note: #14254f; --tag-bg: #ffd23f; --tag-ink: #14254f; --dots: #1e4fd810; --spark: "✏️";
+}
+[data-theme="holiday-backtoschool"] .screen { background: #fdfcf5; }
+[data-theme="holiday-backtoschool"] .rays {
+  inset: 0;
+  background: linear-gradient(transparent 6.6cqw, #9cc3ef 6.6cqw) 0 0 / 100% 6.85cqw;
+  animation: ruled-scroll var(--loop) linear infinite;
+}
+[data-theme="holiday-backtoschool"] .screen::before {
+  content: ""; position: absolute; left: 12%; top: 0; bottom: 0; width: .35cqw; background: #f28b82; pointer-events: none;
+}
+[data-theme="holiday-backtoschool"] .screen::after {
+  content: ""; position: absolute; left: 2.5%; top: 12%; bottom: 12%; width: 5cqw; pointer-events: none;
+  background: radial-gradient(circle, #e6e2d3 0 1.8cqw, transparent 1.9cqw) 50% 0 / 5cqw 50cqw repeat-y;
+}
+
+[data-theme="holiday-halloween"] {
+  --paper: #fff; --base: #0a0410; --accent: #ff8a1d; --second: #b77dff; --type: #ff6a00;
+  --dots: #b77dff20; --spark: "🎃";
+}
+[data-theme="holiday-halloween"] .screen { background: radial-gradient(ellipse at 70% 15%, #4a1a6b, #1c0a2e 55%, #0a0410); }
+[data-theme="holiday-halloween"] .screen::before {
+  content: ""; position: absolute; right: -12cqw; top: 1.5%; width: 34cqw; height: 34cqw; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(circle at 40% 40%, #fff8dc, #ffd98a 70%);
+  box-shadow: 0 0 8cqw 2cqw #ffb34766;
+  opacity: .85;
+}
+[data-theme="holiday-halloween"] .rays {
+  inset: 0;
+  background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><g transform='translate(10 20) scale(3.4) rotate(0 12 12)'><path d='M12 9c-1 0-1.6-.9-1.9-1.8-.4 1-.9 1.5-1.6 1.6C7 6.5 4.5 5.6 1 6c2.3 1.5 3.4 3.6 3.6 6 1-.9 2.3-1.2 3.6-.7.8.3 1.4 1.1 1.8 2.2.4-1.1 1-1.9 1.8-2.2h.4c.8.3 1.4 1.1 1.8 2.2.4-1.1 1-1.9 1.8-2.2 1.3-.5 2.6-.2 3.6.7.2-2.4 1.3-4.5 3.6-6-3.5-.4-6 .5-7.5 2.8-.7-.1-1.2-.6-1.6-1.6-.3.9-.9 1.8-1.9 1.8z' fill='%23000000' fill-opacity='0.6'/></g></svg>") 0 0 / 26cqw 22cqw, url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><g transform='translate(15 25) scale(2.6) rotate(0 12 12)'><path d='M12 9c-1 0-1.6-.9-1.9-1.8-.4 1-.9 1.5-1.6 1.6C7 6.5 4.5 5.6 1 6c2.3 1.5 3.4 3.6 3.6 6 1-.9 2.3-1.2 3.6-.7.8.3 1.4 1.1 1.8 2.2.4-1.1 1-1.9 1.8-2.2h.4c.8.3 1.4 1.1 1.8 2.2.4-1.1 1-1.9 1.8-2.2 1.3-.5 2.6-.2 3.6.7.2-2.4 1.3-4.5 3.6-6-3.5-.4-6 .5-7.5 2.8-.7-.1-1.2-.6-1.6-1.6-.3.9-.9 1.8-1.9 1.8z' fill='%23000000' fill-opacity='0.4'/></g></svg>") 9cqw 12cqw / 18cqw 16cqw;
+  animation: bat-flight var(--loop) linear infinite;
+}
+
+[data-theme="holiday-thanksgiving"] {
+  --paper: #fff8ec; --base: #3a1406; --accent: #8a2a12; --second: #c96a1b; --type: #8a3a14;
+  --note: #3a1406; --tag-bg: #ffcf6b; --tag-ink: #3a1406; --dots: #ffffff25; --spark: "🦃";
+}
+[data-theme="holiday-thanksgiving"] .screen { background: linear-gradient(#f9dca0, #e09a52 55%, #a14a22); }
+[data-theme="holiday-thanksgiving"] .rays {
+  inset: 0;
+  background: linear-gradient(90deg, #7a2e1238 0 4cqw, transparent 4cqw 10cqw, #ffffff24 10cqw 11cqw, transparent 11cqw) 0 0 / 16cqw 16cqw,
+    linear-gradient(0deg, #7a2e1238 0 4cqw, transparent 4cqw 10cqw, #ffffff24 10cqw 11cqw, transparent 11cqw) 0 0 / 16cqw 16cqw;
+  animation: plaid-drift var(--loop) linear infinite;
+}
+
+[data-theme="holiday-winter"] {
+  --paper: #fff; --base: #07190f; --accent: #ffd34d; --second: #ff5a6a; --type: #c8102e;
+  --dots: #ffffff20; --spark: "🎁";
+}
+[data-theme="holiday-winter"] .screen { background: radial-gradient(ellipse at 50% 45%, #1f5c3a, #0f3322 60%, #07190f); }
+[data-theme="holiday-winter"] .rays {
+  inset: 0;
+  background: radial-gradient(circle, #ffffffc0 0 .5cqw, transparent .6cqw) 0 0 / 14cqw 14cqw,
+    radial-gradient(circle, #ffffff80 0 .35cqw, transparent .45cqw) 6cqw 4cqw / 10cqw 10cqw;
+  animation: holiday-snow var(--loop) linear infinite;
+}
+[data-theme="holiday-winter"] .screen::before, [data-theme="holiday-winter"] .screen::after {
+  content: ""; position: absolute; left: 0; right: 0; top: 1.5%; height: 6cqw; pointer-events: none;
+  animation: bulb-blink 2s ease-in-out infinite;
+}
+[data-theme="holiday-winter"] .screen::before {
+  background: radial-gradient(1.3cqw 1.9cqw at 50% 65%, #ff4d5e 95%, transparent) 0 0 / 12cqw 6cqw repeat-x,
+    linear-gradient(#2c4a35, #2c4a35) 0 1.4cqw / 100% .35cqw no-repeat;
+  filter: drop-shadow(0 0 1.2cqw #ff4d5e);
+}
+[data-theme="holiday-winter"] .screen::after {
+  background: radial-gradient(1.3cqw 1.9cqw at 50% 65%, #ffd34d 95%, transparent) 6cqw 0 / 12cqw 6cqw repeat-x;
+  filter: drop-shadow(0 0 1.2cqw #ffd34d);
+  animation-delay: -1s;
+}
+
+/* Fireworks for New Year's and the Fourth of July: two bursts, four per loop. */
+[data-theme="holiday-newyear"] .screen::before, [data-theme="holiday-newyear"] .screen::after,
+[data-theme="holiday-july4"] .screen::before, [data-theme="holiday-july4"] .screen::after {
+  content: ""; position: absolute; width: 46cqw; height: 46cqw; border-radius: 50%; pointer-events: none;
+  background: repeating-conic-gradient(var(--accent) 0deg 2.5deg, transparent 2.5deg 18deg);
+  mask-image: radial-gradient(circle closest-side, transparent 30%, #000 45% 85%, transparent 100%);
+  animation: firework-burst 2.5s ease-out infinite;
+}
+[data-theme="holiday-newyear"] .screen::before, [data-theme="holiday-july4"] .screen::before { left: -6cqw; top: 2%; }
+[data-theme="holiday-newyear"] .screen::after, [data-theme="holiday-july4"] .screen::after {
+  right: -6cqw; top: 28%;
+  background: repeating-conic-gradient(var(--second) 0deg 2.5deg, transparent 2.5deg 18deg);
+  animation-delay: -1.25s;
+}
+
+@keyframes winter-snow { from { background-position: 0 0, 4cqw 5cqw, 2cqw 1cqw; } to { background-position: 13cqw 26cqw, 4cqw 23cqw, 2cqw 15cqw; } }
+@keyframes petal-drift { from { background-position: 0 0, 5cqw 7cqw; } to { background-position: 16cqw 32cqw, -6cqw 29cqw; } }
+@keyframes summer-sun { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+@keyframes leaf-fall { from { background-position: 0 0, 6cqw 4cqw, 11cqw 9cqw; } to { background-position: 18cqw 36cqw, -8cqw 32cqw, 33cqw 53cqw; } }
+@keyframes confetti-fall { from { background-position: 0 0, 12cqw 9cqw; } to { background-position: 0 60cqw, 12cqw 53cqw; } }
+@keyframes hearts-rise { from { background-position: 0 0, 7cqw 6cqw, 3cqw 2cqw; } to { background-position: 0 -40cqw, 7cqw -20cqw, 3cqw -16cqw; } }
+@keyframes clover-drift { from { background-position: 0 0, 6cqw 8cqw; } to { background-position: -18cqw 36cqw, 18cqw 32cqw; } }
+@keyframes egg-drift { from { background-position: 0 0, 8cqw 9cqw, 14cqw 3cqw; } to { background-position: 0 20cqw, 8cqw 25cqw, 14cqw 27cqw; } }
+@keyframes star-drift { from { background-position: 0 0, 5cqw 6cqw; } to { background-position: 16cqw 16cqw, -6cqw 17cqw; } }
+@keyframes ruled-scroll { from { background-position: 0 0; } to { background-position: 0 -27.4cqw; } }
+@keyframes bat-flight { from { background-position: 0 0, 9cqw 12cqw; } to { background-position: -52cqw 0, -27cqw 12cqw; } }
+@keyframes plaid-drift { from { background-position: 0 0, 0 0; } to { background-position: 16cqw 0, 0 16cqw; } }
+@keyframes holiday-snow { from { background-position: 0 0, 6cqw 4cqw; } to { background-position: 0 28cqw, 6cqw 24cqw; } }
+@keyframes bulb-blink { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+@keyframes firework-burst {
+  0% { transform: scale(.15); opacity: 0; }
+  15% { opacity: 1; }
+  100% { transform: scale(1.1); opacity: 0; }
+}

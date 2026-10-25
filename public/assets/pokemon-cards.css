@@ -38,7 +38,7 @@ body { min-height: 100svh; }
 .orbit-two { inset: 36% auto auto -9%; width: 118cqw; height: 118cqw; animation-delay: -5s; }
 .headline { position: absolute; top: 15%; left: 5%; width: 90%; z-index: 3; text-align: center; transform: scale(1.1); transform-origin: center bottom; }
 h1 { margin: 0; font-family: "Carter One", Arial, sans-serif; font-weight: 400; font-style: normal; letter-spacing: -.025em; line-height: 0.90; }
-h1 span { display: block; paint-order: stroke fill; -webkit-text-stroke: 2.4cqw white; filter: drop-shadow(0.9cqw 1.2cqw 0 #050726); }
+h1 span { display: block; white-space: nowrap; paint-order: stroke fill; -webkit-text-stroke: 2.4cqw white; filter: drop-shadow(0.9cqw 1.2cqw 0 #050726); }
 .buy { color: var(--blue); font-size: 23.5cqw; }
 .pokemon { color: var(--yellow); font-size: 16cqw; -webkit-text-stroke: 2cqw var(--orange); margin: 2cqw 0 2.3cqw; }
 .cards { color: var(--blue); font-size: 16.02cqw; }
@@ -121,5 +121,7 @@ h1 span { display: block; paint-order: stroke fill; -webkit-text-stroke: 2.4cqw 
   .controls { width: min(100%, 380px); }
 }
 @media (prefers-reduced-motion: reduce) {
-  html:not(.export) .screen *, html:not(.export) .screen *::before { animation-play-state: paused !important; }
+  html:not(.export) .screen, html:not(.export) .screen *,
+  html:not(.export) .screen::before, html:not(.export) .screen::after,
+  html:not(.export) .screen *::before, html:not(.export) .screen *::after { animation-play-state: paused !important; }
 }

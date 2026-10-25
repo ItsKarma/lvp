@@ -63,32 +63,31 @@ public/        Static assets
 See the [machine ad creation guide](docs/machine-ads.md) for design history,
 source structure, adding themes, rendering, testing, and troubleshooting.
 
-### Fifteen display options
+### Display options and collections
 
-Visit `/assets` for all fifteen previews, clean playback links, and local MP4
-export commands. Every display is silent, portrait 1080 × 1920, and loops in 10 seconds.
+Visit `/assets` for the creative library. It has 399 displays in 49 collections,
+and each collection has its own page at `/assets/<collection-id>`:
 
-| Export ID | Design | Preview |
+| Section | Collections | Designs |
 | --- | --- | --- |
-| `original` | Electric Blue — original comic burst | `/assets/pokemon-cards.html` |
-| `neon` | Neon Arcade — cyan/pink grid and glowing rings | `/assets/pokemon-cards.html?theme=neon` |
-| `sunset` | Sunset Pop — peach/red striped sun and print texture | `/assets/pokemon-cards.html?theme=sunset` |
-| `holo` | Holographic Ice — mint/lavender rotating crystal facets | `/assets/pokemon-cards.html?theme=holo` |
-| `gold` | Golden Hour — black/gold collector-inspired spotlights | `/assets/pokemon-cards.html?theme=gold` |
-| `forest` | Emerald Expedition — forest green, mint, canopy-like light | `/assets/pokemon-cards.html?theme=forest` |
-| `electric` | Lightning Strike — yellow, charcoal, angular light | `/assets/pokemon-cards.html?theme=electric` |
-| `ocean` | Ocean Drift — teal, seafoam, drifting bubbles | `/assets/pokemon-cards.html?theme=ocean` |
-| `galaxy` | Cosmic Quest — violet, indigo, starfield | `/assets/pokemon-cards.html?theme=galaxy` |
-| `candy` | Candy Cloud — pink, lavender, drifting dots | `/assets/pokemon-cards.html?theme=candy` |
-| `fire` | Crimson Forge — crimson, orange, drifting embers | `/assets/pokemon-cards.html?theme=fire` |
-| `blueprint` | Collector Blueprint — cobalt, white, drafting grid | `/assets/pokemon-cards.html?theme=blueprint` |
-| `citrus` | Citrus Splash — lime, tangerine, citrus rings | `/assets/pokemon-cards.html?theme=citrus` |
-| `mono` | Ink & Paper — black, cream, red, print lines | `/assets/pokemon-cards.html?theme=mono` |
-| `festival` | Confetti Club — purple, coral, gold, confetti | `/assets/pokemon-cards.html?theme=festival` |
+| Standard | `standard` | The original fifteen (Electric Blue, Neon Arcade, Sunset Pop, …) |
+| Pokémon Types | `type-normal`, `type-fire`, `type-water`, `type-grass`, `type-electric`, `type-ice`, `type-fighting`, `type-poison`, `type-ground`, `type-flying`, `type-psychic`, `type-bug`, `type-rock`, `type-ghost`, `type-dragon`, `type-dark`, `type-steel`, `type-fairy` | Eight each |
+| Locations | `spot-bowling`, `spot-pizza`, `spot-icecream`, `spot-salon`, `spot-laundry`, `spot-gym`, `spot-hotel`, `spot-convenience`, `spot-carwash`, `spot-gamenight`, `spot-cinema` | Eight each |
+| Seasons & Holidays | `season-winter`, `season-spring`, `season-summer`, `season-fall`, `holiday-newyear`, `holiday-valentines`, `holiday-stpatricks`, `holiday-easter`, `holiday-july4`, `holiday-backtoschool`, `holiday-halloween`, `holiday-thanksgiving`, `holiday-winter` | Eight each; tiles show the months to run them |
+| Airport | `airport-departures`, `airport-checkpoint` (before security), `airport-gates` (after security), `airport-foodcourt`, `airport-kids` (kids’ play area), `airport-baggage` | Eight each |
 
-Copy, titles, and export filenames live in `public/assets/ad-catalog.js`.
+Every display is silent, portrait 1080 × 1920, and loops in 10 seconds. In a type, location,
+season, holiday, or airport collection, the first ad uses the classic layout and keeps the collection's ID
+(`type-fire`); ads two through eight are `type-fire-2` … `type-fire-8` and use the
+starburst, card-rain, spotlight, poster-frame, sticker, banner, and pulse layouts in that
+order. Preview any ad at `/assets/pokemon-cards.html?theme=<ad-id>`.
+
+Collections, copy, titles, and export filenames live in `public/assets/ad-catalog.js`.
 The themes share the existing HTML/controls and have separate style
-sections in `public/assets/ad-themes.css` and `public/assets/ad-more-themes.css`; original artwork styling remains in
+sections in `public/assets/ad-themes.css`, `public/assets/ad-more-themes.css`,
+`public/assets/ad-type-themes.css` (Pokémon types), `public/assets/ad-location-themes.css` (host locations),
+`public/assets/ad-seasonal-themes.css` (seasons and holidays), `public/assets/ad-airport-themes.css` (airport spots),
+and `public/assets/ad-variants.css` (the eight shared layouts); original artwork styling remains in
 `pokemon-cards.css`. Add `&clean=1` to a themed URL for artwork-only playback.
 There is no vending-company branding in any design.
 
@@ -141,6 +140,7 @@ Export a specific design, or refresh all fifteen:
 npm run export:ad -- --ad neon --url http://localhost:3100
 npm run export:ad -- --ad all --url http://localhost:3100
 npm run export:ad -- --ad forest --duration 30 --url http://localhost:3100
+npm run export:ad -- --group spot-bowling --url http://localhost:3100
 ```
 
 `--ad` defaults to `original`; `--duration` defaults to `10` and accepts exactly

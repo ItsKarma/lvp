@@ -1,0 +1,115 @@
+/* Layout styles layered on any type/location theme via data-variant.
+   They draw on the empty .deco layer (behind the cards and packs) and the
+   .sticker badge, so they never collide with a theme's .screen pseudo-elements.
+   Colors come from the theme palette variables in ad-type-themes.css. */
+.deco { position: absolute; inset: 0; pointer-events: none; }
+.sticker { display: none; }
+
+/* Starburst: two counter-rotating bursts behind the packs. A 16-point star
+   repeats every 22.5deg, so one point per loop is seamless. */
+[data-variant="burst"] .headline { rotate: -3deg; }
+[data-variant="burst"] .deco::before, [data-variant="burst"] .deco::after {
+  content: ""; position: absolute; left: 50%; top: 65%;
+  width: 130cqw; height: 130cqw; margin: -65cqw 0 0 -65cqw;
+  clip-path: polygon(50.0% 0.0%, 57.0% 14.7%, 69.1% 3.8%, 70.0% 20.1%, 85.4% 14.6%, 79.9% 30.0%, 96.2% 30.9%, 85.3% 43.0%, 100.0% 50.0%, 85.3% 57.0%, 96.2% 69.1%, 79.9% 70.0%, 85.4% 85.4%, 70.0% 79.9%, 69.1% 96.2%, 57.0% 85.3%, 50.0% 100.0%, 43.0% 85.3%, 30.9% 96.2%, 30.0% 79.9%, 14.6% 85.4%, 20.1% 70.0%, 3.8% 69.1%, 14.7% 57.0%, 0.0% 50.0%, 14.7% 43.0%, 3.8% 30.9%, 20.1% 30.0%, 14.6% 14.6%, 30.0% 20.1%, 30.9% 3.8%, 43.0% 14.7%);
+  background: var(--second);
+  opacity: .3;
+  animation: burst-spin var(--loop) linear infinite;
+}
+[data-variant="burst"] .deco::after {
+  width: 90cqw; height: 90cqw; margin: -45cqw 0 0 -45cqw;
+  background: var(--accent);
+  animation-direction: reverse;
+}
+
+/* Card rain: the nine cards fall from above instead of bursting outward. */
+[data-variant="rain"] .card-burst img { animation-name: card-rain; width: 15cqw; }
+[data-variant="rain"] .deco {
+  background: radial-gradient(.25cqw 3cqw at 50% 50%, var(--paper) 90%, transparent) 0 0 / 7cqw 24cqw,
+    radial-gradient(.2cqw 2cqw at 50% 50%, var(--paper) 90%, transparent) 3.5cqw 12cqw / 7cqw 24cqw;
+  opacity: .25;
+  animation: streak-fall var(--loop) linear infinite;
+}
+
+/* Spotlight: vignette plus two crossing stage beams. */
+[data-variant="spotlight"] .deco { background: radial-gradient(ellipse 75% 50% at 50% 42%, transparent 45%, #0000008c); }
+[data-variant="spotlight"] .deco::before, [data-variant="spotlight"] .deco::after {
+  content: ""; position: absolute; bottom: 0; width: 60cqw; height: 190cqw;
+  transform-origin: 50% 100%;
+  clip-path: polygon(45% 100%, 55% 100%, 100% 0, 0 0);
+  background: linear-gradient(to top, #ffffff80, transparent 85%);
+  opacity: .45;
+}
+[data-variant="spotlight"] .deco::before { left: -10cqw; animation: beam-left var(--loop) ease-in-out infinite; }
+[data-variant="spotlight"] .deco::after { right: -10cqw; animation: beam-right var(--loop) ease-in-out infinite; }
+
+/* Poster frame: a border with two lights chasing around it, calmer cards. */
+[data-variant="frame"] .deco {
+  inset: 2.5% 3% 6.5%;
+  border: .7cqw solid var(--accent);
+  border-radius: 3cqw;
+  box-shadow: 0 0 0 1.4cqw #0000002e, inset 0 0 0 1.4cqw #0000002e;
+}
+[data-variant="frame"] .deco::before, [data-variant="frame"] .deco::after {
+  content: ""; position: absolute; left: 0; top: 0; width: 3cqw; height: 3cqw; border-radius: 50%;
+  background: var(--paper);
+  box-shadow: 0 0 2cqw 1cqw var(--accent);
+  offset-path: inset(0 round 3cqw);
+  offset-rotate: 0deg;
+  animation: frame-run var(--loop) linear infinite;
+}
+[data-variant="frame"] .deco::after { animation-delay: -5s; }
+[data-variant="frame"] .card-burst img { animation-name: gold-cards; }
+
+/* Sticker: a wobbling starburst badge carrying the ad's badge text. */
+[data-variant="sticker"] .sticker {
+  display: grid; place-items: center; position: absolute; z-index: 4; right: 2%; top: 47%;
+  width: 29cqw; height: 29cqw; padding: 5cqw;
+  clip-path: polygon(50.0% 0.0%, 56.7% 7.5%, 65.5% 2.4%, 69.5% 11.7%, 79.4% 9.5%, 80.4% 19.6%, 90.5% 20.6%, 88.3% 30.5%, 97.6% 34.5%, 92.5% 43.3%, 100.0% 50.0%, 92.5% 56.7%, 97.6% 65.5%, 88.3% 69.5%, 90.5% 79.4%, 80.4% 80.4%, 79.4% 90.5%, 69.5% 88.3%, 65.5% 97.6%, 56.7% 92.5%, 50.0% 100.0%, 43.3% 92.5%, 34.5% 97.6%, 30.5% 88.3%, 20.6% 90.5%, 19.6% 80.4%, 9.5% 79.4%, 11.7% 69.5%, 2.4% 65.5%, 7.5% 56.7%, 0.0% 50.0%, 7.5% 43.3%, 2.4% 34.5%, 11.7% 30.5%, 9.5% 20.6%, 19.6% 19.6%, 20.6% 9.5%, 30.5% 11.7%, 34.5% 2.4%, 43.3% 7.5%);
+  background: radial-gradient(circle, var(--tag-bg) 64%, var(--tag-ink) 65% 67%, var(--tag-bg) 68%);
+  color: var(--tag-ink);
+  font: 400 2.8cqw/1.05 "Carter One", Arial, sans-serif;
+  text-align: center;
+  animation: sticker-wobble 2s ease-in-out infinite;
+}
+
+/* Banner: a striped band scrolls behind the packs under a tilted headline. */
+[data-variant="stripes"] .headline { rotate: 2deg; }
+[data-variant="stripes"] .deco::before {
+  content: ""; position: absolute; left: -20%; width: 140%; top: 57%; height: 30cqw;
+  rotate: -8deg;
+  background: linear-gradient(45deg, var(--accent) 25%, transparent 0 50%, var(--accent) 0 75%, transparent 0) 0 0 / 8cqw 8cqw, var(--second);
+  border-block: 1cqw solid var(--paper);
+  opacity: .35;
+  animation: band-run var(--loop) linear infinite;
+}
+
+/* Pulse: rings ripple outward from the pack fan twice per loop. */
+[data-variant="zoom"] .orbit { display: none; }
+[data-variant="zoom"] .product-halo { opacity: .6; }
+[data-variant="zoom"] .deco::before, [data-variant="zoom"] .deco::after {
+  content: ""; position: absolute; left: 50%; top: 65%;
+  width: 100cqw; height: 100cqw; margin: -50cqw 0 0 -50cqw;
+  border-radius: 50%;
+  border: 1.2cqw solid var(--second);
+  animation: ring-out 5s linear infinite;
+}
+[data-variant="zoom"] .deco::after { border-color: var(--accent); animation-delay: -2.5s; }
+
+@keyframes burst-spin { from { transform: rotate(0deg); } to { transform: rotate(22.5deg); } }
+@keyframes card-rain {
+  0% { opacity: 0; transform: translate(-50%, -50%) translate(calc(var(--x) * .6), -110cqw) rotate(var(--spin)); }
+  10%, 80% { opacity: .95; }
+  100% { opacity: 0; transform: translate(-50%, -50%) translate(calc(var(--x) * .6), 5cqw) rotate(calc(var(--spin) * -1)); }
+}
+@keyframes streak-fall { from { background-position: 0 0, 3.5cqw 12cqw; } to { background-position: 0 48cqw, 3.5cqw 60cqw; } }
+@keyframes beam-left { 0%, 100% { transform: rotate(25deg); } 50% { transform: rotate(-5deg); } }
+@keyframes beam-right { 0%, 100% { transform: rotate(-25deg); } 50% { transform: rotate(5deg); } }
+@keyframes frame-run { from { offset-distance: 0%; } to { offset-distance: 100%; } }
+@keyframes sticker-wobble { 0%, 100% { transform: rotate(-8deg) scale(1); } 50% { transform: rotate(6deg) scale(1.06); } }
+@keyframes band-run { from { background-position: 0 0, 0 0; } to { background-position: 40cqw 0, 0 0; } }
+@keyframes ring-out {
+  0% { transform: scale(.25); opacity: 0; }
+  15% { opacity: .8; }
+  100% { transform: scale(1.5); opacity: 0; }
+}

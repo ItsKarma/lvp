@@ -7,11 +7,13 @@ if (!ad) {
   throw new Error(`Unknown ad theme: ${params.get('theme')}`);
 }
 document.documentElement.dataset.theme = ad.theme;
+if (ad.variant) document.documentElement.dataset.variant = ad.variant;
 document.title = `${ad.title} — Pokémon Screen Ad`;
 document.querySelector('.controls h2').textContent = ad.title;
 document.querySelector('.theme-kicker').textContent = ad.kicker;
 document.querySelectorAll('h1 span').forEach((span, index) => { span.textContent = ad.headline[index]; });
 document.querySelector('.product-tag').textContent = ad.tag;
+document.querySelector('.sticker').textContent = ad.badge ?? '';
 document.querySelector('#export-command').textContent = `npm run export:ad -- --ad ${ad.id}`;
 const cleanParams = new URLSearchParams(location.search);
 cleanParams.set('clean', '1');
@@ -71,6 +73,30 @@ function updateTimeline() {
   }
   requestAnimationFrame(updateTimeline);
 }
+// Shrink any headline line wider than its (centered) headline box, in container
+// units so the result scales with the screen. Lines never wrap, so an overlong
+// line would otherwise spill out to the right. Runs once the headline font has loaded.
+function fitHeadline() {
+  for (const span of document.querySelectorAll('h1 span')) {
+    span.style.fontSize = '';
+    const limit = span.clientWidth;
+    const range = document.createRange();
+    range.selectNodeContents(span);
+    const width = range.getBoundingClientRect().width;
+    if (width > limit) {
+      const size = parseFloat(getComputedStyle(span).fontSize) * limit / width;
+      span.style.fontSize = `${size / screen.clientWidth * 100}cqw`;
+    }
+  }
+}
+
 updateButton();
 if (params.get('clean') !== '1') requestAnimationFrame(updateTimeline);
+try {
+  await document.fonts.load('400 16px "Carter One"');
+  await document.fonts.ready;
+} catch {
+  // Fall back to measuring with whatever font is available.
+}
+fitHeadline();
 document.documentElement.dataset.adReady = ad.id;

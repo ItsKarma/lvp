@@ -1,0 +1,104 @@
+/* Airport (airport-*) themes, one per spot in the terminal. The shared palette
+   rules live in ad-type-themes.css. Every airport kicker is styled as a yellow
+   wayfinding sign. */
+:where([data-theme^="airport-"]) .theme-kicker {
+  display: inline-block;
+  padding: 1cqw 3.5cqw;
+  border-radius: 1cqw;
+  background: #ffcc00;
+  color: #111;
+  box-shadow: .5cqw .6cqw 0 #00000055;
+}
+:where([data-theme^="airport-"]) .theme-kicker::before { content: "✈️ "; }
+
+[data-theme="airport-departures"] {
+  --paper: #fff; --base: #0d0f14; --accent: #ffc629; --second: #7fd4ff; --type: #e0a800;
+  --dots: #ffc62914; --spark: "🛫";
+}
+[data-theme="airport-departures"] .screen { background: linear-gradient(#1f232b, #0d0f14); }
+[data-theme="airport-departures"] .rays {
+  inset: 0;
+  background: linear-gradient(transparent 2.9cqw, #00000070 2.9cqw 3.1cqw, transparent 3.1cqw) 0 0 / 5cqw 6cqw,
+    linear-gradient(90deg, #2c313c 0 4.4cqw, transparent 4.4cqw) 0 0 / 5cqw 6cqw,
+    linear-gradient(transparent 5.4cqw, #000 5.4cqw) 0 0 / 5cqw 6cqw;
+  opacity: .8;
+  animation: flap-scroll var(--loop) steps(20) infinite;
+}
+
+[data-theme="airport-checkpoint"] {
+  --paper: #fff; --base: #0b2545; --accent: #0b4f9c; --second: #f26b1d; --type: #0b4f9c;
+  --note: #0b2545; --tag-ink: #fff; --dots: #0b4f9c14; --spark: "🛂";
+}
+[data-theme="airport-checkpoint"] .screen { background: linear-gradient(#eef5fc, #bcd6f0 60%, #8db6e3); }
+[data-theme="airport-checkpoint"] .rays {
+  inset: 0;
+  background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 140'><rect width='60' height='6' fill='%230b4f9c' fill-opacity='.22'/></svg>") 0 0 / 10cqw 14cqw;
+  animation: queue-move var(--loop) linear infinite;
+}
+
+[data-theme="airport-gates"] {
+  --paper: #fff; --base: #0a2a57; --accent: #0a4fb4; --second: #ff7a00; --type: #0a4fb4;
+  --note: #0a2a57; --tag-ink: #fff; --dots: #ffffff50; --spark: "🛬";
+}
+[data-theme="airport-gates"] .screen { background: linear-gradient(#4facfe, #8fd3fe 55%, #dff3ff); }
+[data-theme="airport-gates"] .rays {
+  inset: 0;
+  background: radial-gradient(14cqw 5cqw at 30% 50%, #ffffffd0 60%, transparent 70%) 0 0 / 60cqw 34cqw,
+    radial-gradient(9cqw 3.5cqw at 70% 40%, #ffffffa0 60%, transparent 70%) 0 12cqw / 44cqw 28cqw;
+  animation: gate-clouds var(--loop) linear infinite;
+}
+[data-theme="airport-gates"] .screen::before {
+  content: "✈️"; position: absolute; left: 0; top: 1.5%; font-size: 9cqw; line-height: 1; pointer-events: none;
+  animation: plane-cross var(--loop) linear infinite;
+}
+
+[data-theme="airport-foodcourt"] {
+  --paper: #fff; --base: #4a1a08; --accent: #e63946; --second: #2a9d8f; --type: #e76f51;
+  --note: #4a1a08; --tag-ink: #fff; --dots: #ffffff40; --spark: "🍔";
+}
+[data-theme="airport-foodcourt"] .screen { background: linear-gradient(#fff1d6, #ffd29a 55%, #ff9f5a); }
+[data-theme="airport-foodcourt"] .rays { background: repeating-conic-gradient(#ffffff59 0deg 10deg, transparent 10deg 20deg); }
+[data-theme="airport-foodcourt"] .screen::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 10cqw; pointer-events: none;
+  background: radial-gradient(circle at 50% 0, #e63946 2.9cqw, transparent 3cqw) 0 7cqw / 12cqw 3cqw repeat-x,
+    radial-gradient(circle at 50% 0, #fff 2.9cqw, transparent 3cqw) 6cqw 7cqw / 12cqw 3cqw repeat-x,
+    linear-gradient(90deg, #e63946 50%, #fff 50%) 0 0 / 12cqw 7cqw repeat-x;
+  filter: drop-shadow(0 .6cqw 0 #00000030);
+}
+
+[data-theme="airport-kids"] {
+  --paper: #fff; --base: #1d3b8a; --accent: #ff5a5f; --second: #2bb673; --type: #ff8a00;
+  --note: #1d3b8a; --tag-ink: #fff; --dots: #ffffff60; --spark: "🎈";
+}
+[data-theme="airport-kids"] .screen { background: linear-gradient(#7fd3ff, #b8f0ff 50%, #fff3b0); }
+[data-theme="airport-kids"] .rays {
+  inset: 0;
+  background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><g transform='translate(20 20) scale(2.4) rotate(-15 12 12)'><path d='M2 12L22 3 15 21 11 14z' fill='%23fff'/><path d='M11 14L22 3' stroke='%2390a4c4' stroke-width='1'/></g></svg>") 0 0 / 22cqw 22cqw,
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><g transform='translate(30 30) scale(1.8) rotate(10 12 12)'><path d='M2 12L22 3 15 21 11 14z' fill='%23fff5c2'/><path d='M11 14L22 3' stroke='%2390a4c4' stroke-width='1'/></g></svg>") 9cqw 11cqw / 15cqw 15cqw;
+  animation: paper-planes var(--loop) linear infinite;
+}
+
+[data-theme="airport-baggage"] {
+  --paper: #fff; --base: #14171c; --accent: #ffcc00; --second: #fff; --type: #e0a800;
+  --stroke: #14171c; --dots: #ffffff10; --spark: "🧳";
+}
+[data-theme="airport-baggage"] .screen { background: linear-gradient(#4a515c, #2b2f36 55%, #1f2329); }
+[data-theme="airport-baggage"] .rays {
+  inset: 0;
+  background: linear-gradient(45deg, #ffffff12 25%, transparent 25% 75%, #ffffff12 75%) 0 0 / 4cqw 4cqw,
+    linear-gradient(-45deg, #00000018 25%, transparent 25% 75%, #00000018 75%) 0 0 / 4cqw 4cqw;
+  animation: none;
+}
+[data-theme="airport-baggage"] .screen::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 64%; height: 16cqw; pointer-events: none;
+  border-block: .8cqw solid #9aa3ad;
+  background: linear-gradient(90deg, #5a616c 0 5cqw, #3b4048 5cqw) 0 0 / 5.4cqw 100%;
+  animation: carousel-belt var(--loop) linear infinite;
+}
+
+@keyframes flap-scroll { from { background-position: 0 0, 0 0, 0 0; } to { background-position: 0 -120cqw, 0 -120cqw, 0 -120cqw; } }
+@keyframes queue-move { from { background-position: 0 0; } to { background-position: 20cqw 0; } }
+@keyframes gate-clouds { from { background-position: 0 0, 0 12cqw; } to { background-position: -60cqw 0, -44cqw 12cqw; } }
+@keyframes plane-cross { from { transform: translateX(-15cqw) rotate(45deg); } to { transform: translateX(115cqw) rotate(45deg); } }
+@keyframes paper-planes { from { background-position: 0 0, 9cqw 11cqw; } to { background-position: 22cqw -22cqw, 39cqw -19cqw; } }
+@keyframes carousel-belt { from { background-position: 0 0; } to { background-position: 27cqw 0; } }

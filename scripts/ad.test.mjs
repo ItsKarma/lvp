@@ -2,43 +2,59 @@ import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
 import { after, before, test } from 'node:test';
 import { chromium } from 'playwright';
-import { ads, adPreviewPath, adDurations, adDownloadFilename } from '../public/assets/ad-catalog.js';
+import { ads, adGroups, adGroupPath, adPreviewPath, adDurations, adDownloadFilename } from '../public/assets/ad-catalog.js';
 
 const base = process.env.AD_BASE_URL || 'http://localhost:3000';
 let browser;
 before(async () => { browser = await chromium.launch(); });
 after(async () => { await browser?.close(); });
 
-test('library links to the preview and clean playback', async () => {
+test('library groups ads into collections, each with its own page', async () => {
   const page = await browser.newPage();
   try {
     const response = await page.goto(`${base}/assets`);
     assert.equal(response.status(), 200);
     assert.equal(await page.locator('h1').textContent(), 'Assets');
-    assert.equal(await page.locator('article').count(), 15);
-    for (const ad of ads) {
-      assert.equal(await page.getByRole('heading', { name: ad.title, exact: true }).count(), 1);
-      assert.equal(await page.locator(`a[href="/assets/downloads/${ad.file}"]`).count(), 0);
+    assert.match(await page.locator('meta[name="robots"]').getAttribute('content'), /noindex/);
+    assert.equal(ads.length, 399);
+    assert.ok(ads.every((ad) => adGroups.some((group) => group.id === ad.group)), 'Every ad must belong to a collection');
+    for (const group of adGroups) {
+      assert.equal(await page.locator(`a[href="${adGroupPath(group)}"]`).count(), 1);
+      if (group.id !== 'standard') assert.equal(ads.filter((ad) => ad.group === group.id).length, 8);
     }
+    for (const group of adGroups) {
+      const groupAds = ads.filter((ad) => ad.group === group.id);
+      const groupResponse = await page.goto(`${base}${adGroupPath(group)}`);
+      assert.equal(groupResponse.status(), 200);
+      assert.equal(await page.locator('article').count(), groupAds.length);
+      for (const ad of groupAds) {
+        assert.equal(await page.getByRole('heading', { name: ad.title, exact: true }).count(), 1);
+      }
+      assert.equal(await page.locator('a[download], a[href^="/assets/downloads/"]').count(), 0);
+      assert.equal(await page.getByText(`npm run export:ad -- --group ${group.id}`, { exact: true }).count(), 1);
+    }
+    await page.goto(`${base}${adGroupPath({ id: 'standard' })}`);
     assert.equal(await page.locator('a[href="/assets/pokemon-cards.html"]').count(), 1);
     assert.equal(await page.locator('a[href="/assets/pokemon-cards.html?clean=1"]').count(), 1);
-    assert.match(await page.locator('meta[name="robots"]').getAttribute('content'), /noindex/);
+    assert.equal((await page.goto(`${base}/assets/not-a-collection`)).status(), 404);
   } finally { await page.close(); }
 });
 
 test('all designs offer all six local export durations without hosted downloads', async () => {
   const page = await browser.newPage();
   try {
-    await page.goto(`${base}/assets`);
-    for (const ad of ads) {
-      const article = page.locator('article').filter({ has: page.getByRole('heading', { name: ad.title, exact: true }) });
-      const select = article.getByRole('combobox');
-      assert.deepEqual(await select.locator('option').allTextContents(), adDurations.map((duration) => `${duration} seconds`));
-      for (const duration of adDurations) {
-        await select.selectOption(String(duration));
-        assert.match(await article.locator('code').textContent(), new RegExp(`--ad ${ad.id} --duration ${duration}$`));
-        assert.equal(await article.locator('a[download]').count(), 0);
-        assert.equal(adDownloadFilename(ad, duration), duration === 10 ? ad.file : ad.file.replace('.mp4', `-${duration}s.mp4`));
+    for (const group of adGroups) {
+      await page.goto(`${base}${adGroupPath(group)}`);
+      for (const ad of ads.filter((entry) => entry.group === group.id)) {
+        const article = page.locator('article').filter({ has: page.getByRole('heading', { name: ad.title, exact: true }) });
+        const select = article.getByRole('combobox');
+        assert.deepEqual(await select.locator('option').allTextContents(), adDurations.map((duration) => `${duration} seconds`));
+        for (const duration of adDurations) {
+          await select.selectOption(String(duration));
+          assert.match(await article.locator('code').textContent(), new RegExp(`--ad ${ad.id} --duration ${duration}$`));
+          assert.equal(await article.locator('a[download]').count(), 0);
+          assert.equal(adDownloadFilename(ad, duration), duration === 10 ? ad.file : ad.file.replace('.mp4', `-${duration}s.mp4`));
+        }
       }
     }
   } finally { await page.close(); }
@@ -56,17 +72,13 @@ test('exporter rejects unsupported durations and documents supported values', ()
   }
 });
 
-test('library and previews offer local rendering instead of missing downloads', async () => {
+test('previews offer local rendering instead of missing downloads', async () => {
   const page = await browser.newPage();
   try {
     for (const ad of ads) {
-      for (const route of ['/assets', adPreviewPath(ad)]) {
-        await page.goto(`${base}${route}`);
-        assert.equal(await page.locator('a[download], a[href^="/assets/downloads/"]').count(), 0);
-        if (route !== '/assets') {
-          assert.equal(await page.locator('#export-command').textContent(), `npm run export:ad -- --ad ${ad.id}`);
-        }
-      }
+      await page.goto(`${base}${adPreviewPath(ad)}`);
+      assert.equal(await page.locator('a[download], a[href^="/assets/downloads/"]').count(), 0);
+      assert.equal(await page.locator('#export-command').textContent(), `npm run export:ad -- --ad ${ad.id}`);
     }
   } finally { await page.close(); }
 });
@@ -86,11 +98,15 @@ for (const ad of ads.filter((entry) => entry.theme)) {
         for (const animation of document.querySelector('.screen').getAnimations({ subtree: true })) animation.pause();
       });
       assert.equal(await page.locator('html').getAttribute('data-theme'), ad.theme);
+      assert.equal(await page.locator('html').getAttribute('data-variant'), ad.variant ?? null);
       assert.deepEqual(await page.locator('h1 span').allTextContents(), ad.headline);
       assert.equal(await page.locator('#export-command').textContent(), `npm run export:ad -- --ad ${ad.id}`);
       const seek = (time) => page.evaluate((position) => {
         for (const animation of document.querySelector('.screen').getAnimations({ subtree: true })) animation.currentTime = position;
       }, time);
+      // Warm up rasterization the same way the exporter does before capturing frame 0.
+      await seek(5000);
+      await page.locator('.screen').screenshot();
       await seek(0);
       const first = await page.locator('.screen').screenshot();
       await seek(10000);
@@ -106,6 +122,11 @@ for (const ad of ads.filter((entry) => entry.theme)) {
           const footer = document.querySelector('.features').getBoundingClientRect();
           const cta = document.querySelector('.call-to-action').getBoundingClientRect();
           return {
+            noWrap: [...document.querySelectorAll('h1 span')].every((span) => {
+              const range = document.createRange();
+              range.selectNodeContents(span);
+              return range.getClientRects().length === 1;
+            }),
             clearPacks: headline.bottom < packs.top,
             clearFooter: cta.bottom < footer.top,
             textFits: [...document.querySelectorAll('h1 span')].every((span) => {
@@ -116,6 +137,7 @@ for (const ad of ads.filter((entry) => entry.theme)) {
             }),
           };
         });
+        assert.ok(fit.noWrap, 'Each headline line must stay on one line');
         assert.ok(fit.clearPacks, 'Headline must clear packs');
         assert.ok(fit.clearFooter, 'CTA must clear footer');
         assert.ok(fit.textFits, 'Headline text must fit within the artwork');
@@ -123,7 +145,7 @@ for (const ad of ads.filter((entry) => entry.theme)) {
       await page.goto(`${base}${preview}`);
       await page.getByRole('button', { name: 'Pause', exact: true }).click();
       assert.equal(await page.getByRole('button', { name: 'Play', exact: true }).count(), 1);
-      assert.ok((await page.locator('#clean-playback').getAttribute('href')).includes(`theme=${ad.theme}`));
+      assert.ok((await page.locator('#clean-playback').getAttribute('href')).includes(`theme=${ad.id}`));
       await page.emulateMedia({ reducedMotion: 'reduce' });
       await page.reload();
       assert.ok(await page.evaluate(() => document.querySelector('.screen').getAnimations({ subtree: true })
@@ -186,6 +208,8 @@ test('clean artwork fits portrait and mobile displays, loops seamlessly, and has
     const seek = (milliseconds) => page.evaluate((position) => {
       for (const animation of document.querySelector('.screen').getAnimations({ subtree: true })) animation.currentTime = position;
     }, milliseconds);
+    await seek(5000);
+    await page.locator('.screen').screenshot();
     await seek(0);
     const first = await page.locator('.screen').screenshot();
     await seek(10000);

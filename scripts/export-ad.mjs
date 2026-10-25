@@ -5,14 +5,14 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
 import ffmpeg from 'ffmpeg-static';
-import { ads, adDurations, adDownloadFilename } from '../public/assets/ad-catalog.js';
+import { ads, adGroups, adDurations, adDownloadFilename } from '../public/assets/ad-catalog.js';
 
 const args = process.argv.slice(2);
 if (args.includes('--help')) {
-  console.log(`Usage: npm run export:ad -- [--ad ${ads.map((ad) => ad.id).join('|')}|all] [--duration ${adDurations.join('|')}] [--url http://localhost:3000] [--output path.mp4]`);
+  console.log(`Usage: npm run export:ad -- [--ad <id>|all | --group ${adGroups.map((group) => group.id).join('|')}] [--duration ${adDurations.join('|')}] [--url http://localhost:3000] [--output path.mp4]\nAd IDs: ${ads.map((ad) => ad.id).join(', ')}`);
   process.exit(0);
 }
-const options = { url: 'http://localhost:3000', output: '', ad: 'original', duration: '10' };
+const options = { url: 'http://localhost:3000', output: '', ad: 'original', group: '', duration: '10' };
 for (let index = 0; index < args.length; index += 2) {
   const key = args[index]?.slice(2);
   if (!Object.hasOwn(options, key) || !args[index + 1]) {
@@ -24,9 +24,12 @@ const seconds = Number(options.duration);
 if (!adDurations.includes(seconds)) {
   throw new Error(`Unsupported duration: ${options.duration}. Choose ${adDurations.join(', ')} seconds.`);
 }
-if (options.ad === 'all') {
-  if (options.output) throw new Error('--output cannot be used with --ad all; each design has its own download file.');
-  for (const ad of ads) {
+if (options.ad === 'all' || options.group) {
+  if (options.output) throw new Error('--output cannot be used with --ad all or --group; each design has its own download file.');
+  if (options.group && !adGroups.some((group) => group.id === options.group)) {
+    throw new Error(`Unknown group: ${options.group}. Choose ${adGroups.map((group) => group.id).join(', ')}.`);
+  }
+  for (const ad of options.group ? ads.filter((entry) => entry.group === options.group) : ads) {
     const result = spawnSync(process.execPath,
       [fileURLToPath(import.meta.url), '--ad', ad.id, '--url', options.url, '--duration', String(seconds)], { stdio: 'inherit' });
     if (result.error) throw result.error;
@@ -37,7 +40,7 @@ if (options.ad === 'all') {
 const url = new URL('/assets/pokemon-cards.html?clean=1&export=1', options.url);
 const ad = ads.find((entry) => entry.id === options.ad);
 if (!ad) throw new Error(`Unknown ad: ${options.ad}. Choose ${ads.map((entry) => entry.id).join(', ')}.`);
-if (ad.theme) url.searchParams.set('theme', ad.theme);
+if (ad.theme) url.searchParams.set('theme', ad.id);
 const output = resolve(options.output || `exports/${adDownloadFilename(ad, seconds)}`);
 if (!output.endsWith('.mp4')) throw new Error('--output must end in .mp4');
 if (!ffmpeg) throw new Error('No FFmpeg binary is available for this platform.');
@@ -67,6 +70,14 @@ try {
       animation.pause();
     }
   });
+  // Chromium can rasterize the very first captured frame slightly differently from
+  // later ones. Render one throwaway mid-loop frame so frame 0 matches the loop's end.
+  await page.evaluate(() => {
+    for (const animation of document.querySelector('.screen').getAnimations({ subtree: true })) {
+      animation.currentTime = 5000;
+    }
+  });
+  await page.locator('.screen').screenshot({ type: 'png', animations: 'allow' });
   await mkdir(dirname(output), { recursive: true });
   encoder = spawn(ffmpeg, [
     '-hide_banner', '-loglevel', 'error', '-y',
