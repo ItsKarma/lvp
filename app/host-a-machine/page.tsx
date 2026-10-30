@@ -77,10 +77,10 @@ export default function HostPage() {
             <div className="relative mx-auto w-full max-w-[360px]">
               <div className="pointer-events-none absolute inset-0 animate-pulse-glow rounded-full bg-bolt/20 blur-3xl" />
               <Image
-                src="/LVPVendingPokemonClearBackground.png"
+                src="/LVPVendingPokemonWall.png"
                 alt="Pokémon card vending machine with a touchscreen and tap-to-pay reader"
                 width={1024}
-                height={1536}
+                height={1535}
                 priority
                 sizes="(min-width: 1024px) 360px, 80vw"
                 className="relative w-full drop-shadow-2xl"

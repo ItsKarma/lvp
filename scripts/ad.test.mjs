@@ -199,7 +199,7 @@ test('clean artwork fits portrait and mobile displays, loops seamlessly, and has
     }));
     assert.ok(Math.abs(ctaFontSizes.tap - 106.92) < .1, 'Tap text must be ten percent larger');
     assert.ok(Math.abs(ctaFontSizes.purchase - 154.44) < .1, 'Buy text must be ten percent larger');
-    assert.equal(await page.locator('img[src*="LVPVendingPokemonClearBackground"]').count(), 0);
+    assert.equal(await page.locator('img[src*="LVPVendingPokemonWall"]').count(), 0);
     assert.equal(await page.getByText('Touch the screen to shop', { exact: true }).count(), 0);
     assert.doesNotMatch(await page.locator('.screen').innerText(), /VTM|LVP|Vending|lehigh/i);
     const size = await page.locator('.screen').boundingBox();

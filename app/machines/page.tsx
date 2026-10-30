@@ -24,8 +24,8 @@ const models = [
     name: 'Wall Mount',
     badge: 'Smallest footprint',
     placement: 'Wall mounted',
-    image: '/pokemon-tcg-wrap-mini-tcg-vending-machine-front-view.jpeg',
-    alt: 'Wall mounted Pokémon card vending machine, front view',
+    image: '/LVPVendingPokemonWall.png',
+    alt: 'Wall mounted Pokémon card vending machine with a touchscreen and card reader',
     description:
       'Hangs flat on the wall and takes zero floor space, which makes it the easy yes for counters, checkout lines, and tight entryways. Available in two sizes depending on how much selection you want.',
   },
@@ -33,8 +33,7 @@ const models = [
     name: 'Pedestal',
     badge: 'No wall needed',
     placement: 'Freestanding',
-    image:
-      '/pokemon-tcg-wrap-mini-wall-tcg-vending-machine-with-tcg-wrap-pedestal-stand.jpeg',
+    image: '/LVPVendingPokemonPedestal.png',
     alt: 'Pokémon card vending machine on a freestanding pedestal stand',
     description:
       'The same cabinet on a weighted stand. For glass storefronts, brick, or leased space where drilling into the wall is not an option.',
@@ -43,8 +42,8 @@ const models = [
     name: 'Tower',
     badge: 'Highest visibility',
     placement: 'Freestanding',
-    image: '/pokemon-card-pack-vending-machine-24-selection-touchscreen.jpeg',
-    alt: 'Freestanding Pokémon card vending tower with a full-height touchscreen',
+    image: '/LVPVendingPokemonSlimTower.png',
+    alt: 'Freestanding slim Pokémon card vending tower with a large touchscreen',
     description:
       'A full-height tower with a large touchscreen and up to 24 selections. Built to be seen from across the room in arcades, lobbies, and open retail floors.',
   },
@@ -53,7 +52,7 @@ const models = [
 const specs = [
   { icon: <CreditCard size={20} />, title: 'Cashless payments', description: 'Tap, chip, and mobile wallet. No cash box, nothing on site worth stealing.' },
   { icon: <Wifi size={20} />, title: 'Remote monitoring', description: 'We see stock levels and sales in real time, so it gets refilled before it runs dry.' },
-  { icon: <Monitor size={20} />, title: 'Clear product display', description: 'Customers see exactly what they are buying before they pay. No mystery selections.' },
+  { icon: <Monitor size={20} />, title: 'Clear product display', description: 'Customers see exactly what they are buying before they pay.' },
   { icon: <ShieldCheck size={20} />, title: 'Locked and secured', description: 'Reinforced cabinet with a secured dispensing mechanism. Your staff never needs a key.' },
   { icon: <Wrench size={20} />, title: 'Serviced by us', description: 'Every repair, part, and service call is ours. There is no maintenance line item for you.' },
   { icon: <Ruler size={20} />, title: 'Fits where you need it', description: 'Standard outlet, no plumbing, no special wiring, no network drop required.' },
@@ -92,7 +91,7 @@ export default function MachinesPage() {
                     fill
                     priority={index === 0}
                     sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                    className="object-cover"
+                    className="object-contain"
                   />
                 </div>
                 <div className="p-6">
