@@ -57,13 +57,13 @@ export default function HostPage() {
                 The partner offer
               </p>
               <h1 className="display text-4xl leading-[1.05] md:text-6xl">
-                We take all the risk.{' '}
+                We handle everything.{' '}
                 <span className="text-gradient-bolt">You take {siteConfig.revenueSharePercent}%.</span>
               </h1>
               <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/75">
-                There is no catch buried in this. We buy the machine, we buy the product, we do the
-                work, and we eat the loss if it flops. You lend us a patch of wall and collect a
-                check every month.
+                We provide the machine, the product, and all the upkeep. You have nothing to buy,
+                stock, or fix. Just give us a small spot in your business and collect a check every
+                month.
               </p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <CTA href="#apply">
