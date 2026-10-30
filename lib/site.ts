@@ -12,6 +12,20 @@ export const siteConfig = {
   trialDays: 30,
   averagePackPrice: 13,
   /** Final day of the Pennsylvania skill game grace period. */
-  skillGameDeadline: '2026-10-13T23:59:59-04:00',
   skillGameDeadlineLabel: 'October 13, 2026',
+} as const;
+
+/** Referral program numbers. Change them here and /referral updates everywhere. */
+export const referralConfig = {
+  /** Paid once a location passes the trial (siteConfig.trialDays) and both sides keep the machine. */
+  trialPayout: 200,
+  /** Paid if the location is still active retentionDays after install. */
+  retentionBonus: 100,
+  retentionDays: 60,
+  /** Paid if the location grosses over salesBonusThreshold in its first salesBonusDays. */
+  salesBonus: 200,
+  salesBonusThreshold: 6000,
+  salesBonusDays: 90,
+  /** Flat amount for each additional location the same owner adds, once it passes the trial. */
+  additionalLocationPayout: 100,
 } as const;

@@ -41,7 +41,7 @@ not set, so you can turn channels on as you go.
 
 ```text
 app/           App Router pages, robots, sitemap, OG images
-components/    Shared UI (header, footer, forms, countdown, estimator)
+components/    Shared UI (header, footer, forms, estimator)
 lib/           Site config, service cities, Meta helpers, OG renderer
 public/        Static assets
 ```
@@ -51,7 +51,8 @@ public/        Static assets
 | Route | Purpose |
 | --- | --- |
 | `/` | Main pitch: free machine, 10% of every sale |
-| `/skill-games` | Paid-traffic page for PA skill game locations (Oct 13, 2026 deadline) |
+| `/skill-games` | Paid-traffic page for PA locations replacing skill games |
+| `/referral` | Referral program: payouts, rules, and referral form |
 | `/host-a-machine` | Full partner offer and application form |
 | `/machines` | Hardware and specs |
 | `/find-a-machine` | Collector-facing page |

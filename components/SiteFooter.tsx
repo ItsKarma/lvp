@@ -10,6 +10,7 @@ const columns = [
       { label: 'Replace Skill Games', href: '/skill-games' },
       { label: 'Our Machines', href: '/machines' },
       { label: 'Service Area', href: '/service-area' },
+      { label: 'Referral Program', href: '/referral' },
     ],
   },
   {

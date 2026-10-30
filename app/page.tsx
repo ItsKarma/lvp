@@ -1,11 +1,9 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import {
   ArrowRight,
   BadgeCheck,
   Banknote,
   BatteryCharging,
-  CalendarClock,
   CreditCard,
   Handshake,
   MapPin,
@@ -16,7 +14,6 @@ import {
   Wrench,
 } from 'lucide-react';
 import CTA from '@/components/CTA';
-import Countdown from '@/components/Countdown';
 import EarningsEstimator from '@/components/EarningsEstimator';
 import FAQ from '@/components/FAQ';
 import FeatureCard from '@/components/FeatureCard';
@@ -58,15 +55,11 @@ const handled = [
 const locationTypes = [
   'Bars & taverns',
   'Convenience stores',
-  'Laundromats',
   'Barbershops',
   'Pizza shops & delis',
-  'Smoke & vape shops',
   'Arcades',
   'Bowling alleys',
-  'Car washes',
   'Gyms & rec centers',
-  'Hobby & game shops',
   'Hotel lobbies',
 ];
 
@@ -190,28 +183,6 @@ export default function HomePage() {
                 <span>Locally owned</span>
               </div>
             </div>
-          </div>
-        </section>
-
-        {/* Skill game urgency band */}
-        <section className="border-y border-flare/30 bg-flare/10 px-4 py-8">
-          <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 md:flex-row">
-            <div className="flex items-start gap-4">
-              <CalendarClock size={28} className="mt-1 shrink-0 text-flare" />
-              <div>
-                <p className="display text-lg text-white md:text-xl">
-                  Had skill games? Pennsylvania's grace period ends{' '}
-                  {siteConfig.skillGameDeadlineLabel}.
-                </p>
-                <Link
-                  href="/skill-games"
-                  className="mt-1 inline-flex items-center gap-1.5 text-sm font-bold text-flare underline underline-offset-4"
-                >
-                  See how to replace that revenue <ArrowRight size={14} />
-                </Link>
-              </div>
-            </div>
-            <Countdown target={siteConfig.skillGameDeadline} compact />
           </div>
         </section>
 

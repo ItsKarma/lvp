@@ -25,6 +25,27 @@
           "to": "matt@lvpvending.com"
         }
       ]
+    },
+    "referral": {
+      "name": "Location Referral",
+      "fields": {
+        "name": { "type": "text", "required": true },
+        "email": { "type": "email", "required": true },
+        "phone": { "type": "text", "required": false },
+        "business": { "type": "text", "required": true },
+        "address": { "type": "text", "required": true },
+        "contact_name": { "type": "text", "required": true },
+        "contact_info": { "type": "text", "required": true },
+        "relationship": { "type": "text", "required": true },
+        "owner_interested": { "type": "text", "required": true },
+        "notes": { "type": "text", "required": false }
+      },
+      "actions": [
+        {
+          "type": "email",
+          "to": "matt@lvpvending.com"
+        }
+      ]
     }
   }
 }

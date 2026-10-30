@@ -24,19 +24,16 @@ const ATTRIBUTION_PARAMS = [
 const locationTypes = [
   'Bar / tavern / club',
   'Convenience store / bodega',
-  'Laundromat',
   'Barbershop / salon',
   'Pizza shop / deli / restaurant',
-  'Smoke / vape shop',
   'Arcade / family entertainment',
   'Gym / martial arts / rec center',
-  'Car wash / auto shop',
   'Hotel / bowling / other',
 ];
 
-const fieldClass =
+export const fieldClass =
   'w-full rounded-xl border border-white/15 bg-ink px-4 py-3 text-white placeholder:text-white/35 outline-none transition-colors focus:border-bolt focus:ring-2 focus:ring-bolt/25';
-const labelClass = 'mb-2 block text-sm font-bold text-white/85';
+export const labelClass = 'mb-2 block text-sm font-bold text-white/85';
 
 interface HostLeadFormProps {
   /** Identifies which page or ad produced the lead. */

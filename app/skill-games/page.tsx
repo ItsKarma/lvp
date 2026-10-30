@@ -11,8 +11,8 @@ import {
   Users,
   X,
 } from 'lucide-react';
+import Link from 'next/link';
 import CTA from '@/components/CTA';
-import Countdown from '@/components/Countdown';
 import EarningsEstimator from '@/components/EarningsEstimator';
 import FAQ from '@/components/FAQ';
 import FeatureCard from '@/components/FeatureCard';
@@ -28,15 +28,15 @@ const comparison: { label: string; skill: string; cards: string }[] = [
     skill: 'Unlicensed machines ruled to function as illegal slot machines',
     cards: 'A retail sale of a sealed product, the same as a candy machine',
   },
-  { label: 'Deadline hanging over it', skill: siteConfig.skillGameDeadlineLabel, cards: 'None' },
-  { label: 'Permits or licensing', skill: 'Contested, evolving, and expensive to get wrong', cards: 'None needed for retail vending' },
+  { label: 'Deadline', skill: `Grace period ended ${siteConfig.skillGameDeadlineLabel}`, cards: 'None' },
+  { label: 'Permits or licensing', skill: 'Legal only in licensed casinos and qualifying truck stops', cards: 'None needed for retail vending' },
   { label: 'Who can legally use it', skill: 'Adults only, and you have to police it', cards: 'Everyone who walks in the door' },
   { label: 'Cash on site', skill: 'Cash box to empty, count, secure, and defend', cards: 'Fully cashless, nothing to steal' },
   { label: 'Your upfront cost', skill: 'Depends entirely on your operator agreement', cards: '$0. We buy the machine and the product' },
   { label: 'Your ongoing work', skill: 'Payout disputes, jams, cash runs, customer friction', cards: 'None. We stock and service everything' },
   { label: 'Floor space needed', skill: 'A full cabinet plus a chair', cards: 'A 24" x 42" patch of wall' },
   { label: 'How it looks to your community', skill: 'Complicated conversation', cards: 'A trading card machine kids get excited about' },
-  { label: 'What you take home', skill: 'A negotiated split, if the machine stays legal', cards: `${siteConfig.revenueSharePercent}% of gross sales, paid monthly` },
+  { label: 'What you take home', skill: 'Nothing, once the cabinet is gone', cards: `${siteConfig.revenueSharePercent}% of gross sales, paid monthly` },
 ];
 
 const timeline = [
@@ -48,12 +48,12 @@ const timeline = [
   {
     icon: <Clock size={20} />,
     heading: 'The grace period',
-    body: `The court allowed a 120-day grace period. ${siteConfig.skillGameDeadlineLabel} is the final day of it. After that, the machines are exposed.`,
+    body: `The court allowed a 120-day grace period and refused to extend it. ${siteConfig.skillGameDeadlineLabel} was the final day, and State Police enforcement began the next day.`,
   },
   {
     icon: <Truck size={20} />,
     heading: 'The gap',
-    body: 'Whatever that cabinet was contributing to your monthly numbers disappears on the same day, and the floor space it occupied goes back to earning nothing.',
+    body: 'Whatever that cabinet was contributing to your monthly numbers left with it, and the floor space it occupied went back to earning nothing. Plenty of those spots are still empty.',
   },
 ];
 
@@ -76,7 +76,7 @@ const faqItems = [
   {
     question: 'How fast can you get a machine in?',
     answer:
-      'Once we confirm your location is a fit, we can typically schedule installation within a week or two. Install itself takes under an hour. If you are removing skill games, we can often time our install to the week they come out so the corner is never dead.',
+      'Once we confirm your location is a fit, we can typically schedule installation within a week or two. Install itself takes under an hour, so an empty corner can be earning again quickly.',
   },
   {
     question: 'What if my skill game operator disputes the removal?',
@@ -123,24 +123,18 @@ export default function SkillGamesPage() {
           <div className="relative mx-auto max-w-4xl text-center">
             <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-flare/50 bg-flare/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.16em] text-flare">
               <AlertTriangle size={14} />
-              Pennsylvania skill game deadline
+              Pennsylvania skill game replacement
             </p>
             <h1 className="display text-4xl leading-[1.05] md:text-6xl">
-              Your skill games have a deadline.{' '}
-              <span className="text-gradient-bolt">Your revenue doesn't have to.</span>
+              The skill games are gone.
+              <br />
+              <span className="text-gradient-bolt">That corner can still earn.</span>
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/75">
-              When the machines come out, that corner stops earning. We will fill it with a Pokémon
-              card vending machine at no cost to you, stock it, service it, and pay you{' '}
+              A lot of those spots are still sitting empty. We will fill yours with a Pokémon card
+              vending machine at no cost to you, stock it, service it, and pay you{' '}
               {siteConfig.revenueSharePercent}% of every sale. No license. No cash box. No gray area.
             </p>
-
-            <div className="mt-10">
-              <Countdown
-                target={siteConfig.skillGameDeadline}
-                label={`Grace period ends ${siteConfig.skillGameDeadlineLabel}`}
-              />
-            </div>
 
             <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
               <CTA href="#apply">
@@ -180,22 +174,22 @@ export default function SkillGamesPage() {
         </Section>
 
         {/* The pivot */}
-        <Section eyebrow="The opportunity" title="Every owner in the valley is about to have the same empty corner.">
+        <Section eyebrow="The opportunity" title="Owners across the valley are looking at the same empty corner.">
           <div className="card-surface p-7 md:p-10">
             <p className="text-lg leading-relaxed text-white/80">
-              Here is the honest read. Thousands of Pennsylvania businesses are losing a revenue line
-              on the same day. Most of them will do nothing, leave the space empty, and just absorb
-              the hit.
+              Here is the honest read. Pennsylvania businesses lost a revenue line when the grace
+              period ended. We still see the empty spots where those cabinets used to stand, earning
+              nothing.
             </p>
             <p className="mt-5 text-lg leading-relaxed text-white/80">
-              The ones who move first replace that income with something that has{' '}
+              You can replace that income with something that has{' '}
               <strong className="text-white">no deadline attached to it.</strong> A card machine is
               not a workaround or a loophole. It is a completely different business: retail vending,
               the same legal category as the drink cooler behind your counter.
             </p>
             <p className="mt-5 text-lg leading-relaxed text-white/80">
-              We install a limited number of machines per month and we are booking around{' '}
-              {siteConfig.skillGameDeadlineLabel} now. Getting in line early is free.
+              We install a limited number of machines per month and we are booking now. Getting in
+              line is free.
             </p>
           </div>
         </Section>
@@ -305,22 +299,19 @@ export default function SkillGamesPage() {
         <Section
           id="apply"
           panel
-          eyebrow={`Booking around ${siteConfig.skillGameDeadlineLabel}`}
-          title="Get your replacement lined up before the deadline."
+          eyebrow="Booking now"
+          title="Get that empty corner earning again."
         >
           <div className="grid items-start gap-10 lg:grid-cols-[0.9fr_1.1fr]">
             <div>
               <p className="text-lg leading-relaxed text-white/75">
                 Tell us about your location and we will tell you honestly whether a card machine
-                works there. If it does, we will schedule the install so the space never sits empty.
+                works there. If it does, we will schedule the install and get that space earning again.
               </p>
-              <div className="mt-8">
-                <Countdown target={siteConfig.skillGameDeadline} compact label="Time remaining" />
-              </div>
               <ul className="mt-8 space-y-3 text-white/75">
                 {[
                   'No cost, no lease, no contract',
-                  'We can time the install to your removal',
+                  'Install typically within a week or two',
                   `${siteConfig.trialDays}-day risk-free trial`,
                   'Answer back within one business day',
                 ].map((line) => (
@@ -330,6 +321,16 @@ export default function SkillGamesPage() {
                   </li>
                 ))}
               </ul>
+              <p className="mt-8 text-sm leading-relaxed text-white/55">
+                Not a business owner but know one who had skill games?{' '}
+                <Link
+                  href="/referral"
+                  className="font-bold text-bolt underline underline-offset-4"
+                >
+                  Refer them
+                </Link>
+                .
+              </p>
             </div>
             <HostLeadForm
               source="skill-games"

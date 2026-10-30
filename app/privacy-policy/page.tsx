@@ -33,6 +33,8 @@ export default function PrivacyPolicyPage() {
               When you submit a form on this site, we collect the information you provide, such as
               your name, business name, email address, phone number, and details about your location.
               We use this only to respond to your inquiry and evaluate whether your location is a fit.
+              If you refer a location, we also collect the business details and the owner or manager
+              contact information you provide, and we use it only to follow up on the referral.
             </p>
             <p>
               We also collect standard usage data such as pages visited, general location at the city

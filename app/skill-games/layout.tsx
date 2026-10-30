@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import { siteConfig } from '@/lib/site';
 
-const title = 'Replacing Skill Games in PA Before the October 13, 2026 Deadline';
-const description = `Pennsylvania's skill game grace period ends ${siteConfig.skillGameDeadlineLabel}. Replace that corner with a Pokémon card vending machine: no license, no cash box, no cost to you, and ${siteConfig.revenueSharePercent}% of every sale.`;
+const title = 'Replacing Skill Games in PA';
+const description = `Pennsylvania's skill game grace period ended ${siteConfig.skillGameDeadlineLabel}. Fill that empty corner with a Pokémon card vending machine: no license, no cash box, no cost to you, and ${siteConfig.revenueSharePercent}% of every sale.`;
 
 export const metadata: Metadata = {
   title,

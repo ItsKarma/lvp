@@ -10,6 +10,7 @@ const staticRoutes: { path: string; priority: number }[] = [
   { path: '/find-a-machine', priority: 0.7 },
   { path: '/service-area', priority: 0.7 },
   { path: '/authenticity', priority: 0.6 },
+  { path: '/referral', priority: 0.5 },
   { path: '/about', priority: 0.5 },
   { path: '/contact', priority: 0.5 },
   { path: '/support', priority: 0.3 },
