@@ -50,7 +50,7 @@ const models = [
 ];
 
 const specs = [
-  { icon: <CreditCard size={20} />, title: 'Cashless payments', description: 'Tap, chip, and mobile wallet. No cash box, nothing on site worth stealing.' },
+  { icon: <CreditCard size={20} />, title: 'Cashless payments', description: 'Tap, chip, swipe, and mobile wallet. No cash on site.' },
   { icon: <Wifi size={20} />, title: 'Remote monitoring', description: 'We see stock levels and sales in real time, so it gets refilled before it runs dry.' },
   { icon: <Monitor size={20} />, title: 'Clear product display', description: 'Customers see exactly what they are buying before they pay.' },
   { icon: <ShieldCheck size={20} />, title: 'Locked and secured', description: 'Reinforced cabinet with a secured dispensing mechanism. Your staff never needs a key.' },

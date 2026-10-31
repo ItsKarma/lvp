@@ -47,9 +47,9 @@ const handled = [
   { icon: <Package size={20} />, title: 'Inventory', description: 'We buy every pack. You never front a dollar of product.' },
   { icon: <BatteryCharging size={20} />, title: 'Restocking', description: 'Remote monitoring tells us when to come. It never sits empty.' },
   { icon: <Wrench size={20} />, title: 'Repairs', description: 'Anything breaks, we fix it. Your staff never touches the machine.' },
-  { icon: <CreditCard size={20} />, title: 'Payments', description: 'Cashless card and mobile wallet. No cash box, no skimming risk.' },
+  { icon: <CreditCard size={20} />, title: 'Payments', description: 'Tap, chip, swipe, and mobile wallet. No cash on site means less risk of theft.' },
   { icon: <ShieldCheck size={20} />, title: 'Insurance & liability', description: 'The machine is ours, insured by us, and our responsibility.' },
-  { icon: <Handshake size={20} />, title: 'Removal', description: `Not working after ${siteConfig.trialDays} days? We pull it out free, no hard feelings.` },
+  { icon: <Handshake size={20} />, title: 'Removal', description: `Try it free for ${siteConfig.trialDays} days. If it doesn't work out, we remove it at no cost.` },
 ];
 
 const locationTypes = [
@@ -231,7 +231,7 @@ export default function HomePage() {
         {/* Why Pokemon */}
         <Section
           eyebrow="Why Pokémon"
-          title="It is not a fad. It is the biggest collectible on earth."
+          title="The biggest collectible on earth."
           width="wide"
         >
           <div className="grid gap-5 md:grid-cols-3">
@@ -298,7 +298,7 @@ export default function HomePage() {
         <Section
           panel
           eyebrow="Zero hassle"
-          title="Everything on this list is our problem, not yours."
+          title="We take care of everything."
           width="wide"
         >
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -348,7 +348,7 @@ export default function HomePage() {
                 {[
                   'No cost and no obligation to ask',
                   'Answer back within one business day',
-                  'We tell you no if it is not a fit',
+                  "We'll tell you if it's a good fit",
                   `${siteConfig.trialDays}-day risk-free trial if it is`,
                 ].map((line) => (
                   <li key={line} className="flex items-start gap-3">
