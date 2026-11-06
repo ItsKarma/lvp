@@ -1,3 +1,9 @@
+import type { StaticImageData } from 'next/image';
+import barbershopEastPhoto from '@/public/location-photos/LVPBarbershopEast.jpeg';
+import hamiltonSunocoPhoto from '@/public/location-photos/LVPHamiltonSunoco.jpeg';
+import northamptonExxonPhoto from '@/public/location-photos/LVPNorthamptonExxon.jpeg';
+import placeholderPhoto from '@/public/location-photos/placeholder.svg';
+
 export interface MachineLocation {
   /** URL path segment: /locations/<slug>. Give Google this full URL. */
   slug: string;
@@ -8,12 +14,14 @@ export interface MachineLocation {
   postalCode: string;
   /** Short line about where the machine sits inside the business. */
   placement?: string;
-  /** Photo of the machine at this location. Drop the file in public/location-photos/ and update the path. */
-  photo: string;
+  /**
+   * Photo of the machine at this location. To add one: shrink it, drop it in
+   * public/location-photos/, import it at the top of this file, and set it here.
+   * Imported photos get a blurred preview and long browser caching automatically.
+   */
+  photo: StaticImageData;
   photoAlt: string;
 }
-
-const placeholderPhoto = '/location-photos/placeholder.svg';
 
 export const machineLocations: MachineLocation[] = [
   {
@@ -23,7 +31,7 @@ export const machineLocations: MachineLocation[] = [
     city: 'Northampton',
     state: 'PA',
     postalCode: '18067',
-    photo: '/location-photos/LVPNorthamptonExxon.jpeg',
+    photo: northamptonExxonPhoto,
     photoAlt: 'Pokémon card vending machine at Northampton Exxon',
   },
   {
@@ -33,7 +41,7 @@ export const machineLocations: MachineLocation[] = [
     city: 'Allentown',
     state: 'PA',
     postalCode: '18104',
-    photo: '/location-photos/LVPHamiltonSunoco.jpeg',
+    photo: hamiltonSunocoPhoto,
     photoAlt: 'Pokémon card vending machine at Hamilton Sunoco',
   },
   {
@@ -43,7 +51,7 @@ export const machineLocations: MachineLocation[] = [
     city: 'Allentown',
     state: 'PA',
     postalCode: '18109',
-    photo: '/location-photos/LVPBarbershopEast.jpeg',
+    photo: barbershopEastPhoto,
     photoAlt: 'Pokémon card vending machine at Lehigh Valley Barbershop East',
   },
   {

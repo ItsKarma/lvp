@@ -1,6 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  images: {
+    // Let browsers and Vercel reuse resized images for 31 days instead of re-checking every visit.
+    minimumCacheTTL: 2678400,
+  },
   async redirects() {
     return [
       // Friendly aliases people may type or that we may print on flyers and ads.

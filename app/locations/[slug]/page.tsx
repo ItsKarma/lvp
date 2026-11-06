@@ -88,6 +88,7 @@ export default async function LocationPage({ params }: LocationPageProps) {
               <Image
                 src={location.photo}
                 alt={location.photoAlt}
+                placeholder={location.photo.blurDataURL ? 'blur' : 'empty'}
                 fill
                 priority
                 sizes="(min-width: 768px) 50vw, 100vw"
