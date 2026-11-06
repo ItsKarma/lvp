@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import {
   ArrowRight,
   BadgeCheck,
@@ -16,6 +15,7 @@ import CTA from '@/components/CTA';
 import EarningsEstimator from '@/components/EarningsEstimator';
 import FeatureCard from '@/components/FeatureCard';
 import HostLeadForm from '@/components/HostLeadForm';
+import HostVsl from '@/components/HostVsl';
 import Section from '@/components/Section';
 import SiteFooter from '@/components/SiteFooter';
 import SiteHeader from '@/components/SiteHeader';
@@ -51,21 +51,21 @@ export default function HostPage() {
           <div className="grid-texture pointer-events-none absolute inset-0 opacity-60" />
           <div className="pointer-events-none absolute -top-40 right-10 h-[420px] w-[420px] rounded-full bg-wave/25 blur-[140px]" />
 
-          <div className="relative mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+          <div className="relative mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[0.85fr_1.15fr]">
             <div>
-              <p className="mb-5 text-xs font-bold uppercase tracking-[0.22em] text-bolt">
-                The partner offer
-              </p>
               <h1 className="display text-4xl leading-[1.05] md:text-6xl">
                 We handle everything.{' '}
-                <span className="text-gradient-bolt">You take {siteConfig.revenueSharePercent}%.</span>
+                <span className="text-gradient-bolt block">You take {siteConfig.revenueSharePercent}%.</span>
               </h1>
               <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/75">
                 We provide the machine, the product, and all the upkeep. You have nothing to buy,
                 stock, or fix. Just give us a small spot in your business and collect a check every
                 month.
               </p>
-              <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+            </div>
+            <div>
+              <HostVsl />
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                 <CTA href="#apply">
                   Check My Location <ArrowRight size={16} />
                 </CTA>
@@ -73,18 +73,6 @@ export default function HostPage() {
                   See the machines
                 </CTA>
               </div>
-            </div>
-            <div className="relative mx-auto w-full max-w-[360px]">
-              <div className="pointer-events-none absolute inset-0 animate-pulse-glow rounded-full bg-bolt/20 blur-3xl" />
-              <Image
-                src="/LVPVendingPokemonWall.png"
-                alt="Pokémon card vending machine with a touchscreen and tap-to-pay reader"
-                width={1024}
-                height={1535}
-                priority
-                sizes="(min-width: 1024px) 360px, 80vw"
-                className="relative w-full drop-shadow-2xl"
-              />
             </div>
           </div>
         </section>
