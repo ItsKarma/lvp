@@ -78,7 +78,7 @@ export default function AuthenticityPage() {
               are boring and honest about sourcing.
             </p>
             <div className="mt-8">
-              <CTA href="/find-a-machine" variant="ghost">
+              <CTA href="/locations" variant="ghost">
                 Find a machine near you
               </CTA>
             </div>

@@ -16,7 +16,7 @@ const columns = [
   {
     heading: 'For Collectors',
     links: [
-      { label: 'Find a Machine', href: '/find-a-machine' },
+      { label: 'Find a Machine', href: '/locations' },
       { label: 'Our Pack Policy', href: '/authenticity' },
       { label: 'Support', href: '/support' },
     ],

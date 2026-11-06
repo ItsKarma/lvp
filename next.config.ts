@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
       { source: "/replace-skill-games", destination: "/skill-games", permanent: true },
       { source: "/skill-game-replacement", destination: "/skill-games", permanent: true },
       { source: "/host", destination: "/host-a-machine", permanent: true },
-      { source: "/locations", destination: "/find-a-machine", permanent: true },
+      { source: "/find-a-machine", destination: "/locations", permanent: true },
       { source: "/pokemon", destination: "/", permanent: true },
     ];
   },

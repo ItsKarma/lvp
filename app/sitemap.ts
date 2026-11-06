@@ -1,4 +1,5 @@
 import type { MetadataRoute } from 'next';
+import { machineLocations } from '@/lib/locations';
 import { serviceCities } from '@/lib/serviceCities';
 import { siteConfig } from '@/lib/site';
 
@@ -7,7 +8,7 @@ const staticRoutes: { path: string; priority: number }[] = [
   { path: '/skill-games', priority: 0.95 },
   { path: '/host-a-machine', priority: 0.9 },
   { path: '/machines', priority: 0.8 },
-  { path: '/find-a-machine', priority: 0.7 },
+  { path: '/locations', priority: 0.7 },
   { path: '/service-area', priority: 0.7 },
   { path: '/authenticity', priority: 0.6 },
   { path: '/referral', priority: 0.5 },
@@ -26,6 +27,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${siteConfig.url}${route.path}`,
       lastModified: now,
       priority: route.priority,
+    })),
+    ...machineLocations.map((location) => ({
+      url: `${siteConfig.url}/locations/${location.slug}`,
+      lastModified: now,
+      priority: 0.7,
     })),
     ...serviceCities.map((city) => ({
       url: `${siteConfig.url}/service-area/${city.slug}`,

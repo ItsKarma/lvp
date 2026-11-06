@@ -9,7 +9,7 @@ const navItems = [
   { label: 'Skill Game Replacement', href: '/skill-games', highlight: true },
   { label: 'How It Works', href: '/host-a-machine' },
   { label: 'Machines', href: '/machines' },
-  { label: 'Find a Machine', href: '/find-a-machine' },
+  { label: 'Find a Machine', href: '/locations' },
   { label: 'About', href: '/about' },
 ];
 

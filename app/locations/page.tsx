@@ -1,24 +1,27 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
 import { ArrowRight, Megaphone, MapPin, Sparkles } from 'lucide-react';
 import CTA from '@/components/CTA';
 import FeatureCard from '@/components/FeatureCard';
 import Section from '@/components/Section';
 import SiteFooter from '@/components/SiteFooter';
 import SiteHeader from '@/components/SiteHeader';
+import { formatAddress, machineLocations } from '@/lib/locations';
 import { siteConfig } from '@/lib/site';
 
-const title = 'Find a Machine';
+const title = 'Pokémon Card Vending Machine Locations';
 const description =
-  'Looking for Pokémon booster packs in the Lehigh Valley? Our card vending machines are rolling out across Allentown, Bethlehem, Easton, and the surrounding area.';
+  'Find a Pokémon card vending machine in the Lehigh Valley. Sealed booster packs at locations in Allentown and Northampton, PA, including Lehigh Valley International Airport.';
 
 export const metadata: Metadata = {
   title,
   description,
-  alternates: { canonical: '/find-a-machine' },
-  openGraph: { title, description, url: `${siteConfig.url}/find-a-machine` },
+  alternates: { canonical: '/locations' },
+  openGraph: { title, description, url: `${siteConfig.url}/locations` },
 };
 
-export default function FindAMachinePage() {
+export default function LocationsPage() {
   return (
     <>
       <SiteHeader />
@@ -43,22 +46,47 @@ export default function FindAMachinePage() {
         </section>
 
         <Section width="wide">
-          <div className="card-surface p-8 text-center md:p-12">
-            <MapPin size={36} className="mx-auto mb-5 text-bolt" />
-            <h2 className="display text-2xl text-white md:text-3xl">Locations are rolling out now.</h2>
-            <p className="mx-auto mt-4 max-w-xl leading-relaxed text-white/70">
-              We are installing new machines across Lehigh and Northampton counties. Follow along on
-              Instagram for every new drop, and we will publish the full location map here as sites
-              go live.
-            </p>
-            <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-              <CTA href="/service-area" variant="secondary">
-                Browse our service area <ArrowRight size={16} />
-              </CTA>
-              <CTA href="/authenticity" variant="ghost">
-                How we source our packs
-              </CTA>
-            </div>
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {machineLocations.map((location) => (
+              <Link
+                key={location.slug}
+                href={`/locations/${location.slug}`}
+                className="card-surface group overflow-hidden transition-colors hover:border-bolt/50"
+              >
+                <div className="relative aspect-[3/4] bg-ink-800">
+                  <Image
+                    src={location.photo}
+                    alt={location.photoAlt}
+                    fill
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="p-6">
+                  <h2 className="text-lg font-bold text-white">{location.name}</h2>
+                  <p className="mt-2 flex items-start gap-2 text-sm leading-relaxed text-white/65">
+                    <MapPin size={16} className="mt-0.5 shrink-0 text-bolt" />
+                    {formatAddress(location)}
+                  </p>
+                  <p className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-bolt">
+                    Details and directions
+                    <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" />
+                  </p>
+                </div>
+              </Link>
+            ))}
+          </div>
+          <p className="mx-auto mt-10 max-w-xl text-center leading-relaxed text-white/60">
+            More machines are going in across Lehigh and Northampton counties. Follow along on
+            Instagram for new locations and restocks.
+          </p>
+          <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
+            <CTA href="/service-area" variant="secondary">
+              Browse our service area <ArrowRight size={16} />
+            </CTA>
+            <CTA href="/authenticity" variant="ghost">
+              How we source our packs
+            </CTA>
           </div>
         </Section>
 
