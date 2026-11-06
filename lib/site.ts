@@ -24,8 +24,6 @@ export const referralConfig = {
   retentionDays: 60,
   /** Paid if the location grosses over salesBonusThreshold in its first salesBonusDays. */
   salesBonus: 200,
-  salesBonusThreshold: 6000,
+  salesBonusThreshold: 5000,
   salesBonusDays: 90,
-  /** Flat amount for each additional location the same owner adds, once it passes the trial. */
-  additionalLocationPayout: 100,
 } as const;

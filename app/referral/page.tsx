@@ -56,10 +56,6 @@ const payouts = [
     milestone: `The location grosses over ${money(referralConfig.salesBonusThreshold)} in its first ${referralConfig.salesBonusDays} days`,
     amount: `+${money(referralConfig.salesBonus)}`,
   },
-  {
-    milestone: `Each additional location the same owner adds, once it passes the same ${siteConfig.trialDays}-day trial (flat amount, no bonuses)`,
-    amount: money(referralConfig.additionalLocationPayout),
-  },
 ];
 
 const greatFits = [
@@ -70,7 +66,6 @@ const greatFits = [
   'Gyms',
   'Sports centers',
   'Family entertainment venues',
-  'Businesses replacing skill games',
 ];
 
 const rules = [
