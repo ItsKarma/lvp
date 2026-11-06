@@ -1,6 +1,7 @@
 import type { StaticImageData } from 'next/image';
 import barbershopEastPhoto from '@/public/location-photos/LVPBarbershopEast.jpeg';
 import hamiltonSunocoPhoto from '@/public/location-photos/LVPHamiltonSunoco.jpeg';
+import hereAndGonePhoto from '@/public/location-photos/LVPHereAndGone.jpeg';
 import northamptonExxonPhoto from '@/public/location-photos/LVPNorthamptonExxon.jpeg';
 import placeholderPhoto from '@/public/location-photos/placeholder.svg';
 
@@ -61,7 +62,7 @@ export const machineLocations: MachineLocation[] = [
     city: 'Northampton',
     state: 'PA',
     postalCode: '18067',
-    photo: placeholderPhoto,
+    photo: hereAndGonePhoto,
     photoAlt: 'Pokémon card vending machine at Here & Gone Cards and Collectibles',
   },
   {
@@ -85,9 +86,12 @@ export function formatAddress(location: MachineLocation) {
   return `${location.street}, ${location.city}, ${location.state} ${location.postalCode}`;
 }
 
-/** Name plus address, so Google Maps pins the business rather than just the street address. */
+/**
+ * Street address only. Adding the business name lets Google guess a different
+ * nearby business (it pinned the wrong Sunoco), so the exact address is safer.
+ */
 function mapsQuery(location: MachineLocation) {
-  return encodeURIComponent(`${location.name}, ${formatAddress(location)}`);
+  return encodeURIComponent(formatAddress(location));
 }
 
 /** Keyless Google Maps embed URL for an iframe. */

@@ -27,53 +27,48 @@ export default function LocationsPage() {
       <SiteHeader />
 
       <main>
-        <section className="relative overflow-hidden px-4 pb-12 pt-32 text-center md:pt-40">
+        <section className="relative overflow-hidden px-4 pb-8 pt-32 text-center md:pb-10 md:pt-40">
           <div className="grid-texture pointer-events-none absolute inset-0 opacity-60" />
           <div className="pointer-events-none absolute -top-32 left-1/2 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-wave/25 blur-[140px]" />
           <div className="relative mx-auto max-w-3xl">
-            <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-wave/40 bg-wave/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.16em] text-wave">
-              <Sparkles size={14} />
-              For collectors
-            </p>
             <h1 className="display text-4xl leading-[1.05] md:text-6xl">
               Packs, <span className="text-gradient-bolt">around the corner.</span>
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/75">
-              We are putting Pokémon card machines in local businesses across the Lehigh Valley.
-              Sealed product, fair prices, and no waiting for a restock truck at a big box store.
+            <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-white/75">
+              Find a machine near you.
             </p>
           </div>
         </section>
 
-        <Section width="wide">
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <Section width="wide" className="!pt-2 md:!pt-4">
+          <div className="mx-auto grid max-w-4xl gap-3 md:grid-cols-2 md:gap-4">
             {machineLocations.map((location) => (
               <Link
                 key={location.slug}
                 href={`/locations/${location.slug}`}
-                className="card-surface group overflow-hidden transition-colors hover:border-bolt/50"
+                className="card-surface group flex items-center gap-4 p-3 transition-colors hover:border-bolt/50"
               >
-                <div className="relative aspect-[3/4] bg-ink-800">
+                <div className="relative aspect-[3/4] w-16 shrink-0 overflow-hidden rounded-lg bg-ink-800 md:w-20">
                   <Image
                     src={location.photo}
                     alt={location.photoAlt}
                     placeholder={location.photo.blurDataURL ? 'blur' : 'empty'}
                     fill
-                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    sizes="80px"
                     className="object-cover"
                   />
                 </div>
-                <div className="p-6">
-                  <h2 className="text-lg font-bold text-white">{location.name}</h2>
-                  <p className="mt-2 flex items-start gap-2 text-sm leading-relaxed text-white/65">
-                    <MapPin size={16} className="mt-0.5 shrink-0 text-bolt" />
+                <div className="min-w-0 flex-1">
+                  <h2 className="font-bold leading-snug text-white">{location.name}</h2>
+                  <p className="mt-1 flex items-start gap-1.5 text-sm leading-snug text-white/65">
+                    <MapPin size={14} className="mt-0.5 shrink-0 text-bolt" />
                     {formatAddress(location)}
                   </p>
-                  <p className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-bolt">
-                    Details and directions
-                    <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" />
-                  </p>
                 </div>
+                <ArrowRight
+                  size={18}
+                  className="mr-1 shrink-0 text-bolt transition-transform group-hover:translate-x-0.5"
+                />
               </Link>
             ))}
           </div>
