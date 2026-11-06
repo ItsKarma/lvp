@@ -1,7 +1,7 @@
 /* Shared palette for every Pokémon type (type-*), location (spot-*), season
-   (season-*), holiday (holiday-*), and airport (airport-*) theme. Matching on the ID prefix means new
+   (season-*), holiday (holiday-*), airport (airport-*), and new-release (release-*) theme. Matching on the ID prefix means new
    themes with those prefixes join automatically. */
-:where([data-theme^="type-"], [data-theme^="spot-"], [data-theme^="season-"], [data-theme^="holiday-"], [data-theme^="airport-"]) {
+:where([data-theme^="type-"], [data-theme^="spot-"], [data-theme^="season-"], [data-theme^="holiday-"], [data-theme^="airport-"], [data-theme^="release-"]) {
   --paper: #fff;
   --base: #111;
   --accent: #ffd23f;
@@ -16,21 +16,21 @@
   --yellow: var(--accent);
   --cyan: var(--second);
 }
-:where([data-theme^="type-"], [data-theme^="spot-"], [data-theme^="season-"], [data-theme^="holiday-"], [data-theme^="airport-"]) .screen {
+:where([data-theme^="type-"], [data-theme^="spot-"], [data-theme^="season-"], [data-theme^="holiday-"], [data-theme^="airport-"], [data-theme^="release-"]) .screen {
   background: radial-gradient(ellipse at 50% 55%, var(--type), var(--base) 75%);
 }
-:where([data-theme^="type-"], [data-theme^="spot-"], [data-theme^="season-"], [data-theme^="holiday-"], [data-theme^="airport-"]) .halftone {
+:where([data-theme^="type-"], [data-theme^="spot-"], [data-theme^="season-"], [data-theme^="holiday-"], [data-theme^="airport-"], [data-theme^="release-"]) .halftone {
   background: radial-gradient(circle, var(--dots) 18%, transparent 21%) 0 0 / 3.4cqw 3.4cqw;
   opacity: .5;
 }
-:where([data-theme^="type-"], [data-theme^="spot-"], [data-theme^="season-"], [data-theme^="holiday-"], [data-theme^="airport-"]) :is(.buy, .pokemon, .cards) {
+:where([data-theme^="type-"], [data-theme^="spot-"], [data-theme^="season-"], [data-theme^="holiday-"], [data-theme^="airport-"], [data-theme^="release-"]) :is(.buy, .pokemon, .cards) {
   -webkit-text-stroke-color: var(--stroke);
   filter: drop-shadow(.7cqw .9cqw 0 var(--base));
 }
-:where([data-theme^="type-"], [data-theme^="spot-"], [data-theme^="season-"], [data-theme^="holiday-"], [data-theme^="airport-"]) :is(.buy, .cards) { color: var(--accent); }
-:where([data-theme^="type-"], [data-theme^="spot-"], [data-theme^="season-"], [data-theme^="holiday-"], [data-theme^="airport-"]) .pokemon { color: var(--second); }
-:where([data-theme^="type-"], [data-theme^="spot-"], [data-theme^="season-"], [data-theme^="holiday-"], [data-theme^="airport-"]) .theme-kicker { color: var(--note); }
-:where([data-theme^="type-"], [data-theme^="spot-"], [data-theme^="season-"], [data-theme^="holiday-"], [data-theme^="airport-"]) .here {
+:where([data-theme^="type-"], [data-theme^="spot-"], [data-theme^="season-"], [data-theme^="holiday-"], [data-theme^="airport-"], [data-theme^="release-"]) :is(.buy, .cards) { color: var(--accent); }
+:where([data-theme^="type-"], [data-theme^="spot-"], [data-theme^="season-"], [data-theme^="holiday-"], [data-theme^="airport-"], [data-theme^="release-"]) .pokemon { color: var(--second); }
+:where([data-theme^="type-"], [data-theme^="spot-"], [data-theme^="season-"], [data-theme^="holiday-"], [data-theme^="airport-"], [data-theme^="release-"]) .theme-kicker { color: var(--note); }
+:where([data-theme^="type-"], [data-theme^="spot-"], [data-theme^="season-"], [data-theme^="holiday-"], [data-theme^="airport-"], [data-theme^="release-"]) .here {
   font: 800 3.8cqw/1.5 Arial, sans-serif;
   letter-spacing: .05em;
   -webkit-text-stroke: 0;
@@ -38,17 +38,17 @@
   margin-top: 4cqw;
   filter: none;
 }
-:where([data-theme^="type-"], [data-theme^="spot-"], [data-theme^="season-"], [data-theme^="holiday-"], [data-theme^="airport-"]) .product-tag {
+:where([data-theme^="type-"], [data-theme^="spot-"], [data-theme^="season-"], [data-theme^="holiday-"], [data-theme^="airport-"], [data-theme^="release-"]) .product-tag {
   background: var(--tag-bg); color: var(--tag-ink); border-color: var(--base);
   box-shadow: .6cqw .8cqw 0 var(--second); font-size: 2.4cqw;
 }
-:where([data-theme^="type-"], [data-theme^="spot-"], [data-theme^="season-"], [data-theme^="holiday-"], [data-theme^="airport-"]) :is(.tap, .purchase) { color: var(--type); }
-:where([data-theme^="type-"], [data-theme^="spot-"], [data-theme^="season-"], [data-theme^="holiday-"], [data-theme^="airport-"]) .tap-icon { color: var(--accent); }
-:where([data-theme^="type-"], [data-theme^="spot-"], [data-theme^="season-"], [data-theme^="holiday-"], [data-theme^="airport-"]) .features { background: var(--base); color: var(--paper); border-color: var(--second); }
-:where([data-theme^="type-"], [data-theme^="spot-"], [data-theme^="season-"], [data-theme^="holiday-"], [data-theme^="airport-"]) .orbit { border-color: var(--second); box-shadow: none; opacity: .5; }
-:where([data-theme^="type-"], [data-theme^="spot-"], [data-theme^="season-"], [data-theme^="holiday-"], [data-theme^="airport-"]) .product-halo { background: var(--second); opacity: .3; }
-:where([data-theme^="type-"], [data-theme^="spot-"], [data-theme^="season-"], [data-theme^="holiday-"], [data-theme^="airport-"]) .spark { font-size: 0; text-shadow: none; color: var(--accent); }
-:where([data-theme^="type-"], [data-theme^="spot-"], [data-theme^="season-"], [data-theme^="holiday-"], [data-theme^="airport-"]) .spark::before { content: var(--spark); font-size: 8.5cqw; }
+:where([data-theme^="type-"], [data-theme^="spot-"], [data-theme^="season-"], [data-theme^="holiday-"], [data-theme^="airport-"], [data-theme^="release-"]) :is(.tap, .purchase) { color: var(--type); }
+:where([data-theme^="type-"], [data-theme^="spot-"], [data-theme^="season-"], [data-theme^="holiday-"], [data-theme^="airport-"], [data-theme^="release-"]) .tap-icon { color: var(--accent); }
+:where([data-theme^="type-"], [data-theme^="spot-"], [data-theme^="season-"], [data-theme^="holiday-"], [data-theme^="airport-"], [data-theme^="release-"]) .features { background: var(--base); color: var(--paper); border-color: var(--second); }
+:where([data-theme^="type-"], [data-theme^="spot-"], [data-theme^="season-"], [data-theme^="holiday-"], [data-theme^="airport-"], [data-theme^="release-"]) .orbit { border-color: var(--second); box-shadow: none; opacity: .5; }
+:where([data-theme^="type-"], [data-theme^="spot-"], [data-theme^="season-"], [data-theme^="holiday-"], [data-theme^="airport-"], [data-theme^="release-"]) .product-halo { background: var(--second); opacity: .3; }
+:where([data-theme^="type-"], [data-theme^="spot-"], [data-theme^="season-"], [data-theme^="holiday-"], [data-theme^="airport-"], [data-theme^="release-"]) .spark { font-size: 0; text-shadow: none; color: var(--accent); }
+:where([data-theme^="type-"], [data-theme^="spot-"], [data-theme^="season-"], [data-theme^="holiday-"], [data-theme^="airport-"], [data-theme^="release-"]) .spark::before { content: var(--spark); font-size: 8.5cqw; }
 
 /* Type themes carry a game-style type badge as the kicker. */
 :where([data-theme^="type-"]) .theme-kicker {

@@ -8,6 +8,14 @@ if (!ad) {
 }
 document.documentElement.dataset.theme = ad.theme;
 if (ad.variant) document.documentElement.dataset.variant = ad.variant;
+// A featured-set ad shows only its one pack instead of the five-pack fan.
+if (ad.feature) {
+  const packs = document.querySelector('.packs');
+  for (const image of packs.querySelectorAll('img')) {
+    if (!image.getAttribute('src').endsWith(`/${ad.feature}`)) image.remove();
+  }
+  packs.classList.add('single');
+}
 document.title = `${ad.title} — Pokémon Screen Ad`;
 document.querySelector('.controls h2').textContent = ad.title;
 document.querySelector('.theme-kicker').textContent = ad.kicker;

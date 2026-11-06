@@ -16,11 +16,11 @@ test('library groups ads into collections, each with its own page', async () => 
     assert.equal(response.status(), 200);
     assert.equal(await page.locator('h1').textContent(), 'Assets');
     assert.match(await page.locator('meta[name="robots"]').getAttribute('content'), /noindex/);
-    assert.equal(ads.length, 399);
+    assert.equal(ads.length, 400);
     assert.ok(ads.every((ad) => adGroups.some((group) => group.id === ad.group)), 'Every ad must belong to a collection');
     for (const group of adGroups) {
       assert.equal(await page.locator(`a[href="${adGroupPath(group)}"]`).count(), 1);
-      if (group.id !== 'standard') assert.equal(ads.filter((ad) => ad.group === group.id).length, 8);
+      if (!['standard', 'releases'].includes(group.category)) assert.equal(ads.filter((ad) => ad.group === group.id).length, 8);
     }
     for (const group of adGroups) {
       const groupAds = ads.filter((ad) => ad.group === group.id);

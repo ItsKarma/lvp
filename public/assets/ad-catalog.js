@@ -150,6 +150,19 @@ const firstAds = [
     file: 'pokemon-festival.mp4',
   },
   {
+    id: 'release-delta-reign',
+    title: 'Delta Reign Launch',
+    description: 'Emerald, gold, and magenta. One big Delta Reign pack in front of a turning golden delta, with a "just released" sticker for launch week.',
+    theme: 'release-delta-reign',
+    variant: 'sticker',
+    feature: 'booster_delta_reign.jpg',
+    headline: ['NEW SET', 'DELTA', 'REIGN', 'OUT NOW · IN STOCK RIGHT HERE'],
+    kicker: 'Mega Evolution series',
+    tag: 'Catch the Mega Rayquaza',
+    badge: 'JUST RELEASED!',
+    file: 'pokemon-release-delta-reign.mp4',
+  },
+  {
     id: 'type-normal',
     title: 'Normal Type',
     description: 'Cream, tan, and warm brown. Soft starburst rays for an everyday pack that is anything but ordinary.',
@@ -632,6 +645,7 @@ const firstAds = [
 ];
 
 export const adCategories = [
+  { id: 'releases', title: 'New Releases', description: 'Launch-week designs for the newest sets we have in stock.' },
   { id: 'standard', title: 'Standard', description: 'The original fifteen general-purpose designs.' },
   { id: 'types', title: 'Pokémon Types', description: 'Eight designs for each of the eighteen Pokémon types.' },
   { id: 'locations', title: 'Locations', description: 'Eight designs tailored to each kind of host location.' },
@@ -642,6 +656,7 @@ export const adCategories = [
 // Each group's swatch colors, emoji, and optional `when` (best months to run it)
 // are shown on the library tiles.
 export const adGroups = [
+  { id: 'release-delta-reign', category: 'releases', title: 'Delta Reign', emoji: '🆕', swatch: ['#138a43', '#f7c831'], when: 'Launch week' },
   { id: 'standard', category: 'standard', title: 'Standard', emoji: '✦', swatch: ['#302bff', '#00ddff'] },
   { id: 'type-normal', category: 'types', title: 'Normal', emoji: '⭐', swatch: ['#c9bf98', '#6f6847'] },
   { id: 'type-fire', category: 'types', title: 'Fire', emoji: '🔥', swatch: ['#c62b0c', '#ffd23f'] },
@@ -1148,6 +1163,8 @@ export const ads = adGroups.flatMap((group) => {
     return firstAds.filter((ad) => !adGroups.some((entry) => entry.id === ad.id)).map((ad) => ({ ...ad, group: group.id }));
   }
   const first = firstAds.find((ad) => ad.id === group.id);
+  // New-release groups are a single featured design with no extra layouts.
+  if (!moreCopy[group.id]) return [{ ...first, group: group.id }];
   return [
     { ...first, group: group.id, variant: adVariants[0].id },
     ...moreCopy[group.id].map((copy, index) => {
