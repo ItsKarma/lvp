@@ -4,21 +4,20 @@ import { siteConfig } from '@/lib/site';
 
 const columns = [
   {
-    heading: 'For Businesses',
-    links: [
-      { label: 'How It Works', href: '/host-a-machine' },
-      { label: 'Replace Skill Games', href: '/skill-games' },
-      { label: 'Our Machines', href: '/machines' },
-      { label: 'Service Area', href: '/service-area' },
-      { label: 'Referral Program', href: '/referral' },
-    ],
-  },
-  {
     heading: 'For Collectors',
     links: [
       { label: 'Find a Machine', href: '/locations' },
       { label: 'Our Pack Policy', href: '/authenticity' },
       { label: 'Support', href: '/support' },
+    ],
+  },
+  {
+    heading: 'For Businesses',
+    links: [
+      { label: 'Host a Machine', href: '/host-a-machine' },
+      { label: 'Our Machines', href: '/machines' },
+      { label: 'Service Area', href: '/service-area' },
+      { label: 'Referral Program', href: '/referral' },
     ],
   },
   {

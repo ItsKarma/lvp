@@ -10,9 +10,9 @@ import './globals.css';
 const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] });
 const outfit = Outfit({ variable: '--font-outfit', subsets: ['latin'], weight: ['600', '700', '800'] });
 
-const title = 'Pokémon Card Vending Machines for Lehigh Valley Businesses';
+const title = 'Pokémon Card Vending Machines in the Lehigh Valley';
 const description =
-  'Put a Pokémon card vending machine in your business for free and earn 10% of every sale. We buy it, stock it, service it, and insure it. You just collect the check.';
+  'Sealed Pokémon booster packs from vending machines across the Lehigh Valley. Walk up, pick a pack, tap to pay, and rip it right there. Find a machine near you.';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -23,14 +23,14 @@ export const metadata: Metadata = {
   description,
   applicationName: siteConfig.name,
   keywords: [
-    'Pokemon vending machine',
     'Lehigh Valley Pokemon',
-    'skill game replacement Pennsylvania',
-    'passive income for small business',
-    'trading card vending machine',
+    'Pokemon card vending machine',
+    'Pokemon packs near me',
     'Allentown Pokemon cards',
+    'Northampton PA Pokemon cards',
     'Bethlehem Pokemon cards',
     'Easton Pokemon cards',
+    'sealed Pokemon booster packs',
   ],
   alternates: { canonical: '/' },
   icons: {
@@ -67,6 +67,15 @@ const organizationSchema = {
   ],
 };
 
+/** Tells Google the site's name, including the unaccented spelling people actually type. */
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: siteConfig.name,
+  alternateName: ['Lehigh Valley Pokemon', siteConfig.shortName],
+  url: siteConfig.url,
+};
+
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
@@ -80,6 +89,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
         {children}
         <Analytics />

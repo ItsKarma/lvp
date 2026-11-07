@@ -5,12 +5,11 @@ import { siteConfig } from '@/lib/site';
 
 const staticRoutes: { path: string; priority: number }[] = [
   { path: '', priority: 1 },
-  { path: '/skill-games', priority: 0.95 },
-  { path: '/host-a-machine', priority: 0.9 },
-  { path: '/machines', priority: 0.8 },
-  { path: '/locations', priority: 0.7 },
+  { path: '/locations', priority: 0.9 },
+  { path: '/host-a-machine', priority: 0.8 },
+  { path: '/machines', priority: 0.6 },
   { path: '/service-area', priority: 0.7 },
-  { path: '/authenticity', priority: 0.6 },
+  { path: '/authenticity', priority: 0.7 },
   { path: '/referral', priority: 0.5 },
   { path: '/about', priority: 0.5 },
   { path: '/contact', priority: 0.5 },

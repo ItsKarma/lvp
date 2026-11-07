@@ -50,12 +50,12 @@ public/        Static assets
 
 | Route | Purpose |
 | --- | --- |
-| `/` | Main pitch: free machine, 10% of every sale |
-| `/skill-games` | Paid-traffic page for PA locations replacing skill games |
+| `/` | Collector homepage: machine list, how buying works, pack policy, FAQ |
 | `/referral` | Referral program: payouts, rules, and referral form |
-| `/host-a-machine` | Full partner offer and application form |
+| `/host-a-machine` | Business pitch: partner offer, earnings estimator, owner FAQ, application form |
 | `/machines` | Hardware and specs |
-| `/find-a-machine` | Collector-facing page |
+| `/locations` | Every machine location (`/find-a-machine` redirects here) |
+| `/locations/[slug]` | One page per machine, generated from `lib/locations.ts` |
 | `/assets` | Screen-ad library with previews and export instructions (not indexed) |
 | `/service-area/[city]` | Local SEO pages generated from `lib/serviceCities.ts` |
 

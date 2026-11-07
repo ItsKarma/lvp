@@ -6,14 +6,18 @@ import {
   BarChart3,
   CalendarCheck,
   Check,
+  CreditCard,
   MapPin,
   Package,
   Plug,
+  ShieldCheck,
+  Sparkles,
   Undo2,
   Wrench,
 } from 'lucide-react';
 import CTA from '@/components/CTA';
 import EarningsEstimator from '@/components/EarningsEstimator';
+import FAQ from '@/components/FAQ';
 import FeatureCard from '@/components/FeatureCard';
 import HostLeadForm from '@/components/HostLeadForm';
 import Section from '@/components/Section';
@@ -26,6 +30,8 @@ const weBring = [
   { icon: <Banknote size={20} />, title: 'The inventory', description: 'Every pack in it is bought and owned by us.' },
   { icon: <Wrench size={20} />, title: 'The labor', description: 'Restocking, cleaning, repairs, and customer support.' },
   { icon: <BarChart3 size={20} />, title: 'The reporting', description: 'Monthly statements so your cut is never a guess.' },
+  { icon: <CreditCard size={20} />, title: 'The payments', description: 'Tap, chip, swipe, and mobile wallet. No cash on site.' },
+  { icon: <ShieldCheck size={20} />, title: 'The insurance', description: 'The machine is ours, insured by us, and our responsibility.' },
 ];
 
 const youBring = [
@@ -41,10 +47,86 @@ const timeline = [
   { step: '04', title: 'It starts earning', body: 'We monitor sales remotely, restock before it runs dry, and send your payout monthly.' },
 ];
 
+const stats = [
+  { number: '$0', label: 'Your cost', detail: 'Machine, install, product, repairs, all ours.' },
+  {
+    number: `${siteConfig.revenueSharePercent}%`,
+    label: 'Your cut',
+    detail: 'Of gross sales, paid monthly, every month.',
+  },
+  { number: '0 hrs', label: 'Your work', detail: 'You never restock, fix, or staff anything.' },
+];
+
+const locationTypes = [
+  'Bars & taverns',
+  'Convenience stores',
+  'Barbershops',
+  'Pizza shops & delis',
+  'Arcades',
+  'Bowling alleys',
+  'Gyms & rec centers',
+  'Hotel lobbies',
+];
+
+const faqItems = [
+  {
+    question: 'What does this cost me?',
+    answer:
+      'Nothing. There is no purchase, no lease, no monthly fee, and no product to buy. We carry the entire cost of the machine and the inventory. You provide the wall space and the foot traffic.',
+  },
+  {
+    question: 'How much space does it take?',
+    answer:
+      'Our wall-mounted unit is roughly 24" wide by 42" tall and 11" deep, about the footprint of a small poster. If wall mounting is not an option, we have a freestanding pedestal version.',
+  },
+  {
+    question: 'How do I actually get paid?',
+    answer: `You get ${siteConfig.revenueSharePercent}% of gross sales, calculated automatically from the machine's payment processing and paid monthly. You also get a statement showing units sold so the number is never a mystery.`,
+  },
+  {
+    question: 'Do my employees have to do anything?',
+    answer:
+      'No. The machine is fully self-service and cashless. Your staff does not restock it, does not handle money, and does not troubleshoot it. If a customer has an issue, there is a support number right on the machine.',
+  },
+  {
+    question: 'Is this gambling? Do I need a license?',
+    answer:
+      'No. This is straight retail. A customer pays a fixed price and receives a sealed trading card product, the same as buying it off a shelf at any store. There is no wager, no chance-based payout, and no cash prize. We are not attorneys and this is not legal advice, but a card machine is a vending sale, not a game of chance.',
+  },
+  {
+    question: 'Are the packs legit?',
+    answer:
+      'Yes. Every pack is sealed, unopened, and purchased through reputable channels. We do not weigh packs, scan them, or pick through them. Read our full pack policy for exactly how we source.',
+  },
+  {
+    question: 'What if it does not work out?',
+    answer: `Try it for ${siteConfig.trialDays} days. If it is not earning or you just do not want it anymore, we remove it within 48 hours at no cost to you. There is no binding contract.`,
+  },
+  {
+    question: 'Can I get more than one?',
+    answer:
+      'Yes. If you run multiple locations, we would rather do all of them at once. Mention it when you reach out.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
+};
+
 export default function HostPage() {
   return (
     <>
       <SiteHeader />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
 
       <main>
         <section className="relative overflow-hidden px-4 pb-14 pt-32 md:pb-20 md:pt-40">
@@ -89,6 +171,18 @@ export default function HostPage() {
           </div>
         </section>
 
+        <Section width="wide" className="!pt-0">
+          <div className="grid gap-5 md:grid-cols-3">
+            {stats.map((stat) => (
+              <div key={stat.label} className="card-surface p-8 text-center">
+                <p className="display text-5xl text-bolt md:text-6xl">{stat.number}</p>
+                <p className="display mt-3 text-lg text-white">{stat.label}</p>
+                <p className="mt-2 text-sm leading-relaxed text-white/60">{stat.detail}</p>
+              </div>
+            ))}
+          </div>
+        </Section>
+
         <Section panel eyebrow="The split" title="Who brings what" width="wide">
           <div className="grid gap-8 lg:grid-cols-2">
             <div>
@@ -108,6 +202,61 @@ export default function HostPage() {
               </div>
             </div>
           </div>
+        </Section>
+
+        <Section eyebrow="Why Pokémon" title="The biggest collectible on earth." width="wide">
+          <div className="grid gap-5 md:grid-cols-3">
+            <FeatureCard
+              icon={<Sparkles size={22} />}
+              title="Three generations of buyers"
+              description="Kids want them. Teens trade them. Adults who collected in the 90s now have disposable income and buy for themselves and their kids."
+            />
+            <FeatureCard
+              icon={<Banknote size={22} />}
+              title="Perfect impulse price point"
+              description="A pack costs about what a fancy coffee does. It is an easy yes at the counter, and the payoff feeling brings people back."
+              accent="mint"
+            />
+            <FeatureCard
+              icon={<BadgeCheck size={22} />}
+              title="It pulls people in"
+              description="Collectors actively hunt for machines and tell each other where they are. A machine is a reason to walk into your business specifically."
+              accent="flare"
+            />
+          </div>
+
+          <div className="card-surface mt-10 p-7 md:p-9">
+            <p className="text-lg leading-relaxed text-white/80">
+              Here is the part most owners miss: this is not just the{' '}
+              {siteConfig.revenueSharePercent}% check. A card machine creates{' '}
+              <strong className="text-white">new trips</strong> to your location. Somebody stopping
+              in to grab a pack is somebody standing in your store, looking at everything else you
+              sell. The vending revenue is the floor, not the ceiling.
+            </p>
+          </div>
+        </Section>
+
+        <Section
+          panel
+          eyebrow="Where these work"
+          title="If people walk past a wall, that wall can pay rent."
+          subtitle="We have a fit for almost any location with steady foot traffic and a few square feet to spare."
+          width="wide"
+        >
+          <div className="flex flex-wrap justify-center gap-3">
+            {locationTypes.map((type) => (
+              <span
+                key={type}
+                className="rounded-full border border-white/15 bg-ink px-5 py-2.5 text-sm font-semibold text-white/80"
+              >
+                {type}
+              </span>
+            ))}
+          </div>
+          <p className="mx-auto mt-8 max-w-xl text-center text-sm text-white/55">
+            Not on the list? Ask anyway. Some of our best performing spots were places nobody
+            expected.
+          </p>
         </Section>
 
         <Section eyebrow="Timeline" title="From first message to first payout" width="wide">
@@ -149,7 +298,11 @@ export default function HostPage() {
           <EarningsEstimator />
         </Section>
 
-        <Section id="apply" panel eyebrow="Apply" title="Let's see if your spot works.">
+        <Section panel eyebrow="Questions" title="The things owners always ask">
+          <FAQ items={faqItems} />
+        </Section>
+
+        <Section id="apply" eyebrow="Apply" title="Let's see if your spot works.">
           <div className="grid items-start gap-10 lg:grid-cols-[0.85fr_1.15fr]">
             <div>
               <p className="text-lg leading-relaxed text-white/75">
@@ -170,7 +323,7 @@ export default function HostPage() {
                 ))}
               </ul>
             </div>
-            <HostLeadForm source="host-a-machine" skillGameContext />
+            <HostLeadForm source="host-a-machine" />
           </div>
         </Section>
       </main>

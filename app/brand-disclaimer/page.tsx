@@ -53,10 +53,8 @@ export default function BrandDisclaimerPage() {
 
             <h2 className="display text-xl text-white">Not legal advice</h2>
             <p>
-              Pages on this site that discuss Pennsylvania skill game regulation summarize publicly
-              reported developments for general informational purposes. {siteConfig.name} is not a law
-              firm and nothing on this site is legal advice. Consult your own attorney regarding your
-              specific circumstances, contracts, and obligations.
+              {siteConfig.name} is not a law firm and nothing on this site is legal advice. Consult
+              your own attorney regarding your specific circumstances, contracts, and obligations.
             </p>
 
             <div className="border-t border-white/10 pt-6">

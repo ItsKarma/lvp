@@ -67,8 +67,8 @@ export default async function CityPage({ params }: CityPageProps) {
               <CTA href="#apply">
                 Check My {city.name} Location <ArrowRight size={16} />
               </CTA>
-              <CTA href="/skill-games" variant="ghost">
-                Replacing skill games?
+              <CTA href="/machines" variant="ghost">
+                See the machines
               </CTA>
             </div>
           </div>
@@ -115,7 +115,7 @@ export default async function CityPage({ params }: CityPageProps) {
 
         <Section id="apply" eyebrow="Apply" title={`Bring a machine to ${city.name}.`}>
           <div className="mx-auto max-w-2xl">
-            <HostLeadForm source={`service-area-${city.slug}`} skillGameContext />
+            <HostLeadForm source={`service-area-${city.slug}`} />
           </div>
         </Section>
       </main>

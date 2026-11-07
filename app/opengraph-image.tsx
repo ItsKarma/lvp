@@ -1,13 +1,13 @@
 import { ogContentType, ogSize, renderOgImage } from '@/lib/og';
 
-export const alt = 'Lehigh Valley Pokémon: earn 10% of every sale with a free Pokémon card machine';
+export const alt = 'Lehigh Valley Pokémon: sealed Pokémon packs from vending machines across the Lehigh Valley';
 export const size = ogSize;
 export const contentType = ogContentType;
 
 export default function Image() {
   return renderOgImage({
     eyebrow: 'Lehigh Valley Pokémon',
-    title: 'Let the unused space in your business generate revenue.',
-    footer: 'Free machine. We stock it. You earn 10% of every sale.',
+    title: 'Fresh Pokémon packs, right around the corner.',
+    footer: 'Sealed booster packs across the Lehigh Valley. Find a machine near you.',
   });
 }

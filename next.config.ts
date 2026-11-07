@@ -8,9 +8,11 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       // Friendly aliases people may type or that we may print on flyers and ads.
-      { source: "/skill-game", destination: "/skill-games", permanent: true },
-      { source: "/replace-skill-games", destination: "/skill-games", permanent: true },
-      { source: "/skill-game-replacement", destination: "/skill-games", permanent: true },
+      // The skill game page was retired; send its old URLs (still in Google) to the host page.
+      { source: "/skill-games", destination: "/host-a-machine", permanent: true },
+      { source: "/skill-game", destination: "/host-a-machine", permanent: true },
+      { source: "/replace-skill-games", destination: "/host-a-machine", permanent: true },
+      { source: "/skill-game-replacement", destination: "/host-a-machine", permanent: true },
       { source: "/host", destination: "/host-a-machine", permanent: true },
       { source: "/find-a-machine", destination: "/locations", permanent: true },
       { source: "/pokemon", destination: "/", permanent: true },

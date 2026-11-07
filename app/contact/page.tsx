@@ -47,7 +47,7 @@ export default function ContactPage() {
 
         <Section>
           <div className="mx-auto max-w-2xl">
-            <HostLeadForm source="contact" skillGameContext submitLabel="Send It Over" />
+            <HostLeadForm source="contact" submitLabel="Send It Over" />
           </div>
         </Section>
       </main>

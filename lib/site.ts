@@ -6,13 +6,11 @@ export const siteConfig = {
   parentCompany: 'LVP Vending',
   email: 'info@lvpvending.com',
   supportEmail: 'support@lvpvending.com',
-  tagline: 'Pokémon card vending machines for Lehigh Valley businesses.',
+  tagline: 'Sealed Pokémon packs from vending machines across the Lehigh Valley.',
   /** Share of gross sales paid to the location host. */
   revenueSharePercent: 10,
   trialDays: 30,
   averagePackPrice: 13,
-  /** Final day of the Pennsylvania skill game grace period. */
-  skillGameDeadlineLabel: 'October 13, 2026',
 } as const;
 
 /** Referral program numbers. Change them here and /referral updates everywhere. */

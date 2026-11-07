@@ -38,12 +38,10 @@ export const labelClass = 'mb-2 block text-sm font-bold text-white/85';
 interface HostLeadFormProps {
   /** Identifies which page or ad produced the lead. */
   source?: string;
-  /** Shows the "did you run skill games" question. */
-  skillGameContext?: boolean;
   submitLabel?: string;
 }
 
-function LeadForm({ source, skillGameContext, submitLabel }: Required<HostLeadFormProps>) {
+function LeadForm({ source, submitLabel }: Required<HostLeadFormProps>) {
   const searchParams = useSearchParams();
 
   const attribution: Record<string, string> = { source };
@@ -120,27 +118,6 @@ function LeadForm({ source, skillGameContext, submitLabel }: Required<HostLeadFo
         </select>
       </div>
 
-      {skillGameContext && (
-        <div>
-          <label className={labelClass} htmlFor="had_skill_games">
-            Do you currently have skill games on site?
-          </label>
-          <select
-            id="had_skill_games"
-            name="had_skill_games"
-            defaultValue=""
-            className={fieldClass}
-          >
-            <option value="" disabled>
-              Select one
-            </option>
-            <option value="Yes, still running">Yes, still running</option>
-            <option value="Yes, planning to remove">Yes, planning to remove them</option>
-            <option value="Already removed">Already removed them</option>
-            <option value="Never had them">Never had them</option>
-          </select>
-        </div>
-      )}
 
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
@@ -201,7 +178,6 @@ function LeadForm({ source, skillGameContext, submitLabel }: Required<HostLeadFo
 
 export default function HostLeadForm({
   source = 'site',
-  skillGameContext = false,
   submitLabel = 'Check My Location',
 }: HostLeadFormProps) {
   if (!FORMSPREE_PROJECT) {
@@ -219,7 +195,7 @@ export default function HostLeadForm({
   return (
     <FormspreeProvider project={FORMSPREE_PROJECT}>
       <Suspense fallback={<div className="min-h-[620px]" />}>
-        <LeadForm source={source} skillGameContext={skillGameContext} submitLabel={submitLabel} />
+        <LeadForm source={source} submitLabel={submitLabel} />
       </Suspense>
     </FormspreeProvider>
   );
