@@ -6,6 +6,7 @@ import FeatureCard from '@/components/FeatureCard';
 import Section from '@/components/Section';
 import SiteFooter from '@/components/SiteFooter';
 import SiteHeader from '@/components/SiteHeader';
+import { machineModels } from '@/lib/machines';
 import { siteConfig } from '@/lib/site';
 
 const title = 'Our Machines';
@@ -18,36 +19,6 @@ export const metadata: Metadata = {
   alternates: { canonical: '/machines' },
   openGraph: { title, description, url: `${siteConfig.url}/machines` },
 };
-
-const models = [
-  {
-    name: 'Wall Mount',
-    badge: 'Smallest footprint',
-    placement: 'Wall mounted',
-    image: '/LVPVendingPokemonWall.png',
-    alt: 'Wall mounted Pokémon card vending machine with a touchscreen and card reader',
-    description:
-      'Hangs flat on the wall and takes zero floor space, which makes it the easy yes for counters, checkout lines, and tight entryways. Available in two sizes depending on how much selection you want.',
-  },
-  {
-    name: 'Pedestal',
-    badge: 'No wall needed',
-    placement: 'Freestanding',
-    image: '/LVPVendingPokemonPedestal.png',
-    alt: 'Pokémon card vending machine on a freestanding pedestal stand',
-    description:
-      'The same cabinet on a weighted stand. For glass storefronts, brick, or leased space where drilling into the wall is not an option.',
-  },
-  {
-    name: 'Tower',
-    badge: 'Highest visibility',
-    placement: 'Freestanding',
-    image: '/LVPVendingPokemonSlimTower.png',
-    alt: 'Freestanding slim Pokémon card vending tower with a large touchscreen',
-    description:
-      'A full-height tower with a large touchscreen and up to 24 selections. Built to be seen from across the room in arcades, lobbies, and open retail floors.',
-  },
-];
 
 const specs = [
   { icon: <CreditCard size={20} />, title: 'Cashless payments', description: 'Tap, chip, swipe, and mobile wallet. No cash on site.' },
@@ -82,16 +53,14 @@ export default function MachinesPage() {
 
         <Section width="wide">
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {models.map((model, index) => (
-              <div key={model.name} className="card-surface overflow-hidden">
-                <div className="relative aspect-square w-full">
+            {machineModels.map((model) => (
+              <div key={model.slug} id={model.slug} className="card-surface scroll-mt-24 overflow-hidden">
+                <div className="relative flex aspect-square w-full items-center justify-center p-8">
                   <Image
-                    src={model.image}
+                    src={model.cutout}
                     alt={model.alt}
-                    fill
-                    priority={index === 0}
-                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                    className="object-contain"
+                    sizes="(min-width: 1024px) 240px, (min-width: 640px) 35vw, 70vw"
+                    className="h-full w-auto object-contain"
                   />
                 </div>
                 <div className="p-6">

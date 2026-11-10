@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import {
   ArrowRight,
   BadgeCheck,
@@ -20,9 +21,11 @@ import EarningsEstimator from '@/components/EarningsEstimator';
 import FAQ from '@/components/FAQ';
 import FeatureCard from '@/components/FeatureCard';
 import HostLeadForm from '@/components/HostLeadForm';
+import MachineLineup from '@/components/MachineLineup';
 import Section from '@/components/Section';
 import SiteFooter from '@/components/SiteFooter';
 import SiteHeader from '@/components/SiteHeader';
+import { machineModels } from '@/lib/machines';
 import { siteConfig } from '@/lib/site';
 
 const weBring = [
@@ -156,17 +159,8 @@ export default function HostPage() {
                 </CTA>
               </div>
             </div>
-            <div className="relative mx-auto w-full max-w-[360px]">
-              <div className="pointer-events-none absolute inset-0 animate-pulse-glow rounded-full bg-bolt/20 blur-3xl" />
-              <Image
-                src="/LVPVendingPokemonWall.png"
-                alt="Pokémon card vending machine with a touchscreen and tap-to-pay reader"
-                width={1024}
-                height={1535}
-                priority
-                sizes="(min-width: 1024px) 360px, 80vw"
-                className="relative w-full drop-shadow-2xl"
-              />
+            <div className="relative mx-auto w-full max-w-[520px]">
+              <MachineLineup priority />
             </div>
           </div>
         </section>
@@ -204,7 +198,43 @@ export default function HostPage() {
           </div>
         </Section>
 
-        <Section eyebrow="Why Pokémon" title="The biggest collectible on earth." width="wide">
+        <Section
+          eyebrow="The machines"
+          title="Three ways to fit your space."
+          subtitle="Same touchscreen, same cashless reader, same upkeep from us. Pick the shape that suits your floor."
+          width="wide"
+        >
+          <div className="grid gap-5 md:grid-cols-3">
+            {machineModels.map((model) => (
+              <Link
+                key={model.slug}
+                href={`/machines#${model.slug}`}
+                className="card-surface group flex items-center gap-5 p-5 transition-colors hover:border-bolt/50 md:flex-col md:items-stretch md:p-6"
+              >
+                <div className="relative flex h-32 w-20 shrink-0 items-end justify-center md:h-56 md:w-full">
+                  <Image
+                    src={model.cutout}
+                    alt={model.alt}
+                    sizes="(min-width: 768px) 160px, 80px"
+                    className="h-full w-auto object-contain drop-shadow-[0_16px_20px_rgba(0,0,0,0.5)]"
+                  />
+                </div>
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-[0.16em] text-bolt">{model.badge}</p>
+                  <h3 className="display mt-1 text-xl text-white">{model.name}</h3>
+                  <p className="mt-2 text-[15px] leading-relaxed text-white/70">{model.summary}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+          <div className="mt-10 text-center">
+            <CTA href="/machines" variant="ghost">
+              Compare the machines <ArrowRight size={16} />
+            </CTA>
+          </div>
+        </Section>
+
+        <Section panel eyebrow="Why Pokémon" title="The biggest collectible on earth." width="wide">
           <div className="grid gap-5 md:grid-cols-3">
             <FeatureCard
               icon={<Sparkles size={22} />}
@@ -237,7 +267,6 @@ export default function HostPage() {
         </Section>
 
         <Section
-          panel
           eyebrow="Where these work"
           title="If people walk past a wall, that wall can pay rent."
           subtitle="We have a fit for almost any location with steady foot traffic and a few square feet to spare."
@@ -259,7 +288,7 @@ export default function HostPage() {
           </p>
         </Section>
 
-        <Section eyebrow="Timeline" title="From first message to first payout" width="wide">
+        <Section panel eyebrow="Timeline" title="From first message to first payout" width="wide">
           <div className="grid gap-5 md:grid-cols-4">
             {timeline.map((item) => (
               <div key={item.step} className="card-surface p-6">
@@ -271,7 +300,7 @@ export default function HostPage() {
           </div>
         </Section>
 
-        <Section panel eyebrow="Your safety net" title={`${siteConfig.trialDays} days, and we mean it.`} width="wide">
+        <Section eyebrow="Your safety net" title={`${siteConfig.trialDays} days, and we mean it.`} width="wide">
           <div className="grid gap-5 md:grid-cols-3">
             <FeatureCard
               icon={<Undo2 size={22} />}
@@ -294,15 +323,15 @@ export default function HostPage() {
           </div>
         </Section>
 
-        <Section eyebrow="The math" title="What your wall could be earning">
+        <Section panel eyebrow="The math" title="What your wall could be earning">
           <EarningsEstimator />
         </Section>
 
-        <Section panel eyebrow="Questions" title="The things owners always ask">
+        <Section eyebrow="Questions" title="The things owners always ask">
           <FAQ items={faqItems} />
         </Section>
 
-        <Section id="apply" eyebrow="Apply" title="Let's see if your spot works.">
+        <Section panel id="apply" eyebrow="Apply" title="Let's see if your spot works.">
           <div className="grid items-start gap-10 lg:grid-cols-[0.85fr_1.15fr]">
             <div>
               <p className="text-lg leading-relaxed text-white/75">
