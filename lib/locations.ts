@@ -66,6 +66,16 @@ export const machineLocations: MachineLocation[] = [
     photoAlt: 'Pokémon card vending machine at Here & Gone Cards and Collectibles',
   },
   {
+    slug: '15th-street-sunoco',
+    name: '15th Street Sunoco',
+    street: '1501 Mauch Chunk Rd',
+    city: 'Allentown',
+    state: 'PA',
+    postalCode: '18102',
+    photo: placeholderPhoto,
+    photoAlt: 'Pokémon card vending machine at 15th Street Sunoco',
+  },
+  {
     slug: 'lehigh-valley-international-airport',
     name: 'Lehigh Valley International Airport (ABE)',
     street: '3311 Airport Rd',
