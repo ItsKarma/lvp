@@ -1,4 +1,5 @@
 import type { StaticImageData } from 'next/image';
+import fifteenthSunocoPhoto from '@/public/location-photos/LVP15thSunoco.jpeg';
 import barbershopEastPhoto from '@/public/location-photos/LVPBarbershopEast.jpeg';
 import hamiltonSunocoPhoto from '@/public/location-photos/LVPHamiltonSunoco.jpeg';
 import hereAndGonePhoto from '@/public/location-photos/LVPHereAndGone.jpeg';
@@ -72,7 +73,7 @@ export const machineLocations: MachineLocation[] = [
     city: 'Allentown',
     state: 'PA',
     postalCode: '18102',
-    photo: placeholderPhoto,
+    photo: fifteenthSunocoPhoto,
     photoAlt: 'Pokémon card vending machine at 15th Street Sunoco',
   },
   {
