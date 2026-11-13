@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
-import { ArrowRight, Handshake, MapPin, ShieldCheck } from 'lucide-react';
+import Link from 'next/link';
+import { ArrowRight, MapPin, Truck, Wand2 } from 'lucide-react';
 import CTA from '@/components/CTA';
 import FeatureCard from '@/components/FeatureCard';
 import Section from '@/components/Section';
@@ -8,7 +9,7 @@ import SiteHeader from '@/components/SiteHeader';
 import { siteConfig } from '@/lib/site';
 
 const title = 'About Us';
-const description = `${siteConfig.name} is a locally owned Pokémon card vending operation serving Lehigh and Northampton counties, operated by ${siteConfig.parentCompany}.`;
+const description = `${siteConfig.name} is a locally owned Pokémon card vending business in the Lehigh Valley. We stock the machines ourselves and rotate in the sets collectors ask for.`;
 
 export const metadata: Metadata = {
   title,
@@ -30,11 +31,11 @@ export default function AboutPage() {
               Who we are
             </p>
             <h1 className="display text-4xl leading-[1.05] md:text-6xl">
-              Local operators, <span className="text-gradient-bolt">not a franchise.</span>
+              Your local pack machines, <span className="text-gradient-bolt">run by locals.</span>
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/75">
-              {siteConfig.name} is the trading card side of {siteConfig.parentCompany}, a vending
-              business based right here in the Lehigh Valley.
+              {siteConfig.name} is a small, locally owned business here in the Lehigh Valley. We
+              stock every machine ourselves.
             </p>
           </div>
         </section>
@@ -42,56 +43,65 @@ export default function AboutPage() {
         <Section width="wide">
           <div className="card-surface p-7 md:p-10">
             <p className="text-lg leading-relaxed text-white/80">
-              We already run smart vending for businesses across Lehigh and Northampton counties.
-              Pokémon started as one machine, in one store, as an experiment. It worked better than
-              anything else we had put on a wall, so we built a whole brand around it.
+              It started as one Pokémon machine in one store, as an experiment. Collectors kept
+              showing up for it, so we kept adding machines in places you already go: gas stations,
+              barbershops, card shops, and the airport.
             </p>
             <p className="mt-5 text-lg leading-relaxed text-white/80">
-              When you contact us, you get an owner, not a call center in another state. When a
-              machine needs attention, somebody drives there. That is the entire advantage of doing
-              this locally, and it is the reason we will never take on more locations than we can
-              actually service well.
+              We want opening a pack at one of our machines to be fun every time. That means fresh
+              sets, full machines, and new spots close to home.
             </p>
           </div>
         </Section>
 
-        <Section panel eyebrow="How we operate" title="Three things we do not compromise on" width="wide">
+        <Section panel eyebrow="What that means for you" title="Why local makes a difference" width="wide">
           <div className="grid gap-5 md:grid-cols-3">
             <FeatureCard
-              icon={<ShieldCheck size={22} />}
-              title="We sell packs straight"
-              description="No weighing, no scanning, no picking through product. Customers get a real shot at what is inside, every time."
+              icon={<Truck size={22} />}
+              title="Always stocked"
+              description="Every machine reports its stock to us and is a short drive away, so it gets refilled before it runs dry."
               accent="mint"
             />
             <FeatureCard
-              icon={<Handshake size={22} />}
-              title="We tell you no"
-              description="If your location will not do the volume, we say so instead of installing a machine that embarrasses both of us."
+              icon={<Wand2 size={22} />}
+              title="You help pick the sets"
+              description="We rotate in what collectors ask for. If a set is missing from your machine, tell us and we will look into it."
             />
             <FeatureCard
               icon={<MapPin size={22} />}
-              title="We stay close to home"
-              description="Lehigh and Northampton counties. Close enough that service is a drive, not a dispatch ticket."
+              title="More machines on the way"
+              description="We keep adding spots across Lehigh and Northampton counties. Know a place that needs one? Tell us."
               accent="wave"
             />
           </div>
         </Section>
 
-        <Section eyebrow="Get in touch" title="Want a machine, or just have a question?">
+        <Section eyebrow="Come find us" title="There is probably a machine near you.">
           <div className="mx-auto max-w-2xl text-center">
             <p className="mb-8 text-lg leading-relaxed text-white/75">
-              Reach out directly at{' '}
+              Questions, set requests, or just want to show off a pull? Email{' '}
               <a
                 href={`mailto:${siteConfig.email}`}
                 className="font-bold text-bolt underline underline-offset-4"
               >
                 {siteConfig.email}
-              </a>{' '}
-              or start with the location form. Either one reaches an actual person.
+              </a>
+              . Curious how we handle the packs? Read{' '}
+              <Link href="/authenticity" className="font-bold text-bolt underline underline-offset-4">
+                our pack policy
+              </Link>
+              .
             </p>
-            <CTA href="/host-a-machine#apply">
-              Check My Location <ArrowRight size={16} />
+            <CTA href="/locations">
+              Find a Machine <ArrowRight size={16} />
             </CTA>
+            <p className="mt-8 text-sm text-white/55">
+              Own a business and want a machine?{' '}
+              <Link href="/host-a-machine" className="font-bold text-bolt underline underline-offset-4">
+                Host a machine
+              </Link>
+              .
+            </p>
           </div>
         </Section>
       </main>

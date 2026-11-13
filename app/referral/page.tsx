@@ -234,7 +234,7 @@ export default function ReferralPage() {
                 {[
                   'No cost to you or the owner',
                   'Answer back within one business day',
-                  'We are local, so you talk to an owner',
+                  'Locally owned and based in the Lehigh Valley',
                 ].map((line) => (
                   <li key={line} className="flex items-start gap-3">
                     <BadgeCheck size={18} className="mt-0.5 shrink-0 text-bolt" />

@@ -6,6 +6,9 @@ export const siteConfig = {
   parentCompany: 'LVP Vending',
   email: 'info@lvpvending.com',
   supportEmail: 'support@lvpvending.com',
+  /** Shown as written; phoneHref is the dialable form. */
+  phone: '610-835-5924',
+  phoneHref: 'tel:+16108355924',
   tagline: 'Sealed Pokémon packs from vending machines across the Lehigh Valley.',
   /** Share of gross sales paid to the location host. */
   revenueSharePercent: 10,

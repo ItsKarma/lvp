@@ -26,7 +26,7 @@ export default function ContactPage() {
           <div className="grid-texture pointer-events-none absolute inset-0 opacity-60" />
           <div className="relative mx-auto max-w-3xl">
             <h1 className="display text-4xl leading-[1.05] md:text-6xl">
-              Talk to an <span className="text-gradient-bolt">actual owner.</span>
+              Get in <span className="text-gradient-bolt">touch.</span>
             </h1>
             <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-white/75">
               Use the form and we will respond within one business day. Prefer email? Write us at{' '}
@@ -35,6 +35,13 @@ export default function ContactPage() {
                 className="font-bold text-bolt underline underline-offset-4"
               >
                 {siteConfig.email}
+              </a>
+              , or call{' '}
+              <a
+                href={siteConfig.phoneHref}
+                className="whitespace-nowrap font-bold text-bolt underline underline-offset-4"
+              >
+                {siteConfig.phone}
               </a>
               .
             </p>

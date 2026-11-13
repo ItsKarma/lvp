@@ -9,7 +9,6 @@ import Logo from '@/components/Logo';
 const navItems = [
   { label: 'Pack Policy', href: '/authenticity' },
   { label: 'Support', href: '/support' },
-  { label: 'About', href: '/about' },
   { label: 'Host a Machine', href: '/host-a-machine' },
 ];
 
