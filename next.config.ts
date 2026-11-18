@@ -14,8 +14,6 @@ const nextConfig: NextConfig = {
       { source: "/replace-skill-games", destination: "/host-a-machine", permanent: true },
       { source: "/skill-game-replacement", destination: "/host-a-machine", permanent: true },
       { source: "/host", destination: "/host-a-machine", permanent: true },
-      // The referral program was retired; old links and flyers land on the host page.
-      { source: "/referral", destination: "/host-a-machine", permanent: true },
       { source: "/find-a-machine", destination: "/locations", permanent: true },
       { source: "/pokemon", destination: "/", permanent: true },
     ];
