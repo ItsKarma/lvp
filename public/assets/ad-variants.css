@@ -96,6 +96,36 @@
 }
 [data-variant="zoom"] .deco::after { border-color: var(--accent); animation-delay: -2.5s; }
 
+/* Flash: a soft glow opens out along the seam (the theme's --seam, else
+   mid-screen) and from the center, once per loop. Wide but low-opacity, so it
+   glows rather than whiting out the screen. */
+[data-variant="flash"] .deco::before, [data-variant="flash"] .deco::after {
+  content: ""; position: absolute; top: var(--seam, 50%);
+  opacity: 0;
+  animation: seam-flash var(--loop) ease-out infinite;
+}
+[data-variant="flash"] .deco::before {
+  left: -10%; width: 120%; height: 9cqw; margin-top: -4.5cqw;
+  background: linear-gradient(to bottom, transparent, #ffffffb3 35% 65%, transparent);
+  box-shadow: 0 0 14cqw 4cqw #ffffff66;
+}
+[data-variant="flash"] .deco::after {
+  left: 50%; width: 170cqw; height: 170cqw; margin: -85cqw 0 0 -85cqw;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffffffb3 0 15%, #ffffff4d 40%, transparent 70%);
+  animation-name: center-flash;
+}
+
+@keyframes seam-flash {
+  0%, 15% { opacity: 0; transform: scaleY(.2); }
+  25% { opacity: .45; transform: scaleY(4.5); }
+  45%, 100% { opacity: 0; transform: scaleY(.2); }
+}
+@keyframes center-flash {
+  0%, 15% { opacity: 0; transform: scale(.2); }
+  27% { opacity: .4; transform: scale(1); }
+  45%, 100% { opacity: 0; transform: scale(1.3); }
+}
 @keyframes burst-spin { from { transform: rotate(0deg); } to { transform: rotate(22.5deg); } }
 @keyframes card-rain {
   0% { opacity: 0; transform: translate(-50%, -50%) translate(calc(var(--x) * .6), -110cqw) rotate(var(--spin)); }

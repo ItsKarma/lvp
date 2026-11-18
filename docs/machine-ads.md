@@ -56,6 +56,18 @@ security, `airport-foodcourt`, `airport-kids` for the kids' play area, and
 styled as yellow wayfinding signs. Copy avoids claims about security rules
 beyond "fits in your carry-on".
 
+A Pokéball section (`pokeball`) has two designs matching the machine wrap: red
+top, black seam with a glowing center button, white bottom. Each keeps the
+original BUY / POKÉMON / CARDS / HERE headline at near-original size, with one
+still ring around the button. They are
+Classic Ball and Ball Flash (`flash`, light bursting
+out of the seam so the ball looks like it is opening). Ball Flash moves the black bar down to 77.5%–87.25% of the screen (measured from
+the original ad's TAP TO BUY!, then nudged from a photo of the machine) so it lines up with the stripe on the machine wrap, with the button and ring
+centered on it and the headline, packs, and TAP TO BUY! moved up onto the red; set
+`--band-top`/`--band-bottom` in ad-pokeball-themes.css to nudge it. Its `moreCopy` entries name
+their layout with `variant` instead of relying on list position. The library now
+holds 402 ads.
+
 The original's established visual preferences:
 
 - Carter One headline, bundled locally with its SIL Open Font License.
@@ -87,7 +99,8 @@ All paths below are relative to the repository root.
 | [ad-location-themes.css](../public/assets/ad-location-themes.css) | The eleven location themes |
 | [ad-seasonal-themes.css](../public/assets/ad-seasonal-themes.css) | The four season and nine holiday themes; small shapes are inline SVG data URIs |
 | [ad-airport-themes.css](../public/assets/ad-airport-themes.css) | The six airport-spot themes and the shared sign-style kicker |
-| [ad-variants.css](../public/assets/ad-variants.css) | The eight shared layouts, selected by `data-variant` |
+| [ad-pokeball-themes.css](../public/assets/ad-pokeball-themes.css) | The Pokéball theme; the ball is drawn on `.screen` and its pseudo-elements |
+| [ad-variants.css](../public/assets/ad-variants.css) | The shared layouts, selected by `data-variant` (eight, plus `flash`, used only by Pokéball) |
 | [asset collection page](../app/assets/%5Bgroup%5D/page.tsx) | One page per collection |
 | [AdCard.tsx](../components/AdCard.tsx) / [AdGroupTile.tsx](../components/AdGroupTile.tsx) | Library ad card and collection tile |
 | [pokemon-cards.js](../public/assets/pokemon-cards.js) | Catalog selection, ready signal, playback controls, clean/export modes |

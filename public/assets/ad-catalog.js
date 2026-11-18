@@ -150,6 +150,16 @@ const firstAds = [
     file: 'pokemon-festival.mp4',
   },
   {
+    id: 'pokeball',
+    title: 'Classic Ball',
+    description: 'Red on top, a black seam with a glowing center button, and white on the bottom, matching the machine wrap. Cards burst out of the button.',
+    theme: 'pokeball',
+    headline: ['BUY', 'POKÉMON', 'CARDS', 'HERE'],
+    kicker: '',
+    tag: 'Pick your next pack',
+    file: 'pokemon-pokeball.mp4',
+  },
+  {
     id: 'release-delta-reign',
     title: 'Delta Reign Launch',
     description: 'Emerald, gold, and magenta. One big Delta Reign pack in front of a turning golden delta, with a "just released" sticker for launch week.',
@@ -647,6 +657,7 @@ const firstAds = [
 export const adCategories = [
   { id: 'releases', title: 'New Releases', description: 'Launch-week designs for the newest sets we have in stock.' },
   { id: 'standard', title: 'Standard', description: 'The original fifteen general-purpose designs.' },
+  { id: 'pokeball', title: 'Pokéball', description: 'Red, black, and white designs that match the machine wrap, all leading with Buy Pokémon Cards Here.' },
   { id: 'types', title: 'Pokémon Types', description: 'Eight designs for each of the eighteen Pokémon types.' },
   { id: 'locations', title: 'Locations', description: 'Eight designs tailored to each kind of host location.' },
   { id: 'seasonal', title: 'Seasons & Holidays', description: 'Eight designs for each season and holiday, to rotate through the year.' },
@@ -658,6 +669,7 @@ export const adCategories = [
 export const adGroups = [
   { id: 'release-delta-reign', category: 'releases', title: 'Delta Reign', emoji: '🆕', swatch: ['#138a43', '#f7c831'], when: 'Launch week' },
   { id: 'standard', category: 'standard', title: 'Standard', emoji: '✦', swatch: ['#302bff', '#00ddff'] },
+  { id: 'pokeball', category: 'pokeball', title: 'Pokéball', emoji: '🔴', swatch: ['#d4021d', '#f4f4f4'] },
   { id: 'type-normal', category: 'types', title: 'Normal', emoji: '⭐', swatch: ['#c9bf98', '#6f6847'] },
   { id: 'type-fire', category: 'types', title: 'Fire', emoji: '🔥', swatch: ['#c62b0c', '#ffd23f'] },
   { id: 'type-water', category: 'types', title: 'Water', emoji: '💧', swatch: ['#1565c0', '#6fe3ff'] },
@@ -719,11 +731,17 @@ export const adVariants = [
   { id: 'sticker', description: 'Sticker layout: a wobbling starburst sticker calls out the message.' },
   { id: 'stripes', description: 'Banner layout: a scrolling striped band runs behind the packs.' },
   { id: 'zoom', description: 'Pulse layout: rings ripple outward from the pack fan.' },
+  // Not in the standard rotation; a collection picks it by name (Pokéball does).
+  { id: 'flash', description: 'Flash layout: a soft glow opens out of the seam and center button once per loop.' },
 ];
 
 // Ads two through eight for each group; the first is the matching firstAds entry.
 // Type ads reuse the group's type-badge kicker. Only the sticker ad has a badge.
 const moreCopy = {
+  // Every Pokéball ad keeps the original headline; only the look and small copy change.
+  pokeball: [
+    { title: 'Ball Flash', variant: 'flash', headline: ['BUY', 'POKÉMON', 'CARDS', 'HERE'], tag: 'Open one up' },
+  ],
   'type-normal': [
     { title: 'Everyday Heroes', headline: ['EVERYDAY', 'HEROES', 'COLLECT', 'THE BEST HABIT YOU’LL EVER HAVE'], tag: 'Make it a habit' },
     { title: 'Daily Pull', headline: ['ONE', 'PACK', 'A DAY', 'THE PERFECT DAILY ROUTINE'], tag: 'Your daily pull' },
@@ -1168,7 +1186,8 @@ export const ads = adGroups.flatMap((group) => {
   return [
     { ...first, group: group.id, variant: adVariants[0].id },
     ...moreCopy[group.id].map((copy, index) => {
-      const variant = adVariants[index + 1];
+      // A copy entry may name its layout; otherwise its list position picks one.
+      const variant = adVariants.find((entry) => entry.id === copy.variant) ?? adVariants[index + 1];
       const id = `${group.id}-${index + 2}`;
       return {
         id,

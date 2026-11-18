@@ -1,0 +1,172 @@
+/* Pokéball collection (theme "pokeball"): red top, black seam with a center
+   button, white bottom, like the machine wrap. The headline sits on the red
+   half and the packs, tag, and CTA sit on the white half. The ball is drawn on
+   .screen and its pseudo-elements, so the shared layouts in ad-variants.css
+   (which draw on .deco and .sticker) layer on top without colliding. */
+[data-theme="pokeball"] {
+  --red: #d4021d; /* a cooler red; #e3191c read orange on the machine screen */
+  --red-dark: #9e0d12;
+  --ink: #111;
+  --paper: #fff;
+  /* --seam is the bar's center (the flash layout bursts from it); the bar runs
+     from --band-top to --band-bottom, red above it and white below. */
+  --seam: 49.5%;
+  --band-top: calc(var(--seam) - 2.3%);
+  --band-bottom: calc(var(--seam) + 2.3%);
+  /* Shared layout palette (ad-variants.css). */
+  --base: var(--ink);
+  --accent: var(--red);
+  --second: var(--ink);
+  --tag-bg: var(--red);
+  --tag-ink: var(--paper);
+  --yellow: var(--paper);
+  --cyan: var(--red);
+}
+
+[data-theme="pokeball"] .screen {
+  background:
+    linear-gradient(to bottom, transparent var(--band-top), var(--ink) var(--band-top) var(--band-bottom), transparent var(--band-bottom)),
+    radial-gradient(ellipse 90% 60% at 35% 12%, #ec2a3c, transparent 70%) top / 100% var(--band-top) no-repeat,
+    radial-gradient(ellipse 120% 70% at 50% 100%, #d7d9de, transparent 70%) bottom / 100% calc(100% - var(--band-bottom)) no-repeat,
+    linear-gradient(to bottom, var(--red) 0 var(--seam), #fafafa var(--seam));
+}
+
+/* Center button: white face, a thin inner black ring, and a thick black rim. */
+[data-theme="pokeball"] .screen::before,
+[data-theme="pokeball"] .screen::after {
+  content: ""; position: absolute; z-index: 0; left: 50%; top: var(--seam);
+  border-radius: 50%; pointer-events: none;
+}
+[data-theme="pokeball"] .screen::before {
+  width: 26cqw; height: 26cqw; margin: -13cqw 0 0 -13cqw;
+  z-index: 2; /* above the cards, so they burst out from behind it */
+  /* Stops are % of the corner distance, so the button's edge is at ~70.7%. */
+  background: radial-gradient(circle, #fff 0 31%, var(--ink) 31.5% 35.5%, #fff 36% 58%, var(--ink) 58.5%);
+  box-shadow: 0 1cqw 3cqw #0006;
+}
+[data-theme="pokeball"] .screen::after {
+  width: 8cqw; height: 8cqw; margin: -4cqw 0 0 -4cqw;
+  background: radial-gradient(circle at 40% 35%, #fff, #e6e6e6 70%);
+  animation: ball-button var(--loop) ease-in-out infinite;
+  display: none; /* no center dot */
+}
+
+/* Soft light rays on the red half only. */
+[data-theme="pokeball"] .rays {
+  background: repeating-conic-gradient(from 0deg at 50% 50%, #ffffff1f 0deg 10deg, transparent 10deg 20deg);
+  animation: ball-rays var(--loop) linear infinite;
+}
+[data-theme="pokeball"] .halftone { display: none; }
+[data-theme="pokeball"] .orbit {
+  left: 50%; top: var(--seam); width: 60cqw; height: 60cqw; margin: -30cqw 0 0 -30cqw;
+  border: .5cqw solid var(--ink); box-shadow: none; opacity: .25;
+}
+[data-theme="pokeball"] .orbit-two { inset: var(--seam) auto auto 50%; width: 92cqw; height: 92cqw; margin: -46cqw 0 0 -46cqw; }
+/* One still, solid ring around the button, 3cqw short of each side. */
+[data-theme="pokeball"] .orbit-one { width: 94cqw; height: 94cqw; margin: -47cqw 0 0 -47cqw; border-width: 1.3cqw; opacity: 1; animation: none; }
+[data-theme="pokeball"] .orbit-two { display: none; }
+[data-theme="pokeball"] .spark { color: var(--paper); text-shadow: 0 0 2cqw #fff8; }
+[data-theme="pokeball"] :is(.spark-three, .spark-four) { color: var(--red); text-shadow: none; }
+
+/* Headline: kept big, like the original, and sitting on the red half. */
+[data-theme="pokeball"] .theme-kicker { color: var(--paper); margin-bottom: 2cqw; }
+[data-theme="pokeball"][data-variant="flash"] .theme-kicker:empty { display: none; }
+[data-theme="pokeball"] .headline { top: 4%; }
+[data-theme="pokeball"] h1 span { -webkit-text-stroke: 1.6cqw var(--ink); filter: drop-shadow(.9cqw 1.1cqw 0 var(--ink)); }
+[data-theme="pokeball"] .buy { font-size: 19cqw; color: var(--paper); }
+[data-theme="pokeball"] .pokemon { font-size: 14.5cqw; color: var(--paper); -webkit-text-stroke-color: var(--ink); margin: 1.2cqw 0; }
+[data-theme="pokeball"] .cards { font-size: 14.5cqw; color: var(--paper); }
+[data-theme="pokeball"] .here { font-size: 15.5cqw; color: var(--ink); -webkit-text-stroke-color: var(--paper); filter: drop-shadow(.9cqw 1.1cqw 0 var(--red-dark)); margin-top: 1.2cqw; }
+
+/* Packs, tag, and CTA on the white half. */
+[data-theme="pokeball"] .product { top: 57%; height: 20.5%; }
+[data-theme="pokeball"] .product-halo { background: #00000026; top: 40%; height: 40cqw; filter: blur(4cqw); }
+[data-theme="pokeball"] .packs img { filter: drop-shadow(.7cqw 1cqw .7cqw #0006); }
+[data-theme="pokeball"] .packs { scale: 1.1; } /* Ball Flash sets its own size */
+[data-theme="pokeball"] .product-tag { background: var(--red); color: var(--paper); border-color: var(--ink); box-shadow: .6cqw .8cqw 0 var(--ink); }
+[data-theme="pokeball"] :is(.tap, .purchase) { -webkit-text-stroke-color: var(--paper); filter: drop-shadow(.6cqw .8cqw 0 #0003); }
+[data-theme="pokeball"] .tap { color: var(--ink); }
+[data-theme="pokeball"] .purchase { color: var(--red); }
+[data-theme="pokeball"] .tap-icon { color: var(--ink); }
+[data-theme="pokeball"] .features { background: var(--ink); color: var(--paper); border-color: var(--red); }
+
+/* Ball Flash: the bar lines up with the black stripe on the machine wrap
+   (77.5%–87.25% of the 1080 × 1920 screen, first measured from where TAP TO
+   BUY! sits on the original ad, then nudged from a photo of the machine). The button and ring sit on that bar like the front of
+   the ball, so everything else moves up onto the red: headline, then packs and
+   tag, then TAP TO BUY! just above the bar. */
+[data-theme="pokeball"][data-variant="flash"] {
+  /* Nudged from 79%–87.8% after checking a photo of the ad on the machine. */
+  --band-top: 77.5%;
+  --band-bottom: 87.25%;
+  --seam: calc((var(--band-top) + var(--band-bottom)) / 2);
+}
+/* Button scaled up to the thicker bar. */
+[data-theme="pokeball"][data-variant="flash"] .screen::before {
+  width: 34cqw; height: 34cqw; margin: -17cqw 0 0 -17cqw;
+}
+
+/* Layers, back to front: rays and ring, black bar, cards, button, packs and
+   text. The bar moves off .screen onto .deco so the ring can sit behind it;
+   the layout's light burst (.deco's pseudo-elements) comes along on top of it.
+   The button rises above the cards so they come out from behind it. */
+[data-theme="pokeball"][data-variant="flash"] .screen {
+  background:
+    radial-gradient(ellipse 90% 60% at 35% 12%, #ec2a3c, transparent 70%) top / 100% var(--band-top) no-repeat,
+    radial-gradient(ellipse 120% 70% at 50% 100%, #d7d9de, transparent 70%) bottom / 100% calc(100% - var(--band-bottom)) no-repeat,
+    linear-gradient(to bottom, var(--red) 0 var(--seam), #fafafa var(--seam));
+}
+[data-theme="pokeball"][data-variant="flash"] .deco {
+  z-index: 1;
+  background: linear-gradient(to bottom, transparent var(--band-top), var(--ink) var(--band-top) var(--band-bottom), transparent var(--band-bottom));
+}
+[data-theme="pokeball"][data-variant="flash"] .orbit-one { opacity: .85; }
+
+/* Rays spin around the button instead of mid-screen. The layer is big enough
+   to cover the screen from there. */
+[data-theme="pokeball"][data-variant="flash"] .rays { inset: auto; left: 50%; top: var(--seam); width: 340cqw; height: 340cqw; margin: -170cqw 0 0 -170cqw; }
+
+/* Cards burst from the button in an upward fan, 165cqw out, at 12° steps
+   from 48° left of straight up to 48° right. They leave one second apart
+   (order: Mew RGB, Rayquaza, Darkrai, Bubble Mew, Lugia, Squirtle, Charizard,
+   Gengar, Pikachu), so each one heads to the other side from the card before
+   it and no two neighbors share a path. */
+[data-theme="pokeball"][data-variant="flash"] .card-burst img { top: var(--seam); animation-name: ball-card-burst; }
+[data-theme="pokeball"][data-variant="flash"] .card-burst img:nth-child(1) { --x: 67.1cqw; --y: -150.7cqw; --spin: 22deg; }   /* Pikachu, 24° right */
+[data-theme="pokeball"][data-variant="flash"] .card-burst img:nth-child(2) { --x: 34.3cqw; --y: -161.4cqw; --spin: 16deg; }   /* Bubble Mew, 12° right */
+[data-theme="pokeball"][data-variant="flash"] .card-burst img:nth-child(3) { --x: 122.6cqw; --y: -110.4cqw; --spin: 30deg; }  /* Squirtle, 48° right */
+[data-theme="pokeball"][data-variant="flash"] .card-burst img:nth-child(4) { --x: 97cqw; --y: -133.5cqw; --spin: 26deg; }     /* Rayquaza, 36° right */
+[data-theme="pokeball"][data-variant="flash"] .card-burst img:nth-child(5) { --x: 0cqw; --y: -165cqw; --spin: -12deg; }       /* Charizard, straight up */
+[data-theme="pokeball"][data-variant="flash"] .card-burst img:nth-child(6) { --x: -122.6cqw; --y: -110.4cqw; --spin: -30deg; } /* Darkrai, 48° left */
+[data-theme="pokeball"][data-variant="flash"] .card-burst img:nth-child(7) { --x: -97cqw; --y: -133.5cqw; --spin: -26deg; }    /* Gengar, 36° left */
+[data-theme="pokeball"][data-variant="flash"] .card-burst img:nth-child(8) { --x: -34.3cqw; --y: -161.4cqw; --spin: -16deg; }  /* Mew RGB, 12° left */
+[data-theme="pokeball"][data-variant="flash"] .card-burst img:nth-child(9) { --x: -67.1cqw; --y: -150.7cqw; --spin: -22deg; }  /* Lugia, 24° left */
+
+[data-theme="pokeball"][data-variant="flash"] .headline { top: 2.5%; }
+[data-theme="pokeball"][data-variant="flash"] .buy { font-size: 15.5cqw; }
+[data-theme="pokeball"][data-variant="flash"] :is(.pokemon, .cards) { font-size: 12.5cqw; }
+[data-theme="pokeball"][data-variant="flash"] .here { font-size: 13.5cqw; }
+[data-theme="pokeball"][data-variant="flash"] .product { top: 36%; height: 19.5%; }
+[data-theme="pokeball"][data-variant="flash"] .product-halo { background: #0000004d; }
+/* Packs about 32% bigger (15% twice) and nudged down; the tag drops a little and may tuck under them. */
+[data-theme="pokeball"][data-variant="flash"] .packs { top: 12%; scale: 1.32; }
+[data-theme="pokeball"][data-variant="flash"] .product-tag { background: var(--paper); color: var(--ink); bottom: -3cqw; }
+[data-theme="pokeball"][data-variant="flash"] .call-to-action { top: 58.5%; }
+[data-theme="pokeball"][data-variant="flash"] :is(.tap, .purchase) { -webkit-text-stroke-color: var(--ink); filter: drop-shadow(.6cqw .8cqw 0 var(--ink)); }
+[data-theme="pokeball"][data-variant="flash"] .tap { color: var(--paper); }
+[data-theme="pokeball"][data-variant="flash"] .purchase { color: var(--paper); }
+[data-theme="pokeball"][data-variant="flash"] .tap-icon { color: var(--paper); filter: drop-shadow(.4cqw .5cqw 0 var(--ink)); }
+[data-theme="pokeball"][data-variant="flash"] .spark { color: var(--paper); text-shadow: 0 0 2cqw #fff8; }
+[data-theme="pokeball"][data-variant="flash"] .spark-three { top: 66%; }
+[data-theme="pokeball"][data-variant="flash"] .spark-four { top: 62%; }
+
+@keyframes ball-card-burst {
+  0% { opacity: 0; transform: translate(-50%, -50%) translate(0, 0) rotate(0deg) scale(.2); }
+  8%, 82% { opacity: 1; }
+  100% { opacity: 0; transform: translate(-50%, -50%) translate(var(--x), var(--y)) rotate(var(--spin)) scale(1.25); }
+}
+@keyframes ball-rays { from { transform: rotate(0deg); } to { transform: rotate(20deg); } }
+@keyframes ball-button {
+  0%, 40%, 60%, 100% { box-shadow: 0 0 0 0 #fff0; }
+  50% { box-shadow: 0 0 3cqw 1.5cqw #fff; }
+}
