@@ -17,7 +17,6 @@ const columns = [
       { label: 'Host a Machine', href: '/host-a-machine' },
       { label: 'Our Machines', href: '/machines' },
       { label: 'Service Area', href: '/service-area' },
-      { label: 'Referral Program', href: '/referral' },
     ],
   },
   {

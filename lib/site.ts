@@ -16,15 +16,3 @@ export const siteConfig = {
   averagePackPrice: 13,
 } as const;
 
-/** Referral program numbers. Change them here and /referral updates everywhere. */
-export const referralConfig = {
-  /** Paid once a location passes the trial (siteConfig.trialDays) and both sides keep the machine. */
-  trialPayout: 200,
-  /** Paid if the location is still active retentionDays after install. */
-  retentionBonus: 100,
-  retentionDays: 60,
-  /** Paid if the location grosses over salesBonusThreshold in its first salesBonusDays. */
-  salesBonus: 200,
-  salesBonusThreshold: 5000,
-  salesBonusDays: 90,
-} as const;

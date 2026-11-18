@@ -51,7 +51,6 @@ public/        Static assets
 | Route | Purpose |
 | --- | --- |
 | `/` | Collector homepage: machine list, how buying works, pack policy, FAQ |
-| `/referral` | Referral program: payouts, rules, and referral form |
 | `/host-a-machine` | Business pitch: partner offer, earnings estimator, owner FAQ, application form |
 | `/machines` | Hardware and specs |
 | `/locations` | Every machine location (`/find-a-machine` redirects here) |
