@@ -55,7 +55,7 @@ const stats = [
   {
     number: `${siteConfig.revenueSharePercent}%`,
     label: 'Your cut',
-    detail: 'Of gross sales, paid monthly, every month.',
+    detail: 'Of net sales, paid monthly, every month.',
   },
   { number: '0 hrs', label: 'Your work', detail: 'You never restock, fix, or staff anything.' },
 ];
@@ -84,7 +84,7 @@ const faqItems = [
   },
   {
     question: 'How do I actually get paid?',
-    answer: `You get ${siteConfig.revenueSharePercent}% of gross sales, calculated automatically from the machine's payment processing and paid monthly. You also get a statement showing units sold so the number is never a mystery.`,
+    answer: `You get ${siteConfig.revenueSharePercent}% of net sales (the sale price before tax), calculated automatically from the machine's payment processing and paid monthly. You also get a statement showing units sold so the number is never a mystery.`,
   },
   {
     question: 'Do my employees have to do anything?',
