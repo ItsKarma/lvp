@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { ArrowRight, CreditCard, Monitor, Ruler, ShieldCheck, Wifi, Wrench } from 'lucide-react';
 import CTA from '@/components/CTA';
 import FeatureCard from '@/components/FeatureCard';
+import MachineSpecs from '@/components/MachineSpecs';
 import Section from '@/components/Section';
 import SiteFooter from '@/components/SiteFooter';
 import SiteHeader from '@/components/SiteHeader';
@@ -52,7 +53,7 @@ export default function MachinesPage() {
         </section>
 
         <Section width="wide">
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid items-start gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {machineModels.map((model) => (
               <div key={model.slug} id={model.slug} className="card-surface scroll-mt-24 overflow-hidden">
                 <div className="relative flex aspect-square w-full items-center justify-center p-8">
@@ -73,9 +74,11 @@ export default function MachinesPage() {
                     </span>
                   </div>
                   <h2 className="display text-2xl text-white">{model.name}</h2>
+                  <p className="mt-1 text-[13px] leading-snug text-white/45">{model.specs.modelName}</p>
                   <p className="mt-3 text-[15px] leading-relaxed text-white/70">
                     {model.description}
                   </p>
+                  <MachineSpecs model={model} />
                 </div>
               </div>
             ))}

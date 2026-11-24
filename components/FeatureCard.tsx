@@ -1,8 +1,9 @@
 interface FeatureCardProps {
   icon: React.ReactNode;
   title: string;
-  description: string;
+  description: React.ReactNode;
   accent?: 'bolt' | 'wave' | 'mint' | 'flare';
+  className?: string;
 }
 
 const accents = {
@@ -12,9 +13,15 @@ const accents = {
   flare: 'bg-flare/15 text-flare',
 };
 
-export default function FeatureCard({ icon, title, description, accent = 'bolt' }: FeatureCardProps) {
+export default function FeatureCard({
+  icon,
+  title,
+  description,
+  accent = 'bolt',
+  className = '',
+}: FeatureCardProps) {
   return (
-    <div className="card-surface p-6 transition-colors hover:border-white/25">
+    <div className={`card-surface p-6 transition-colors hover:border-white/25 ${className}`}>
       <span
         className={`mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl ${accents[accent]}`}
       >
