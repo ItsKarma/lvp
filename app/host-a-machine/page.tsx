@@ -25,7 +25,7 @@ import MachineLineup from '@/components/MachineLineup';
 import Section from '@/components/Section';
 import SiteFooter from '@/components/SiteFooter';
 import SiteHeader from '@/components/SiteHeader';
-import { machineModels } from '@/lib/machines';
+import { hostSpaceLines, machineModels, machineSpaceAnswer } from '@/lib/machines';
 import { siteConfig } from '@/lib/site';
 
 const weBring = [
@@ -38,7 +38,20 @@ const weBring = [
 ];
 
 const youBring = [
-  { icon: <MapPin size={20} />, title: 'A few square feet', description: 'Roughly 24" of wall, or floor space for a pedestal unit.' },
+  {
+    icon: <MapPin size={20} />,
+    title: 'A few square feet',
+    className: 'sm:col-span-2',
+    description: (
+      <span className="block space-y-1">
+        {hostSpaceLines().map((line) => (
+          <span key={line.name} className="block">
+            {line.name}: {line.space}.
+          </span>
+        ))}
+      </span>
+    ),
+  },
   { icon: <Plug size={20} />, title: 'A standard outlet', description: 'Normal 110v. No special wiring, no plumbing, no network drop needed.' },
   { icon: <CalendarCheck size={20} />, title: 'Your open hours', description: 'The machine earns whenever your doors are open. That is it.' },
 ];
@@ -79,8 +92,7 @@ const faqItems = [
   },
   {
     question: 'How much space does it take?',
-    answer:
-      'Our wall-mounted unit is roughly 24" wide by 42" tall and 11" deep, about the footprint of a small poster. If wall mounting is not an option, we have a freestanding pedestal version.',
+    answer: machineSpaceAnswer(),
   },
   {
     question: 'How do I actually get paid?',
@@ -223,6 +235,9 @@ export default function HostPage() {
                   <p className="text-xs font-bold uppercase tracking-[0.16em] text-bolt">{model.badge}</p>
                   <h3 className="display mt-1 text-xl text-white">{model.name}</h3>
                   <p className="mt-2 text-[15px] leading-relaxed text-white/70">{model.summary}</p>
+                  <p className="mt-2 text-xs font-semibold tracking-wide text-white/55">
+                    {model.specs.sizeNote}
+                  </p>
                 </div>
               </Link>
             ))}
