@@ -112,7 +112,7 @@ export const machineModels: MachineModel[] = [
     placement: 'Wall mounted',
     summary: 'Hangs flat on the wall. Zero floor space.',
     description:
-      'Hangs flat on the wall and takes zero floor space, which makes it the easy yes for counters, checkout lines, and tight entryways. Available in two sizes depending on how much selection you want.',
+      'Hangs flat on the wall and takes zero floor space, which makes it the easy yes for counters, checkout lines, and tight entryways.',
     specs: {
       modelName: 'VTM Slim Wall',
       cabinet: slimWallCabinet,
