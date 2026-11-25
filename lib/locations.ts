@@ -1,5 +1,6 @@
 import type { StaticImageData } from 'next/image';
 import fifteenthSunocoPhoto from '@/public/location-photos/LVP15thSunoco.jpeg';
+import allentownFarmersMarketPhoto from '@/public/location-photos/LVPAllentownFarmersMarket.jpeg';
 import barbershopEastPhoto from '@/public/location-photos/LVPBarbershopEast.jpeg';
 import hamiltonSunocoPhoto from '@/public/location-photos/LVPHamiltonSunoco.jpeg';
 import hereAndGonePhoto from '@/public/location-photos/LVPHereAndGone.jpeg';
@@ -16,6 +17,11 @@ export interface MachineLocation {
   postalCode: string;
   /** Short line about where the machine sits inside the business. */
   placement?: string;
+  /**
+   * When visitors can reach the machine, if the business is not open every day.
+   * One line per day, e.g. "Thursday 9am-7pm".
+   */
+  hours?: readonly string[];
   /**
    * Photo of the machine at this location. To add one: shrink it, drop it in
    * public/location-photos/, import it at the top of this file, and set it here.
@@ -87,6 +93,17 @@ export const machineLocations: MachineLocation[] = [
     photo: placeholderPhoto,
     photoAlt: 'Pokémon card vending machine at Lehigh Valley International Airport',
   },
+  {
+    slug: 'allentown-farmers-market',
+    name: 'Allentown Fairgrounds Farmers Market',
+    street: '1825 W Chew St',
+    city: 'Allentown',
+    state: 'PA',
+    postalCode: '18104',
+    hours: ['Thursday 9am-7pm', 'Friday 8am-7pm', 'Saturday 8am-6pm'],
+    photo: allentownFarmersMarketPhoto,
+    photoAlt: 'Pokémon card vending machine at Allentown Fairgrounds Farmers Market',
+  },
 ];
 
 export function getMachineLocation(slug: string) {
@@ -95,6 +112,11 @@ export function getMachineLocation(slug: string) {
 
 export function formatAddress(location: MachineLocation) {
   return `${location.street}, ${location.city}, ${location.state} ${location.postalCode}`;
+}
+
+/** One line for cards and meta descriptions. Empty when the business is open daily. */
+export function formatHours(location: MachineLocation) {
+  return location.hours?.join(' · ') ?? '';
 }
 
 /**

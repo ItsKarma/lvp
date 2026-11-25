@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowLeft, ArrowRight, MapPin, Navigation, ShieldCheck, Sparkles } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Clock, MapPin, Navigation, ShieldCheck, Sparkles } from 'lucide-react';
 import CTA from '@/components/CTA';
 import FeatureCard from '@/components/FeatureCard';
 import Section from '@/components/Section';
@@ -11,6 +11,7 @@ import SiteHeader from '@/components/SiteHeader';
 import {
   directionsUrl,
   formatAddress,
+  formatHours,
   getMachineLocation,
   machineLocations,
   mapEmbedUrl,
@@ -33,7 +34,10 @@ export async function generateMetadata({ params }: LocationPageProps): Promise<M
   if (!location) return {};
 
   const title = `Pokémon Card Vending Machine at ${location.name}`;
-  const description = `Sealed Pokémon booster packs at ${location.name}, ${formatAddress(location)}. Get directions and see the machine.`;
+  const hours = formatHours(location);
+  const description = hours
+    ? `Sealed Pokémon booster packs at ${location.name}, ${formatAddress(location)}. Open ${hours}. Get directions and see the machine.`
+    : `Sealed Pokémon booster packs at ${location.name}, ${formatAddress(location)}. Get directions and see the machine.`;
   const path = `/locations/${location.slug}`;
 
   return {
@@ -74,6 +78,16 @@ export default async function LocationPage({ params }: LocationPageProps) {
               {formatAddress(location)}
             </p>
             {location.placement && <p className="mt-2 text-white/60">{location.placement}</p>}
+            {location.hours && location.hours.length > 0 && (
+              <div className="mt-3 flex items-start gap-2 text-white/70">
+                <Clock size={20} className="mt-0.5 shrink-0 text-bolt" />
+                <ul>
+                  {location.hours.map((line) => (
+                    <li key={line}>{line}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <CTA href={directionsUrl(location)}>
                 Get directions <Navigation size={16} />
