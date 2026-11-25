@@ -33,11 +33,15 @@ export async function generateMetadata({ params }: LocationPageProps): Promise<M
   const location = getMachineLocation(slug);
   if (!location) return {};
 
-  const title = `Pokémon Card Vending Machine at ${location.name}`;
+  const title = location.comingSoon
+    ? `Coming Soon: Pokémon Card Vending Machine at ${location.name}`
+    : `Pokémon Card Vending Machine at ${location.name}`;
   const hours = formatHours(location);
-  const description = hours
-    ? `Sealed Pokémon booster packs at ${location.name}, ${formatAddress(location)}. Open ${hours}. Get directions and see the machine.`
-    : `Sealed Pokémon booster packs at ${location.name}, ${formatAddress(location)}. Get directions and see the machine.`;
+  const description = location.comingSoon
+    ? `A Pokémon card vending machine is coming soon to ${location.name}, ${formatAddress(location)}.${hours ? ` Business hours: ${hours}.` : ''}`
+    : hours
+      ? `Sealed Pokémon booster packs at ${location.name}, ${formatAddress(location)}. Open ${hours}. Get directions and see the machine.`
+      : `Sealed Pokémon booster packs at ${location.name}, ${formatAddress(location)}. Get directions and see the machine.`;
   const path = `/locations/${location.slug}`;
 
   return {
@@ -69,6 +73,11 @@ export default async function LocationPage({ params }: LocationPageProps) {
             >
               <ArrowLeft size={15} /> All locations
             </Link>
+            {location.comingSoon && (
+              <p className="mb-4 inline-flex items-center rounded-full border border-bolt/40 bg-bolt/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.16em] text-bolt">
+                Coming soon
+              </p>
+            )}
             <p className="mb-4 text-xs font-bold uppercase tracking-[0.22em] text-bolt">
               Pokémon card vending machine
             </p>
@@ -155,6 +164,7 @@ export default async function LocationPage({ params }: LocationPageProps) {
                 >
                   <MapPin size={15} className="text-bolt" />
                   {other.name}
+                  {other.comingSoon ? ' (Coming soon)' : ''}
                 </Link>
               ))}
             </div>

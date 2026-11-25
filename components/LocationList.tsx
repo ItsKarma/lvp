@@ -26,6 +26,11 @@ export default function LocationList({ headingLevel = 'h2' }: { headingLevel?: '
             />
           </div>
           <div className="min-w-0 flex-1">
+            {location.comingSoon && (
+              <p className="mb-1.5 inline-flex items-center rounded-full border border-bolt/40 bg-bolt/10 px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-[0.14em] text-bolt">
+                Coming soon
+              </p>
+            )}
             <Heading className="font-bold leading-snug text-white">{location.name}</Heading>
             <p className="mt-1 flex items-start gap-1.5 text-sm leading-snug text-white/65">
               <MapPin size={14} className="mt-0.5 shrink-0 text-bolt" />

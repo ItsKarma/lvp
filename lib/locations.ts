@@ -23,6 +23,11 @@ export interface MachineLocation {
    */
   hours?: readonly string[];
   /**
+   * The machine is not on site yet. Pages label this "Coming soon" with no date.
+   * A missing photo is separate: use the placeholder image for that.
+   */
+  comingSoon?: boolean;
+  /**
    * Photo of the machine at this location. To add one: shrink it, drop it in
    * public/location-photos/, import it at the top of this file, and set it here.
    * Imported photos get a blurred preview and long browser caching automatically.
@@ -103,6 +108,19 @@ export const machineLocations: MachineLocation[] = [
     hours: ['Thursday 9am-7pm', 'Friday 8am-7pm', 'Saturday 8am-6pm'],
     photo: allentownFarmersMarketPhoto,
     photoAlt: 'Pokémon card vending machine at Allentown Farmers Market',
+  },
+  {
+    slug: 'gravity-vault-whitehall',
+    name: 'The Gravity Vault',
+    street: '1951 Whitehall Mall',
+    city: 'Whitehall',
+    state: 'PA',
+    postalCode: '18052',
+    placement: 'Inside the Whitehall Mall.',
+    hours: ['Monday-Friday 9am-10pm', 'Saturday 9am-8pm', 'Sunday 9am-8pm'],
+    comingSoon: true,
+    photo: placeholderPhoto,
+    photoAlt: 'Placeholder graphic for The Gravity Vault. A machine is not pictured.',
   },
 ];
 
