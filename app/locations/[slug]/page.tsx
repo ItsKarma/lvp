@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowLeft, ArrowRight, Clock, MapPin, Navigation, ShieldCheck, Sparkles } from 'lucide-react';
+import { ArrowLeft, ArrowRight, MapPin, Navigation, ShieldCheck, Sparkles } from 'lucide-react';
 import CTA from '@/components/CTA';
 import FeatureCard from '@/components/FeatureCard';
 import Section from '@/components/Section';
@@ -11,7 +11,6 @@ import SiteHeader from '@/components/SiteHeader';
 import {
   directionsUrl,
   formatAddress,
-  formatHours,
   getMachineLocation,
   machineLocations,
   mapEmbedUrl,
@@ -33,10 +32,11 @@ export async function generateMetadata({ params }: LocationPageProps): Promise<M
   const location = getMachineLocation(slug);
   if (!location) return {};
 
-  const title = `Pokémon Card Vending Machine at ${location.name}`;
-  const hours = formatHours(location);
-  const description = hours
-    ? `Sealed Pokémon booster packs at ${location.name}, ${formatAddress(location)}. Open ${hours}. Get directions and see the machine.`
+  const title = location.comingSoon
+    ? `Coming Soon: Pokémon Card Vending Machine at ${location.name}`
+    : `Pokémon Card Vending Machine at ${location.name}`;
+  const description = location.comingSoon
+    ? `A Pokémon card vending machine is coming soon to ${location.name}, ${formatAddress(location)}.`
     : `Sealed Pokémon booster packs at ${location.name}, ${formatAddress(location)}. Get directions and see the machine.`;
   const path = `/locations/${location.slug}`;
 
@@ -69,6 +69,11 @@ export default async function LocationPage({ params }: LocationPageProps) {
             >
               <ArrowLeft size={15} /> All locations
             </Link>
+            {location.comingSoon && (
+              <p className="mb-4 inline-flex items-center rounded-full border border-bolt/40 bg-bolt/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.16em] text-bolt">
+                Coming soon
+              </p>
+            )}
             <p className="mb-4 text-xs font-bold uppercase tracking-[0.22em] text-bolt">
               Pokémon card vending machine
             </p>
@@ -78,16 +83,6 @@ export default async function LocationPage({ params }: LocationPageProps) {
               {formatAddress(location)}
             </p>
             {location.placement && <p className="mt-2 text-white/60">{location.placement}</p>}
-            {location.hours && location.hours.length > 0 && (
-              <div className="mt-3 flex items-start gap-2 text-white/70">
-                <Clock size={20} className="mt-0.5 shrink-0 text-bolt" />
-                <ul>
-                  {location.hours.map((line) => (
-                    <li key={line}>{line}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <CTA href={directionsUrl(location)}>
                 Get directions <Navigation size={16} />
@@ -155,6 +150,7 @@ export default async function LocationPage({ params }: LocationPageProps) {
                 >
                   <MapPin size={15} className="text-bolt" />
                   {other.name}
+                  {other.comingSoon ? ' (Coming soon)' : ''}
                 </Link>
               ))}
             </div>

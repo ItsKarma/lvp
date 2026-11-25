@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, Clock, MapPin } from 'lucide-react';
-import { formatAddress, formatHours, machineLocations } from '@/lib/locations';
+import { ArrowRight, MapPin } from 'lucide-react';
+import { formatAddress, machineLocations } from '@/lib/locations';
 
 /** Compact photo + address cards linking to each /locations/<slug> page. */
 export default function LocationList({ headingLevel = 'h2' }: { headingLevel?: 'h2' | 'h3' }) {
@@ -26,17 +26,16 @@ export default function LocationList({ headingLevel = 'h2' }: { headingLevel?: '
             />
           </div>
           <div className="min-w-0 flex-1">
+            {location.comingSoon && (
+              <p className="mb-1.5 inline-flex items-center rounded-full border border-bolt/40 bg-bolt/10 px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-[0.14em] text-bolt">
+                Coming soon
+              </p>
+            )}
             <Heading className="font-bold leading-snug text-white">{location.name}</Heading>
             <p className="mt-1 flex items-start gap-1.5 text-sm leading-snug text-white/65">
               <MapPin size={14} className="mt-0.5 shrink-0 text-bolt" />
               {formatAddress(location)}
             </p>
-            {location.hours && location.hours.length > 0 && (
-              <p className="mt-1 flex items-start gap-1.5 text-sm leading-snug text-white/55">
-                <Clock size={14} className="mt-0.5 shrink-0 text-bolt" />
-                {formatHours(location)}
-              </p>
-            )}
           </div>
           <ArrowRight
             size={18}
