@@ -95,14 +95,14 @@ export const machineLocations: MachineLocation[] = [
   },
   {
     slug: 'allentown-farmers-market',
-    name: 'Allentown Fairgrounds Farmers Market',
+    name: 'Allentown Farmers Market',
     street: '1825 W Chew St',
     city: 'Allentown',
     state: 'PA',
     postalCode: '18104',
     hours: ['Thursday 9am-7pm', 'Friday 8am-7pm', 'Saturday 8am-6pm'],
     photo: allentownFarmersMarketPhoto,
-    photoAlt: 'Pokémon card vending machine at Allentown Fairgrounds Farmers Market',
+    photoAlt: 'Pokémon card vending machine at Allentown Farmers Market',
   },
 ];
 
