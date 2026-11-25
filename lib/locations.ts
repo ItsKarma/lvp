@@ -18,11 +18,6 @@ export interface MachineLocation {
   /** Short line about where the machine sits inside the business. */
   placement?: string;
   /**
-   * When visitors can reach the machine, if the business is not open every day.
-   * One line per day, e.g. "Thursday 9am-7pm".
-   */
-  hours?: readonly string[];
-  /**
    * The machine is not on site yet. Pages label this "Coming soon" with no date.
    * A missing photo is separate: use the placeholder image for that.
    */
@@ -105,7 +100,6 @@ export const machineLocations: MachineLocation[] = [
     city: 'Allentown',
     state: 'PA',
     postalCode: '18104',
-    hours: ['Thursday 9am-7pm', 'Friday 8am-7pm', 'Saturday 8am-6pm'],
     photo: allentownFarmersMarketPhoto,
     photoAlt: 'Pokémon card vending machine at Allentown Farmers Market',
   },
@@ -117,7 +111,6 @@ export const machineLocations: MachineLocation[] = [
     state: 'PA',
     postalCode: '18052',
     placement: 'Inside the Whitehall Mall.',
-    hours: ['Monday-Friday 9am-10pm', 'Saturday 9am-8pm', 'Sunday 9am-8pm'],
     comingSoon: true,
     photo: placeholderPhoto,
     photoAlt: 'Placeholder graphic for The Gravity Vault. A machine is not pictured.',
@@ -130,11 +123,6 @@ export function getMachineLocation(slug: string) {
 
 export function formatAddress(location: MachineLocation) {
   return `${location.street}, ${location.city}, ${location.state} ${location.postalCode}`;
-}
-
-/** One line for cards and meta descriptions. Empty when the business is open daily. */
-export function formatHours(location: MachineLocation) {
-  return location.hours?.join(' · ') ?? '';
 }
 
 /**
