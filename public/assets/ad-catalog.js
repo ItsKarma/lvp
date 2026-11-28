@@ -151,7 +151,7 @@ const firstAds = [
   },
   {
     id: 'pokeball',
-    title: 'Classic Ball',
+    title: 'Ball Slim Wall',
     description: 'Red on top, a black seam with a glowing center button, and white on the bottom, matching the machine wrap. Cards burst out of the button.',
     theme: 'pokeball',
     headline: ['BUY', 'POKÉMON', 'CARDS', 'HERE'],
@@ -732,7 +732,7 @@ export const adVariants = [
   { id: 'stripes', description: 'Banner layout: a scrolling striped band runs behind the packs.' },
   { id: 'zoom', description: 'Pulse layout: rings ripple outward from the pack fan.' },
   // Not in the standard rotation; a collection picks it by name (Pokéball does).
-  { id: 'flash', description: 'Flash layout: a soft glow opens out of the seam and center button once per loop.' },
+  { id: 'tower', description: 'Slim tower layout: the Pokéball bar sits low on the screen, with the headline, packs, and TAP TO BUY! above it.' },
 ];
 
 // Ads two through eight for each group; the first is the matching firstAds entry.
@@ -740,7 +740,7 @@ export const adVariants = [
 const moreCopy = {
   // Every Pokéball ad keeps the original headline; only the look and small copy change.
   pokeball: [
-    { title: 'Ball Flash', variant: 'flash', headline: ['BUY', 'POKÉMON', 'CARDS', 'HERE'], tag: 'Open one up' },
+    { title: 'Ball Slim Tower', variant: 'tower', headline: ['BUY', 'POKÉMON', 'CARDS', 'HERE'], tag: 'Open one up' },
   ],
   'type-normal': [
     { title: 'Everyday Heroes', headline: ['EVERYDAY', 'HEROES', 'COLLECT', 'THE BEST HABIT YOU’LL EVER HAVE'], tag: 'Make it a habit' },
