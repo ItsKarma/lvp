@@ -102,7 +102,7 @@ export default function HomePage() {
                 Pokémon card vending in the Lehigh Valley
               </p>
               <h1 className="display text-4xl leading-[1.05] md:text-6xl">
-                Fresh Pokémon packs,{' '}
+                Fresh packs,{' '}
                 <span className="text-gradient-bolt">right around the corner.</span>
               </h1>
               <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/75">

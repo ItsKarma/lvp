@@ -72,10 +72,11 @@ export default function AuthenticityPage() {
         <Section panel eyebrow="Why we bother" title="Because the pull is the whole product.">
           <div className="card-surface mx-auto max-w-3xl p-7 text-center md:p-10">
             <p className="text-lg leading-relaxed text-white/80">
-              Searched packs ruin the only thing that makes this fun. A customer who gets burned once
-              never buys from a machine again, and they tell everyone. The long game for us is simple:
-              people trust the machines, enjoy what they pull, and come back. That only works if we
-              are boring and honest about sourcing.
+              We want you to pull the hits, because a great pull is what brings you back. Searched
+              packs take that away, and a customer who gets burned once never buys from a machine
+              again, and they tell everyone. So the long game for us is simple: people trust the
+              machines, enjoy what they pull, and keep coming back. That only works if we are boring
+              and honest about sourcing.
             </p>
             <div className="mt-8">
               <CTA href="/locations" variant="ghost">
