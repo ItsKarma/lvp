@@ -56,17 +56,26 @@ security, `airport-foodcourt`, `airport-kids` for the kids' play area, and
 styled as yellow wayfinding signs. Copy avoids claims about security rules
 beyond "fits in your carry-on".
 
-A Pokéball section (`pokeball`) has two designs matching the machine wrap: red
-top, black seam with a glowing center button, white bottom. Each keeps the
-original BUY / POKÉMON / CARDS / HERE headline at near-original size, with one
-still ring around the button. They are
-Classic Ball and Ball Flash (`flash`, light bursting
-out of the seam so the ball looks like it is opening). Ball Flash moves the black bar down to 77.5%–87.25% of the screen (measured from
-the original ad's TAP TO BUY!, then nudged from a photo of the machine) so it lines up with the stripe on the machine wrap, with the button and ring
-centered on it and the headline, packs, and TAP TO BUY! moved up onto the red; set
-`--band-top`/`--band-bottom` in ad-pokeball-themes.css to nudge it. Its `moreCopy` entries name
-their layout with `variant` instead of relying on list position. The library now
-holds 402 ads.
+A Pokéball section (`pokeball`) has two designs, one per machine, each matching
+that machine's wrap: red top, black bar with a center button, white bottom.
+Inside the ring around the button the ball is solid red over white, so the rays
+and flying cards only show outside it, and the cards come out from behind its
+edge. Both keep the original BUY / POKÉMON / CARDS / HERE headline, with POKÉMON
+the biggest line.
+
+- Ball Slim Wall (`pokeball`, for the VTM slim wall): the bar sits at
+  58.1%–64.4% of the screen, measured from a photo of the ad on that machine so
+  it lines up with (and is slightly thinner than) the wrap's black stripe. The
+  headline and packs sit on the red above it; the tag and TAP TO BUY! sit on the
+  white below.
+- Ball Slim Tower (`pokeball-2`, layout `tower`, for the slim tower): the bar
+  sits at 77.5%–87.25% of the screen (nudged from a photo of that machine), with
+  the headline and packs above the ball and the tag and TAP TO BUY! inside its
+  red top. Its cards don't fade; they fly all the way off the screen.
+
+Set `--band-top`/`--band-bottom` in ad-pokeball-themes.css to nudge either bar.
+Pokéball `moreCopy` entries name their layout with `variant` instead of relying
+on list position. The library now holds 402 ads.
 
 The original's established visual preferences:
 
@@ -100,7 +109,7 @@ All paths below are relative to the repository root.
 | [ad-seasonal-themes.css](../public/assets/ad-seasonal-themes.css) | The four season and nine holiday themes; small shapes are inline SVG data URIs |
 | [ad-airport-themes.css](../public/assets/ad-airport-themes.css) | The six airport-spot themes and the shared sign-style kicker |
 | [ad-pokeball-themes.css](../public/assets/ad-pokeball-themes.css) | The Pokéball theme; the ball is drawn on `.screen` and its pseudo-elements |
-| [ad-variants.css](../public/assets/ad-variants.css) | The shared layouts, selected by `data-variant` (eight, plus `flash`, used only by Pokéball) |
+| [ad-variants.css](../public/assets/ad-variants.css) | The shared layouts, selected by `data-variant` (eight, plus `tower`, used only by Pokéball and styled in ad-pokeball-themes.css) |
 | [asset collection page](../app/assets/%5Bgroup%5D/page.tsx) | One page per collection |
 | [AdCard.tsx](../components/AdCard.tsx) / [AdGroupTile.tsx](../components/AdGroupTile.tsx) | Library ad card and collection tile |
 | [pokemon-cards.js](../public/assets/pokemon-cards.js) | Catalog selection, ready signal, playback controls, clean/export modes |
